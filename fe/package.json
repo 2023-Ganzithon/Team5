@@ -38,7 +38,11 @@
   },
   "devDependencies": {
     "craco": "^0.0.3",
+    "msw": "^2.0.2",
     "prettier": "^3.0.3",
     "react-app-alias": "^2.2.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
