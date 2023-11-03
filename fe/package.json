@@ -14,10 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +37,8 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^3.0.3"
+    "craco": "^0.0.3",
+    "prettier": "^3.0.3",
+    "react-app-alias": "^2.2.2"
   }
 }
