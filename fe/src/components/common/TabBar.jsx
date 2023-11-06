@@ -50,7 +50,7 @@ TabBar.propTypes = {
   currentTab: PropTypes.oneOf(['home', 'map', 'review', 'myPage']).isRequired,
 };
 
-const TabList = styled.div`
+const TabList = styled.ul`
   position: sticky;
   bottom: 0;
   z-index: 10;
@@ -63,7 +63,7 @@ const TabList = styled.div`
   border-top: 1px solid ${COLOR.gray300};
 `;
 
-const Tab = styled.div`
+const Tab = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
