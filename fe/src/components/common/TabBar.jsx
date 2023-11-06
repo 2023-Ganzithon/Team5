@@ -29,6 +29,7 @@ const TabBar = ({ currentTab }) => {
 
         return (
           <Tab
+            key={tab}
             onClick={() => {
               navigate(path);
             }}
