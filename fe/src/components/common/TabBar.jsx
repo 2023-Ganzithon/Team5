@@ -23,7 +23,7 @@ const TabBar = ({ currentTab }) => {
   const tabNameList = Object.values(TAB_NAME);
 
   return (
-    <TabBarLayout>
+    <TabList>
       {tabNameList.map((tab) => {
         const { path, iconName, text } = TAB_LIST[tab];
 
@@ -40,7 +40,7 @@ const TabBar = ({ currentTab }) => {
           </Tab>
         );
       })}
-    </TabBarLayout>
+    </TabList>
   );
 };
 
@@ -50,7 +50,10 @@ TabBar.propTypes = {
   currentTab: PropTypes.oneOf(['home', 'map', 'review', 'myPage']).isRequired,
 };
 
-const TabBarLayout = styled.div`
+const TabList = styled.ul`
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,7 +63,7 @@ const TabBarLayout = styled.div`
   border-top: 1px solid ${COLOR.gray300};
 `;
 
-const Tab = styled.div`
+const Tab = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
