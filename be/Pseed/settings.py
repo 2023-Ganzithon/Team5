@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     "user",
     "myPage",
+    "map",
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = "Pseed.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR/ 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
