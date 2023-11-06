@@ -51,6 +51,9 @@ TabBar.propTypes = {
 };
 
 const TabList = styled.div`
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
