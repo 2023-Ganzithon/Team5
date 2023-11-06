@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     "user",
     "myPage",
+    "map",
 ]
 
 MIDDLEWARE = [
