@@ -23,7 +23,7 @@ const TabBar = ({ currentTab }) => {
   const tabNameList = Object.values(TAB_NAME);
 
   return (
-    <TabBarLayout>
+    <TabList>
       {tabNameList.map((tab) => {
         const { path, iconName, text } = TAB_LIST[tab];
 
@@ -40,7 +40,7 @@ const TabBar = ({ currentTab }) => {
           </Tab>
         );
       })}
-    </TabBarLayout>
+    </TabList>
   );
 };
 
@@ -50,7 +50,7 @@ TabBar.propTypes = {
   currentTab: PropTypes.oneOf(['home', 'map', 'review', 'myPage']).isRequired,
 };
 
-const TabBarLayout = styled.div`
+const TabList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
