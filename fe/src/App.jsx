@@ -13,9 +13,12 @@ import DonationHistory from '@pages/DonationHistory';
 import DonationRegistration from '@pages/DonationRegistration';
 import Map from '@pages/Map';
 import Login from '@pages/Login';
+import GlobalStyle from '@styles/GlobalStyle';
 
 function App() {
   return (
+    <>
+    <GlobalStyle/>
     <Routes>
       <Route index path={PATH.HOME} element={<Home />} />
       <Route path={PATH.DONATION} element={<Donation />} />
@@ -31,6 +34,8 @@ function App() {
       <Route path={PATH.MAP} element={<Map />} />
       <Route path={PATH.LOGIN} element={<Login />} />
     </Routes>
+    </>
+    
   );
 }
 
