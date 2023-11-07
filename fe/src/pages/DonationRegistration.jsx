@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Icon from '@common/Icon';
 import Header from '@common/Header';
 import TabBar from '@common/TabBar';
+import Button from '@common/Button';
 import { ICON_NAME } from '@constants/iconName';
 import { TAB_NAME } from '@constants/tabName';
 import COLOR from '@styles/color';
@@ -39,7 +40,7 @@ const DonationRegistration = () => {
             <Label htmlFor="money">목표 금액 *</Label>
             <Input type="number" id="money" min={0} step={10} />
           </InputLayout>
-          <Button type="submit">등록하기</Button>
+          <Button text="등록 하기" />
         </Form>
       </Layout>
       <TabBar currentTab={TAB_NAME.MY_PAGE} />
@@ -119,12 +120,4 @@ const Input = styled.input`
   &:active {
     border: 1px solid ${COLOR.black};
   }
-`;
-
-const Button = styled.button`
-  width: 237px;
-  height: 45px;
-  border-radius: 50px;
-  background-color: ${COLOR.green500};
-  box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.24);
 `;
