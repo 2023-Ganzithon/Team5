@@ -33,7 +33,7 @@ const Home = () => {
       moneyAccomp: 35000,
     },
     {
-      id: 2,
+      id: 3,
       img: DONA_IMG,
       category: '개인',
       title: '보건위생물품이 필요합니다.',
