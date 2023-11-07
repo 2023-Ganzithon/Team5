@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import FONT from '@styles/fonts';
+import LogoHeader from '@common/LogoHeader';
 
 const Container = styled.div`
 p{
@@ -11,7 +12,9 @@ p{
 
 const Login = () => {
   
-  return <><Container><p>Login</p></Container></>;
+  return <><Container>
+    <LogoHeader/>
+    <p>Login</p></Container></>;
 };
 
 export default Login;
