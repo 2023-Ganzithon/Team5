@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "myPage",
     "map",
     "users",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
