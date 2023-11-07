@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Icon from '@common/Icon';
+import Header from '@common/Header';
 import TabBar from '@common/TabBar';
 import { ICON_NAME } from '@constants/iconName';
 import { TAB_NAME } from '@constants/tabName';
@@ -13,7 +14,7 @@ const DonationRegistration = () => {
   return (
     <>
       <Layout>
-        <Header>기부처 등록하기</Header>
+        <Header title={'기부처 등록하기'} backUrl={-1} />
         <Form>
           <ImgLayout>
             <ImgLabel htmlFor="img-uploader">
@@ -47,13 +48,6 @@ const DonationRegistration = () => {
 };
 
 export default DonationRegistration;
-
-const Header = styled.header`
-  ${FONT.title2};
-  color: ${COLOR.black};
-  position: sticky;
-  top: 0;
-`;
 
 const Layout = styled.div`
   min-height: calc(100vh - 84px);
