@@ -15,7 +15,7 @@ const DonationHistoryItem = ({ imgSrc, name, title, point, createdAt }) => {
         <Title>{title}</Title>
         <PointLayout>
           <Icon name={ICON_NAME.POINT2} iconColor={COLOR.green700} />
-          <Point>{point}p</Point>
+          <Point>{point}</Point>
         </PointLayout>
       </InfoLayout>
       <span>{formatToMMdd(createdAt)}</span>
