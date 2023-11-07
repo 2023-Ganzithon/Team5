@@ -9,7 +9,7 @@ import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 
 const DonationRegistration = () => {
-  const [file, setFile] = useState(null);
+  const [imgSrc, setImgSrc] = useState(null);
 
   return (
     <>
@@ -18,8 +18,8 @@ const DonationRegistration = () => {
         <Form>
           <ImgLayout>
             <ImgLabel htmlFor="img-uploader">
-              {!file && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
-              {file && <ImgPreview src={file} alt="preview" />}
+              {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
+              {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
             <ImgInput type="file" id="img-uploader" accept="image/*" />
           </ImgLayout>
