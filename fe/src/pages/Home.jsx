@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '@common/Button';
 import LogoHeader from '@common/LogoHeader';
 import TabBar from '@common/TabBar';
 
@@ -61,8 +60,8 @@ const Home = () => {
 
   return (
     <>
-      <LogoHeader />
       <Container>
+        <LogoHeader />
         {/* 포인트 획득 미션 */}
         <PointBox>
           <Title>포인트 획득 미션 💸</Title>
@@ -137,6 +136,7 @@ export default Home;
 
 const Container = styled.div`
   height: 100vh;
+  overflow: auto;
 `;
 
 const PointBox = styled.div`
