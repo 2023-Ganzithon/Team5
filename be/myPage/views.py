@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime
-from .models import Donation, MyPoint, Park
-from .serializers import DonationSerializer, EarnedPointSerializer, DonatedPointSerializer
+from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint
+from .serializers import DonationSerializer, ParkEarnedPointSerializer, ShoppingMallEarnedPointSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -27,70 +27,36 @@ class DonationRegisterView(APIView):
 
 # 포인트 획득 내역 조회  
 class EarnedPointListView(ListAPIView):
-    serializer_class = EarnedPointSerializer
+    serializer_class = None  # serializer_class를 사용하지 않습니다
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            return MyPoint.objects.filter(user=self.request.user)
+            user = self.request.user
+            # 사용자가 얻은 공원 포인트와 쇼핑몰 리뷰 포인트를 가져옵니다.
+            park_points = ParkVisitPoint.objects.filter(user=user)
+            mall_points = ShoppingMallReviewPoint.objects.filter(user=user)
+            return {"user": user, "park_points": park_points, "mall_points": mall_points}
         else:
-            return MyPoint.objects.none()
+            return None
 
-class EarnPointsView(APIView):
-    def post(self, request):
-        if request.user.is_authenticated:
-            # 사용자가 "park_name"을 요청 데이터로 전달
-            # park_name = request.data.get('park_name')
-            park_name = '영등포공원'
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if queryset is None:
+            return Response([])
 
-            try:
-                park = Park.objects.get(name=park_name)  # 사용자가 위치한 공원 정보를 가져옴
-                # 해당 공원에 포인트를 추가
-                user_points, created = MyPoint.objects.get_or_create(user=request.user, park=park)
-                user_points.earnedPoint += 10  # 10포인트 추가함(db에 안넣고서 모든 장소 동일하게)
-                user_points.pointActivityDate = datetime.now()  
-                user_points.save()
-                return Response({'message': f'포인트가 10 추가되었습니다 ({park_name})'}, status=status.HTTP_200_OK)
-            except Park.DoesNotExist:
-                return Response({'message': '해당 공원이 존재하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return JsonResponse({'message': '로그인 하세요.'}, status=401)
+        user = queryset["user"]
+        park_points = queryset["park_points"]
+        mall_points = queryset["mall_points"]
 
-# 기부 내역 조회
-class DonatedPointListView(ListAPIView):
-    serializer_class = DonatedPointSerializer
+        park_serializer = ParkEarnedPointSerializer(park_points, many=True)
+        mall_serializer = ShoppingMallEarnedPointSerializer(mall_points, many=True)
 
-    def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return MyPoint.objects.filter(user=self.request.user)
-        else:
-            return MyPoint.objects.none()    
-  
-class DonatePointsView(APIView):
-    def post(self, request):
-        if request.user.is_authenticated:
-            donated_point = int(request.data.get('donated_point', 0))  # 사용자가 입력한 포인트를 가져오기(프론트입력방식에따라 바꿀것)
+        # 공원 포인트와 쇼핑몰 리뷰 포인트 시리얼라이저 결과를 병합
+        result = {
+            "park_points": park_serializer.data,
+            "mall_points": mall_serializer.data
+        }
 
-            user_points, created = MyPoint.objects.get_or_create(user=request.user)
-
-            if donated_point > 0 and user_points.earnedPoint >= donated_point:
-                user_points.earnedPoint -= donated_point
-                user_points.donatedPoint += donated_point
-                user_points.pointActivityDate = datetime.now()
-                user_points.save()
-                return Response({'message': f'{donated_point}포인트가 기부되었습니다.'}, status=status.HTTP_200_OK)
-            else:
-                return JsonResponse({'message': '포인트가 부족합니다.'}, status=400)
-        else:
-            return JsonResponse({'message': '로그인하세요.'}, status=401)
-
-
-
-
-
-
-
-
-
-
+        return Response(result)
 
 
