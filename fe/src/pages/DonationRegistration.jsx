@@ -33,7 +33,9 @@ const DonationRegistration = () => {
             >
               이미지 업로드
             </ImgButton>
-            <ImgButton type="button">이미지 제거</ImgButton>
+            <ImgButton type="button" onClick={() => setImgSrc(null)}>
+              이미지 제거
+            </ImgButton>
           </ImgLayout>
           <InputLayout>
             <Label htmlFor="name">개인 or 단체 이름 *</Label>
