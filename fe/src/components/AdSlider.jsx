@@ -7,11 +7,11 @@ import MARCOROHO from '@assets/marcoroho.png';
 import COLOR from '@styles/color';
 
 const items = [
-  { id: 1, url: MARCOROHO },
-  { id: 2, url: MARCOROHO },
-  { id: 3, url: MARCOROHO },
-  { id: 4, url: MARCOROHO },
-  { id: 5, url: MARCOROHO },
+  { id: 1, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
+  { id: 2, img: MARCOROHO, url: 'https://www.naver.com/' },
+  { id: 3, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
+  { id: 4, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
+  { id: 5, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
 ];
 
 export default class AdSlider extends Component {
@@ -31,14 +31,17 @@ export default class AdSlider extends Component {
       centerPadding: '0px',
     };
 
+    const handleClick = (path) => {
+      window.location.href = path;
+    };
     return (
       <Container>
         <StyledSlider {...settings}>
           {items.map((item) => {
             return (
-              <div key={item.id}>
-                <Image src={item.url} />
-              </div>
+              <button key={item.id} onClick={() => handleClick(item.url)}>
+                <Image src={item.img} />
+              </button>
             );
           })}
         </StyledSlider>
