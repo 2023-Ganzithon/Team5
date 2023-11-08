@@ -26,7 +26,7 @@ const DonationRegistration = () => {
             <ImgInput type="file" id="img-uploader" accept="image/*" />
           </ImgLayout>
           <InputLayout>
-            <Label htmlFor="name">개인 / 자선단체 *</Label>
+            <Label htmlFor="name">개인 or 단체 이름 *</Label>
             <Input type="text" id="name" />
           </InputLayout>
           <InputLayout>
