@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Donation, MyPoint
+from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint
 
 class DonationSerializer(ModelSerializer):
     class Meta:
@@ -8,15 +8,19 @@ class DonationSerializer(ModelSerializer):
         fields = '__all__'
 
 # 포인트 획득 내역 조회 
-class EarnedPointSerializer(serializers.ModelSerializer):
+class ParkEarnedPointSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MyPoint
+        model = ParkVisitPoint
         fields = ('park', 'pointActivityDate', 'earnedPoint')
 
-# 기부 내역 조회 
-class DonatedPointSerializer(serializers.ModelSerializer):
+class ShoppingMallEarnedPointSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MyPoint
-        fields = ('donatedName', 'pointActivityDate', 'donatedPoint')
+        model = ShoppingMallReviewPoint
+        fields = ('mall', 'pointActivityDate', 'earnedPoint')
+
+
+
+
+
 
 

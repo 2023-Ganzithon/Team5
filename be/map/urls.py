@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import kakaoMap
+from .views import EarnParkPointsView
 
 urlpatterns = [
-    path('', kakaoMap),
+    path('', EarnParkPointsView.as_view(), name='park_points'),
 ]

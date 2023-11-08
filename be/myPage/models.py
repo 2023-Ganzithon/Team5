@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 from users.models import Profile
 from map.models import Park
+from posts.models import Post
 
 # Create your models here.
 class Donation(models.Model):
@@ -15,28 +17,32 @@ class Donation(models.Model):
 
     def __str__(self):
         return self.comment
-    
-class MyPoint(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    earnedPoint = models.IntegerField(default=0)  # 얻은 포인트
-    donatedPoint = models.IntegerField(default=0) # 기부한 포인트
-    pointActivityDate = models.DateTimeField(null=True, blank=True)  # 포인트 활동 날짜
-    park = models.ForeignKey(Park, on_delete=models.CASCADE, null=True, blank=True)  # 관련된 공원정보
-    # donatedName = models.ForeignKey() # 여긴 기부처이름 아직 모델을 안받아서
 
-    def __str__(self):
-        return self.user.username
+class ParkVisitPoint(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    park = models.ForeignKey(Park, on_delete=models.CASCADE)
+    earnedPoint = models.IntegerField(default=0)
+    pointActivityDate = models.DateTimeField(default=datetime.now)
 
-# user 모델의 토탈 point 실시간 업로드     
-@receiver(post_save, sender=MyPoint)
+class ShoppingMallReviewPoint(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mall = models.CharField(max_length=128)  # 쇼핑몰의 이름을 문자열로 저장
+    earnedPoint = models.IntegerField(default=0)
+    pointActivityDate = models.DateTimeField(default=datetime.now)
+
+
+# 유저의 총 포인트도 실시간 업데이트하는 
+@receiver(post_save, sender=ParkVisitPoint)
+@receiver(post_save, sender=ShoppingMallReviewPoint)
 def update_user_points(sender, instance, **kwargs):
     user = instance.user
-    earned_points = MyPoint.objects.filter(user=user).aggregate(earned_points=models.Sum('earnedPoint'))['earned_points'] or 0
-    donated_points = MyPoint.objects.filter(user=user).aggregate(donated_points=models.Sum('donatedPoint'))['donated_points'] or 0
-    total_points = earned_points - donated_points
+    # 공원 포인트와 쇼핑몰 리뷰 포인트를 모두 가져와서 합침
+    park_points = ParkVisitPoint.objects.filter(user=user).aggregate(earned_points=models.Sum('earnedPoint'))['earned_points'] or 0
+    mall_points = ShoppingMallReviewPoint.objects.filter(user=user).aggregate(earned_points=models.Sum('earnedPoint'))['earned_points'] or 0
+
+    total_points = park_points + mall_points
     user.profile.points = total_points
     user.profile.save()
-    
 
 
 
