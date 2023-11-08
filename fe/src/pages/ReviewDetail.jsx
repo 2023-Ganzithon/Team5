@@ -4,11 +4,15 @@ import { useLocation } from 'react-router-dom';
 
 import USER_IMG from '@assets/userImg.png';
 import REVIEW_IMG from '@assets/reviewImg.png';
+
 import Header from '@common/Header';
-import COLOR from '@styles/color';
-import { PATH } from '@constants/path';
-import FONT from '@styles/fonts';
 import ReviewSlider from '@components/ReviewSlider';
+import Button from '@common/Button';
+
+import COLOR from '@styles/color';
+import FONT from '@styles/fonts';
+import { PATH } from '@constants/path';
+import { BUTTON_NAME } from '@constants/buttonName';
 
 const ReviewDetail = () => {
   const { state } = useLocation();
@@ -61,6 +65,9 @@ const ReviewDetail = () => {
           </MoreBtn>
         </TextWrapper>
       </Wrapper>
+      <ButtonWrapper>
+        <Button text={BUTTON_NAME.MALL} path={review.url} />
+      </ButtonWrapper>
     </Container>
   );
 };
@@ -84,11 +91,12 @@ const Wrapper = styled.div`
 `;
 
 const InfoWrapper = styled.div`
+  margin-top: 20px;
   margin-bottom: 18px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 95%;
+  width: 98%;
   img {
     width: 53px;
     height: 53px;
@@ -145,4 +153,16 @@ const MoreBtn = styled.button`
   text-align: left;
   background-color: transparent;
   color: ${COLOR.gray400};
+`;
+
+const ButtonWrapper = styled.div`
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 `;
