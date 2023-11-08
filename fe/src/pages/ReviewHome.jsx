@@ -29,7 +29,9 @@ const ReviewHome = () => {
           <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.black} width={12} height={12}></Icon>
         </ListAll>
         <PBox>
-          <Subtitle>리뷰 작성하고 포인트 받자</Subtitle>
+          <Subtitle>
+            리뷰 작성하고 <span style={{ color: '#52B788' }}>포인트</span> 받자
+          </Subtitle>
           <Button text={BUTTON_NAME.REVIEW_WRITE} path={PATH.REVIEW_WRITE} />
         </PBox>
       </Container>
