@@ -51,7 +51,7 @@ const DonationRegistration = () => {
             <Label htmlFor="money">목표 금액 *</Label>
             <Input type="number" id="money" min={0} step={10} />
           </InputLayout>
-          <Button text="등록 하기" />
+          <Button text="등록하기" />
         </Form>
       </Layout>
       <TabBar currentTab={TAB_NAME.MY_PAGE} />
