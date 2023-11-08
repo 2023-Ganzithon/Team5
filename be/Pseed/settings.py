@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "map",
     "users",
     "rest_framework.authtoken",
+    "posts",
 ]
 
 MIDDLEWARE = [
