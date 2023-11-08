@@ -29,6 +29,22 @@ export default class AdSlider extends Component {
       pauseOnHover: true,
       draggable: true,
       centerPadding: '0px',
+
+      appendDots: (dots) => (
+        <div
+          style={{
+            width: '100%',
+            position: 'absolute',
+            bottom: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <ul> {dots} </ul>
+        </div>
+      ),
+      dotsClass: 'dotsCustom',
     };
 
     const handleClick = (path) => {
@@ -68,32 +84,33 @@ const StyledSlider = styled(Slider)`
   width: 100%;
   height: 100%;
 
-  .slick-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    list-style: none;
+  .dotsCustom {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 0;
     padding: 0;
-    position: absolute;
-    bottom: 10px; /* 원하는 위치에 조절 */
   }
 
-  .slick-dots li {
-    margin: 0;
+  .dotsCustom li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 6px;
+    padding: 0;
   }
 
-  .slick-dots li button {
-    font-size: 0; /* 점 내용 숨기기 */
-    width: 10px; /* 점 너비 조절 */
-    height: 10px; /* 점 높이 조절 */
-    margin: 1px; /* 점 간격 조절 */
-    background-color: transparent; /* 점의 기본 색상 */
-    border: 1px solid ${COLOR.white}; /* 점의 테두리 스타일 및 색상 조절 */
-    border-radius: 50%; /* 점을 둥글게 표시 */
+  .dotsCustom li button {
+    border: none;
+    background: transparent;
+    border: 1px solid ${COLOR.white};
+    color: transparent;
+    display: block;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    padding: 0;
   }
 
-  .slick-dots li.slick-active button {
-    background-color: ${COLOR.white}; /* 활성화된 점의 배경색 조절 */
+  .dotsCustom li.slick-active button {
+    background-color: ${COLOR.white};
   }
 `;
