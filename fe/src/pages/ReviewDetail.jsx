@@ -91,7 +91,7 @@ const Wrapper = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 18px;
   display: flex;
   justify-content: space-between;
