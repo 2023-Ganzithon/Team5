@@ -6,6 +6,7 @@ import TabBar from '@common/TabBar';
 import Button from '@common/Button';
 import { ICON_NAME } from '@constants/iconName';
 import { TAB_NAME } from '@constants/tabName';
+import { PATH } from '@constants/path';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 
@@ -15,7 +16,7 @@ const DonationRegistration = () => {
   return (
     <>
       <Layout>
-        <Header title={'기부처 등록하기'} backUrl={-1} />
+        <Header title={'기부처 등록하기'} backUrl={PATH.MY_PAGE} />
         <Form>
           <ImgLayout>
             <ImgLabel htmlFor="img-uploader">
