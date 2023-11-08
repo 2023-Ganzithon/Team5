@@ -4,10 +4,16 @@ from .serializers import PostSerializer, PostCreateSerializer
 from .permissions import CustomReadOnly
 from users.models import Profile
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     permission_classes = [CustomReadOnly]
+
+    # shoppingmall, star filtering
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["shoppingmall", "star"]
 
     def get_serializer_class(self):
         if self.action == "list" or "retrieve":
