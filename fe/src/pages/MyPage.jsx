@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -9,8 +10,11 @@ import Button from '@common/Button';
 import TabBar from '@common/TabBar';
 import DonationHistoryItem from '@components/DonationHistoryItem';
 import PointHistoryItem from '@components/PointHistoryItem';
+import { PATH } from '@constants/path';
 
 const MyPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Layout>
@@ -39,7 +43,9 @@ const MyPage = () => {
           <ListLayout>
             <ListTitle>
               <Title>포인트 적립 내역</Title>
-              <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
+              <IconButton type="button" onClick={() => navigate(PATH.POINT_HISTORY)}>
+                <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
+              </IconButton>
             </ListTitle>
             <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
             <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
@@ -150,6 +156,10 @@ const ButtonLayout = styled.div`
 const Title = styled.span`
   color: ${COLOR.green800};
   ${FONT.title3}
+`;
+
+const IconButton = styled.button`
+  background: transparent;
 `;
 
 const MyPointLayout = styled.div`
