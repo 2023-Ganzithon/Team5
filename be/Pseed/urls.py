@@ -8,4 +8,5 @@ urlpatterns = [
     path("myPage/", include("myPage.urls")),
     path("map/", include("map.urls")),
     path("users/", include("users.urls")),
+    path("review/", include("posts.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
