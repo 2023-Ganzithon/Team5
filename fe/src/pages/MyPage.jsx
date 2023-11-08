@@ -31,7 +31,7 @@ const MyPage = () => {
             </UserInfo>
           </UserInfoLayout>
           <ButtonLayout>
-            <Button text="기부처 등록하기" />
+            <Button text="기부처 등록하기" eventName={() => navigate(PATH.DONATION_REGISTRATION)} />
           </ButtonLayout>
           <MyPointLayout>
             <Title>내 포인트</Title>
