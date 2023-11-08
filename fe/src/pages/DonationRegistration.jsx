@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Icon from '@common/Icon';
 import Header from '@common/Header';
@@ -12,6 +12,7 @@ import FONT from '@styles/fonts';
 
 const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
+  const imgInputRef = useRef(null);
 
   return (
     <>
@@ -23,8 +24,15 @@ const DonationRegistration = () => {
               {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
               {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
-            <ImgInput type="file" id="img-uploader" accept="image/*" />
-            <ImgButton type="button">이미지 업로드</ImgButton>
+            <ImgInput ref={imgInputRef} type="file" id="img-uploader" accept="image/*" />
+            <ImgButton
+              type="button"
+              onClick={() => {
+                imgInputRef?.current?.click();
+              }}
+            >
+              이미지 업로드
+            </ImgButton>
             <ImgButton type="button">이미지 제거</ImgButton>
           </ImgLayout>
           <InputLayout>
