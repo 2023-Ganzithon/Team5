@@ -135,6 +135,7 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
+  background-color: ${COLOR.white};
   height: 100vh;
   overflow: auto;
 `;
