@@ -53,7 +53,6 @@ export default DonationRegistration;
 const Layout = styled.div`
   min-height: calc(100vh - 84px);
   background: ${COLOR.white};
-  overflow-y: hidden;
   display: flex;
   flex-direction: column;
 `;
