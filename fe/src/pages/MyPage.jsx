@@ -54,7 +54,9 @@ const MyPage = () => {
           <ListLayout>
             <ListTitle>
               <Title>기부 내역</Title>
-              <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
+              <IconButton type="button" onClick={() => navigate(PATH.DONATION_HISTORY)}>
+                <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
+              </IconButton>
             </ListTitle>
             <DonationHistoryItem
               name="자선 단체"
