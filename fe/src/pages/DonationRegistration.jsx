@@ -13,6 +13,10 @@ import FONT from '@styles/fonts';
 const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
   const imgInputRef = useRef(null);
+  const nameInputRef = useRef(null);
+  const titleInputRef = useRef(null);
+  const commentInputRef = useRef(null);
+  const goalInputRef = useRef(null);
 
   const handleImgUpload = ({ target }) => {
     const reader = new FileReader();
@@ -57,19 +61,19 @@ const DonationRegistration = () => {
           </ImgLayout>
           <InputLayout>
             <Label htmlFor="name">개인 or 단체 이름 *</Label>
-            <Input type="text" id="name" />
+            <Input type="text" id="name" ref={nameInputRef} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="title">제목 *</Label>
-            <Input type="text" id="title" />
+            <Input type="text" id="title" ref={titleInputRef} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="description">한 줄 소개 *</Label>
-            <Input type="text" id="description" />
+            <Input type="text" id="description" ref={commentInputRef} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="money">목표 금액 *</Label>
-            <Input type="number" id="money" min={0} step={10} />
+            <Input type="number" id="money" min={0} step={10} ref={goalInputRef} />
           </InputLayout>
           <Button text="등록하기" />
         </Form>
