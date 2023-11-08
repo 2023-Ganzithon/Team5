@@ -28,20 +28,10 @@ const ReviewDetail = () => {
   };
 
   const [isShowMore, setIsShowMore] = useState(false);
-  const textLimit = useRef(50);
 
-  const commenter = useMemo(() => {
-    const shortReview = review.desc.slice(0, textLimit.current);
-
-    if (review.desc.length > textLimit) {
-      if (isShowMore) {
-        return review.desc;
-      }
-      return shortReview;
-    }
-
-    return review.desc;
-  }, [isShowMore]);
+  const reviewText = review.desc;
+  const textLimit = 145;
+  const shortReview = reviewText.slice(0, textLimit);
 
   return (
     <Container>
@@ -64,9 +54,9 @@ const ReviewDetail = () => {
         </SliderWrapper>
         <TextWrapper>
           <p className="title">{review.title}</p>
-          <p className="desc">{commenter}</p>
+          <p className="desc">{isShowMore ? reviewText : shortReview}</p>
           <MoreBtn onClick={() => setIsShowMore(!isShowMore)}>
-            {review.desc.length > textLimit.current && // 버튼명은 조건에 따라 달라진다
+            {reviewText.length > textLimit && // 버튼명은 조건에 따라 달라진다
               (isShowMore ? '[닫기]' : '...[더보기]')}
           </MoreBtn>
         </TextWrapper>
@@ -137,6 +127,7 @@ const SliderWrapper = styled.div`
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .title {
     ${FONT.headline}
