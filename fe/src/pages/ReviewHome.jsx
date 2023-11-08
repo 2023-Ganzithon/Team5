@@ -17,47 +17,51 @@ import { PATH } from '@constants/path';
 import { TAB_NAME } from '@constants/tabName';
 import { BUTTON_NAME } from '@constants/buttonName';
 
+const reviewList = [
+  {
+    id: 1,
+    img: PreviewReview_IMG,
+    title: '땡땡의 아름다운 반지',
+    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    userName: '김예은',
+    year: 2023,
+    month: 11,
+    day: 12,
+    rate: 4,
+  },
+  {
+    id: 2,
+    img: PreviewReview_IMG,
+    title: '세이브더칠드런 아동 식사지원캠페인',
+    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    userName: '김예은',
+    year: 2023,
+    month: 11,
+    day: 12,
+    rate: 4,
+  },
+  {
+    id: 3,
+    img: PreviewReview_IMG,
+    title: '세이브더칠드런 아동 식사지원캠페인',
+    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    userName: '김예은',
+    year: 2023,
+    month: 11,
+    day: 12,
+    rate: 4,
+  },
+];
+
 const ReviewHome = () => {
   const navigate = useNavigate();
 
-  const reviewList = [
-    {
-      id: 1,
-      img: PreviewReview_IMG,
-      title: '땡땡의 아름다운 반지',
-      desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-      userImg: User_IMG,
-      userName: '김예은',
-      year: 2023,
-      month: 11,
-      day: 12,
-      rate: 4,
-    },
-    {
-      id: 2,
-      img: PreviewReview_IMG,
-      title: '세이브더칠드런 아동 식사지원캠페인',
-      desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-      userImg: User_IMG,
-      userName: '김예은',
-      year: 2023,
-      month: 11,
-      day: 12,
-      rate: 4,
-    },
-    {
-      id: 3,
-      img: PreviewReview_IMG,
-      title: '세이브더칠드런 아동 식사지원캠페인',
-      desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-      userImg: User_IMG,
-      userName: '김예은',
-      year: 2023,
-      month: 11,
-      day: 12,
-      rate: 4,
-    },
-  ];
+  const handleReviewClick = (id) => {
+    navigate(PATH.REVIEW_DETAIL, { state: id });
+  };
 
   return (
     <>
@@ -79,7 +83,7 @@ const ReviewHome = () => {
           <ReviewListBox>
             {reviewList.map((index) => {
               return (
-                <ReviewContainer>
+                <ReviewContainer onClick={() => handleReviewClick(index.id)}>
                   <img src={PreviewReview_IMG} alt={index.id} />
                   <div className="reviewInfoBox">
                     <ReviewTitle>{index.title}</ReviewTitle>
@@ -161,9 +165,11 @@ const ReviewListBox = styled.div`
   height: 50px;
 `;
 
-const ReviewContainer = styled.div`
+const ReviewContainer = styled.button`
   width: 174px;
   margin-bottom: 20px;
+  background-color: transparent;
+  text-align: left;
 
   img {
     width: 174px;
@@ -193,6 +199,7 @@ const ReviewContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .userName {
