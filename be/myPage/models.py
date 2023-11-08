@@ -17,7 +17,7 @@ class Donation(models.Model):
         return self.comment
     
 class MyPoint(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     earnedPoint = models.IntegerField(default=0)  # 얻은 포인트
     donatedPoint = models.IntegerField(default=0) # 기부한 포인트
     pointActivityDate = models.DateTimeField(null=True, blank=True)  # 포인트 활동 날짜
