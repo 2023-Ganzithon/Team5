@@ -4,7 +4,7 @@ import Icon from '@common/Icon';
 import { ICON_NAME } from '@constants/iconName';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
-import { formatToMMdd } from '@utils/index';
+import { formatTommdd } from '@utils/index';
 
 const PointHistoryItem = ({ type, point, text, createdAt }) => {
   return (
@@ -17,7 +17,7 @@ const PointHistoryItem = ({ type, point, text, createdAt }) => {
         <Point>{point}p</Point>
         <span>{text}</span>
       </InfoLayout>
-      <span>{formatToMMdd(createdAt)}</span>
+      <span>{formatTommdd(createdAt)}</span>
     </Item>
   );
 };

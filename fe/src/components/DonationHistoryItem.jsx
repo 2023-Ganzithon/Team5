@@ -4,7 +4,7 @@ import Icon from '@common/Icon';
 import { ICON_NAME } from '@constants/iconName';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
-import { formatToMMdd } from '@utils/index';
+import { formatTommdd } from '@utils/index';
 
 const DonationHistoryItem = ({ imgSrc, name, title, point, createdAt }) => {
   return (
@@ -18,7 +18,7 @@ const DonationHistoryItem = ({ imgSrc, name, title, point, createdAt }) => {
           <Point>{point}</Point>
         </PointLayout>
       </InfoLayout>
-      <span>{formatToMMdd(createdAt)}</span>
+      <span>{formatTommdd(createdAt)}</span>
     </Item>
   );
 };
