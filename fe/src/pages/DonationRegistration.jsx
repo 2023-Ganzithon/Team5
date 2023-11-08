@@ -14,6 +14,18 @@ const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
   const imgInputRef = useRef(null);
 
+  const handleImgUpload = ({ target }) => {
+    const reader = new FileReader();
+
+    if (!target?.files?.[0]) return;
+
+    reader.readAsDataURL(target.files[0]);
+
+    reader.onload = () => {
+      setImgSrc(reader.result);
+    };
+  };
+
   return (
     <>
       <Layout>
@@ -24,7 +36,13 @@ const DonationRegistration = () => {
               {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
               {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
-            <ImgInput ref={imgInputRef} type="file" id="img-uploader" accept="image/*" />
+            <ImgInput
+              ref={imgInputRef}
+              type="file"
+              id="img-uploader"
+              accept="image/*"
+              onChange={handleImgUpload}
+            />
             <ImgButton
               type="button"
               onClick={() => {
