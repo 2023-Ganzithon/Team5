@@ -24,6 +24,8 @@ const DonationRegistration = () => {
               {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
             <ImgInput type="file" id="img-uploader" accept="image/*" />
+            <ImgButton type="button">이미지 업로드</ImgButton>
+            <ImgButton type="button">이미지 제거</ImgButton>
           </ImgLayout>
           <InputLayout>
             <Label htmlFor="name">개인 or 단체 이름 *</Label>
@@ -70,6 +72,7 @@ const ImgLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  gap: 8px;
 `;
 
 const ImgPreview = styled.img`
@@ -120,4 +123,17 @@ const Input = styled.input`
   &:active {
     border: 1px solid ${COLOR.black};
   }
+`;
+
+const ImgButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px 0px;
+  background: ${COLOR.green500};
+  color: ${COLOR.white};
+  ${FONT.body}
+  cursor: pointer;
 `;
