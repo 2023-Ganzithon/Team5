@@ -63,12 +63,16 @@ const ReviewHome = () => {
     navigate(PATH.REVIEW_DETAIL, { state: id });
   };
 
+  const handleMallClick = () => {
+    navigate(PATH.MALL_LIST);
+  };
+
   return (
     <>
       <Container>
         <LogoHeader />
         <AdSlider />
-        <ListAll>
+        <ListAll onClick={handleMallClick}>
           <P>기부 쇼핑몰 전체 보러 가기</P>
           <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.black} width={12} height={12}></Icon>
         </ListAll>
