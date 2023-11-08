@@ -163,7 +163,7 @@ const Pbutton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 165px;
+  width: 163px;
   height: 87px;
   border: none;
   border-radius: 20px;
