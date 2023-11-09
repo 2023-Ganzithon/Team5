@@ -36,10 +36,9 @@ const Button = ({ text, path, eventName }) => {
 export default Button;
 
 Button.propTypes = {
-  text: PropTypes.oneOf(['리뷰 작성하기', '쇼핑몰로 이동하기', '홈 화면으로', '기부처 등록하기', '등록하기'])
-    .isRequired,
-  path: PropTypes.string,
-  eventName: PropTypes.string,
+    text: PropTypes.oneOf(["리뷰 작성하기", "쇼핑몰로 이동하기", "홈 화면으로", "기부처 등록하기", "등록하기", "회원가입", "로그인"]).isRequired,
+    path: PropTypes.string,
+    eventName: PropTypes.string,
 };
 
 const ButtonWrapper = styled.button`
@@ -47,10 +46,16 @@ const ButtonWrapper = styled.button`
   height: 45px;
   border-radius: 50px;
 
-  background-color: ${({ text }) => (text === '홈 화면으로' ? COLOR.white : COLOR.green500)};
-  border: ${({ text }) => (text === '홈 화면으로' ? `1px solid ${COLOR.gray300}` : 'none')};
-  box-shadow: ${({ text }) => (text === '홈 화면으로' ? 'none' : '0px 1px 7px rgba(0, 0, 0, 0.24)')};
-`;
+    background-color: ${({ text }) => (text === "홈 화면으로" ? COLOR.white : COLOR.green500)};
+    border: ${({ text }) => (text === "홈 화면으로" ? `1px solid ${COLOR.gray300}`  : 'none')};
+    box-shadow: ${({ text }) => (
+        text === "홈 화면으로" 
+            ? "none"
+            : "0px 1px 7px rgba(0, 0, 0, 0.24)"
+    )};
+`; 
+
+
 
 const ButtonText = styled.span`
   ${({ text }) => (text === '홈 화면으로' ? FONT.body : FONT.headline)};
