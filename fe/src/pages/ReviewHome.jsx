@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import LogoHeader from '@common/LogoHeader';
@@ -26,10 +27,8 @@ const reviewList = [
     desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
     userName: '김예은',
-    year: 2023,
-    month: 11,
-    day: 12,
-    rate: 4,
+    date: '2023-11-03',
+    star: 5,
   },
   {
     id: 2,
@@ -38,10 +37,8 @@ const reviewList = [
     desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
     userName: '김예은',
-    year: 2023,
-    month: 11,
-    day: 12,
-    rate: 4,
+    date: '2023-11-03',
+    star: 4,
   },
   {
     id: 3,
@@ -50,15 +47,15 @@ const reviewList = [
     desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
     userName: '김예은',
-    year: 2023,
-    month: 11,
-    day: 12,
-    rate: 4,
+    date: '2023-11-03',
+    star: 4,
   },
 ];
 
 const ReviewHome = () => {
   const navigate = useNavigate();
+
+  // const [reviewList, setReviewList] = useState([]);
 
   const handleReviewClick = (id) => {
     navigate(PATH.REVIEW_DETAIL, { state: id });
@@ -67,6 +64,43 @@ const ReviewHome = () => {
   const handleMallClick = () => {
     navigate(PATH.MALL_LIST);
   };
+
+  // //리스트 받아오기
+  // const getReview = async () => {
+  //   const url = 'http://127.0.0.1:8000/review/';
+  //   try {
+  //     const res = await axios.get(url);
+  //     console.log(res.results);
+  //     setReviewList(res.results);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getReview();
+  // }, []);
+
+  // // 날짜 yyyy-mm-dd 변환
+  // const ChangeDate = (fullDate) => {
+  //   const regex = /(\d{4}-\d{2}-\d{2})/;
+  //   const match = fullDate.match(regex);
+  //   return match;
+  // };
+
+  //   {
+  //     "pk": 4,
+  //     "profile": {
+  //         "nickname": "gksekdms",
+  //         "image": "http://127.0.0.1:8000/media/default.png"
+  //     },
+  //     "shoppingmall": "ddddd",
+  //     "title": "titi",
+  //     "body": "ddd",
+  //     "image": "http://127.0.0.1:8000/media/post/Frame_320pseed_JEu0VGe.png",
+  //     "published_date": "2023-11-08T11:27:25.170577+09:00",
+  //     "star": 1
+  // }
 
   return (
     <>
@@ -89,21 +123,19 @@ const ReviewHome = () => {
             {reviewList.map((index) => {
               return (
                 <ReviewContainer onClick={() => handleReviewClick(index.id)}>
-                  <img src={PreviewReview_IMG} alt={index.id} />
+                  <img src={index.img} alt={index.id} />
                   <div className="reviewInfoBox">
                     <ReviewTitle>{index.title}</ReviewTitle>
                     <ReviewDesc>{index.desc}</ReviewDesc>
                     <div className="reviewBottom">
                       <div className="userInfo">
-                        <img src={index.userImg} alt={index.id} className="userimg" />
+                        <img src={index.userImg} alt={index.pk} className="userimg" />
                         <div>
                           <p className="userName">{index.userName}</p>
-                          <p className="uploadDay">
-                            {index.year}-{index.month}-{index.day}
-                          </p>
+                          <p className="uploadDay">{index.date}</p>
                         </div>
                       </div>
-                      <Rate size={8} rate={index.rate} />
+                      <Rate size={8} rate={index.star - 1} />
                     </div>
                   </div>
                 </ReviewContainer>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import LogoHeader from '@common/LogoHeader';
@@ -41,6 +42,25 @@ const Home = () => {
       moneyAccomp: 1000,
     },
   ];
+
+  // //리스트 받아오기
+  // const getDonaList = async () => {
+  //   const url = 'http://127.0.0.1:8000/';
+  //   try {
+  //     const res = await axios.get(url, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     console.log(res);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getDonaList();
+  // }, []);
 
   const navigate = useNavigate();
 
