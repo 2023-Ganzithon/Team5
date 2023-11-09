@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import COLOR from '@styles/color';
 import { ImStarFull } from 'react-icons/im';
 
-const Rate = ({ size, rate }) => {
+const Rate = ({ size, rate, updateScore }) => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
 
   const array = [0, 1, 2, 3, 4];
@@ -30,6 +30,7 @@ const Rate = ({ size, rate }) => {
         clickStates[i] = true;
       }
       setClicked(clickStates);
+      updateScore(index + 1);
     }
   };
 

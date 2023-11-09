@@ -21,6 +21,13 @@ const meta = {
       },
     },
     required: false,
+    updateScore: {
+      description: '별점을 설정하고, 설정된 별점 값을 부모 컴포넌트에서 받아오고 싶다면 함수 전달',
+      control: {
+        type: 'function',
+      },
+    },
+    required: false,
   },
 };
 export default meta;
