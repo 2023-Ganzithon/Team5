@@ -38,7 +38,7 @@ const Button = ({ text, path, eventName }) => {
 export default Button;
 
 Button.propTypes = {
-    text: PropTypes.oneOf(["리뷰 작성하기", "쇼핑몰로 이동하기", "홈 화면으로", "기부처 등록하기", "등록하기"]).isRequired,
+    text: PropTypes.oneOf(["리뷰 작성하기", "쇼핑몰로 이동하기", "홈 화면으로", "기부처 등록하기", "등록하기", "회원가입", "로그인"]).isRequired,
     path: PropTypes.string,
     eventName: PropTypes.string,
 };
