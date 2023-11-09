@@ -198,4 +198,10 @@ const ImgButton = styled.button`
   color: ${COLOR.white};
   ${FONT.body}
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:focus {
+    outline: 2px solid ${COLOR.green700};
+  }
 `;
