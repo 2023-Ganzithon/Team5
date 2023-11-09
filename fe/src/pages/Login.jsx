@@ -1,15 +1,52 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import FONT from '@styles/fonts';
 import LOGO from '@assets/LogoPseed2.svg'
 import COLOR from '@styles/color';
 import Button from '@common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 // 요청 - 유저이름, 비밀번호
 // 응답 -> 토큰
-const loginClick = () => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
+  const loginClick = () => {
+    const enteredName = document.getElementById('name').value;
+    const enteredPassword = document.getElementById('password').value;
+    
+    setName(enteredName);
+    setPassword(enteredPassword);
+
+    let apiUrl = "http://127.0.0.1:8000/users/login/";
+    
+    let dataToSend = null;
+
+    dataToSend = {
+      username: name,
+      password: password,
+    };
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setToken(data.token);
+      navigate('/');
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Error:", error);
+    });
 }
 
 return <LoginContainer>
@@ -23,6 +60,7 @@ return <LoginContainer>
         <Input type="password" id="password" />
     </InputLayout>
     <Button text='로그인' path='/login' eventName={loginClick} />
+    <Button text='회원가입' path='/signUp' eventName={null} />
 
     </LoginContainer>;
 };

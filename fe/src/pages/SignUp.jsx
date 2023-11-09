@@ -1,16 +1,58 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import FONT from '@styles/fonts';
 import COLOR from '@styles/color';
 import LOGO from '@assets/LogoPseed2.svg'
 import Button from '@common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     // 요청 - 유저이름, 비밀번호, 비밀번호 확인, 이메일
     // 응답 -> 유저이름, 이메일
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [email, setEmail] = useState("");
+    const navigate = useNavigate();
+    
     const signUpClick = () => {
-        //백엔드에 보내고 응답결과에 따라 알림창 or 로그인페이지로 이동
+    const enteredName = document.getElementById('name').value;
+    const enteredPassword = document.getElementById('password').value;
+    const enteredPasswordConfirm = document.getElementById('passwordConfirm').value;
+    const enteredEmail = document.getElementById('email').value;
+    
+    setName(enteredName);
+    setPassword(enteredPassword);
+    setPasswordConfirm(enteredPasswordConfirm);
+    setEmail(enteredEmail);
 
+    let apiUrl = "http://127.0.0.1:8000/users/register/";
+    
+    let dataToSend = null;
+
+    dataToSend = {
+      username: name,
+      password: password,
+      password2: passwordConfirm,
+      email: email,
+    };
+  
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      navigate('/login');
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Error:", error);
+    });
       };
 
   return <SignUPContainer>
@@ -31,7 +73,7 @@ const SignUp = () => {
         <Label htmlFor="name">이메일 *</Label>
         <Input type="email" id="email" />
     </InputLayout>
-    <Button text='회원가입' path='/signup' eventName={signUpClick} />
+    <Button text='회원가입' path='/signUp' eventName={signUpClick} />
 
     </SignUPContainer>;
 };
