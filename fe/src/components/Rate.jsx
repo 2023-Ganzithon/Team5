@@ -51,8 +51,6 @@ const Rate = ({ size, rate }) => {
 export default Rate;
 
 const RatingBox = styled.div`
-  margin: 0 auto;
-
   & svg {
     color: ${COLOR.gray400};
   }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import LogoHeader from '@common/LogoHeader';
 import TabBar from '@common/TabBar';
 import AdSlider from '@components/AdSlider';
+import Rate from '@components/Rate';
 import PreviewReview_IMG from '@assets/PreviewReview.png';
 import User_IMG from '@assets/userImg.png';
 
@@ -102,7 +103,7 @@ const ReviewHome = () => {
                           </p>
                         </div>
                       </div>
-                      <div>별점</div>
+                      <Rate size={8} rate={index.rate} />
                     </div>
                   </div>
                 </ReviewContainer>
