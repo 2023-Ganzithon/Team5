@@ -42,7 +42,6 @@ const Rate = ({ size, rate, updateScore }) => {
           onClick={() => handleStarClick(el)}
           className={clicked[el] && 'red'}
           size={size}
-          s
         />
       ))}
     </RatingBox>
