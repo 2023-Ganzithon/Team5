@@ -59,7 +59,7 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   width: 100%;
-  height: 700px;
+  height: 400px;
   border-radius: 20px;
 `;
 
