@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -23,6 +23,11 @@ const Header = ({title, backUrl})=>{
 }
 
 export default Header;
+
+Header.propTypes = {
+  title: PropTypes.oneOf(['기부처 등록하기', '기부 내역', '포인트 적립 내역', '상품리뷰 작성', '기부하기']).isRequired,
+  backUrl: PropTypes.oneOf(['/reviewHome', '/myPage', '/']).isRequired,
+};
 
 const HeadContainer = styled.div`
 position: sticky;
