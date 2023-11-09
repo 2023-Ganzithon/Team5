@@ -7,31 +7,29 @@ import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 import { PATH } from '@constants/path';
 
-
 const Button = ({ text, path, eventName }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if(eventName) {
-        eventName()
+    if (eventName) {
+      eventName();
     }
 
     if (path) {
-        if (/^https:/.test(path)) {
-            window.location.href = path;
-        } else {
-            navigate(path);
-        }
+      if (/^https:/.test(path)) {
+        window.location.href = path;
+      } else {
+        navigate(path);
+      }
     }
-}
+  };
 
   return (
     <>
-        <ButtonWrapper onClick={handleClick} text={text}>
-            <ButtonText text = {text}>{text}</ButtonText>
-        </ButtonWrapper>
+      <ButtonWrapper onClick={handleClick} text={text}>
+        <ButtonText text={text}>{text}</ButtonText>
+      </ButtonWrapper>
     </>
-    
   );
 };
 
@@ -44,9 +42,9 @@ Button.propTypes = {
 };
 
 const ButtonWrapper = styled.button`
-    width: 60%;
-    height: 45px;
-    border-radius: 50px;
+  width: 60%;
+  height: 45px;
+  border-radius: 50px;
 
     background-color: ${({ text }) => (text === "홈 화면으로" ? COLOR.white : COLOR.green500)};
     border: ${({ text }) => (text === "홈 화면으로" ? `1px solid ${COLOR.gray300}`  : 'none')};
@@ -55,13 +53,11 @@ const ButtonWrapper = styled.button`
             ? "none"
             : "0px 1px 7px rgba(0, 0, 0, 0.24)"
     )};
-
-    cursor:pointer;
 `; 
 
 
 
 const ButtonText = styled.span`
-  ${({ text }) => (text === "홈 화면으로" ? FONT.body : FONT.headline)};
-  color: ${({ text }) => (text === "홈 화면으로" ? COLOR.black : COLOR.white)};
+  ${({ text }) => (text === '홈 화면으로' ? FONT.body : FONT.headline)};
+  color: ${({ text }) => (text === '홈 화면으로' ? COLOR.black : COLOR.white)};
 `;

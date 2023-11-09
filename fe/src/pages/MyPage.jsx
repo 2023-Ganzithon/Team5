@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
@@ -13,7 +13,26 @@ import PointHistoryItem from '@components/PointHistoryItem';
 import { PATH } from '@constants/path';
 
 const MyPage = () => {
+  const [pointHistory, setPointHistory] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('/myPage/myPoint')
+      .then((res) => res.json())
+      .then((data) => {
+        const { park_points: parkPointHistory, mall_points: mallPointHistory } = data;
+        const history = [...parkPointHistory, ...mallPointHistory];
+
+        history.sort((a, b) => {
+          const dateA = new Date(a.pointActivityDate);
+          const dateB = new Date(b.pointActivityDate);
+
+          return dateB - dateA;
+        });
+
+        setPointHistory(history.slice(0, 3));
+      });
+  }, []);
 
   return (
     <>
@@ -47,9 +66,18 @@ const MyPage = () => {
                 <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
               </IconButton>
             </ListTitle>
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
-            <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
+            {pointHistory.map(({ park, mall, pointActivityDate, earnedPoint }) => {
+              // ? 백엔드에서 key 값 줄 수 있는지
+              return (
+                <PointHistoryItem
+                  key={pointActivityDate}
+                  park={park}
+                  mall={mall}
+                  point={earnedPoint}
+                  createdAt={new Date(pointActivityDate)}
+                />
+              );
+            })}
           </ListLayout>
           <ListLayout>
             <ListTitle>

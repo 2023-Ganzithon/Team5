@@ -1,4 +1,3 @@
 export const MALLNAME = {
-    MARCO: 'https://marcoroho.com/'
-  };
-  
+  MARCO: 'https://marcoroho.com/',
+};
