@@ -36,18 +36,48 @@ const DonationRegistration = () => {
 
     const formData = new FormData();
 
-    formData.append('image', imgInputRef.current.files[0]);
-    formData.append('name', nameInputRef.current.value);
-    formData.append('title', titleInputRef.current.value);
-    formData.append('goal', goalInputRef.current.valueAsNumber);
+    const image = imgInputRef.current.files[0];
+    const name = nameInputRef.current.value;
+    const title = titleInputRef.current.value;
+    const comment = commentInputRef.current.value;
+    const goal = goalInputRef.current.value;
+
+    if (!image) {
+      uploadButtonRef.current.focus();
+      window.scrollTo(0, 0);
+      return;
+    }
+    if (!name) {
+      nameInputRef.current.focus();
+      return;
+    }
+    if (!title) {
+      titleInputRef.current.focus();
+      return;
+    }
+    if (!comment) {
+      commentInputRef.current.focus();
+      return;
+    }
+    if (!goal) {
+      goalInputRef.current.focus();
+      return;
+    }
+
+    formData.append('image', image);
+    formData.append('name', name);
+    formData.append('title', title);
+    formData.append('comment', comment);
+    formData.append('goal', goal);
 
     // * test
-    console.log({
-      image: imgInputRef.current.files[0],
-      name: nameInputRef.current.value,
-      title: titleInputRef.current.value,
-      goal: goalInputRef.current.valueAsNumber,
-    });
+    // console.log({
+    //   image,
+    //   name,
+    //   title,
+    //   comment,
+    //   goal,
+    // });
 
     fetch('/myPage/donationRegister', {
       method: 'POST',
