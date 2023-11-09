@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -8,6 +8,27 @@ import TabBar from '@common/TabBar';
 import PointHistoryItem from '@components/PointHistoryItem';
 
 const PointHistory = () => {
+  const [pointHistory, setPointHistory] = useState([]);
+
+  useEffect(() => {
+    fetch('/myPage/myPoint')
+      .then((res) => res.json())
+      .then((data) => {
+        const { park_points: parkPointHistory, mall_points: mallPointHistory } = data;
+        const history = [...parkPointHistory, ...mallPointHistory];
+
+        history.sort((a, b) => {
+          const dateA = new Date(a.pointActivityDate);
+          const dateB = new Date(b.pointActivityDate);
+
+          return dateB - dateA;
+        });
+
+        setPointHistory(history);
+      });
+  }, []);
+
+  // ? 현재 유저가 가지고 있는 포인트 데이터 못찾음
   return (
     <>
       <Layout>
@@ -18,14 +39,36 @@ const PointHistory = () => {
             <PointInfo>600p</PointInfo>
           </CurrentPointInfo>
           <PointHistoryList>
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
-            <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
-            <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
-            <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
-            <PointHistoryItem type={'map'} point={10} text={'멋사 공원'} createdAt={new Date()} />
-            <PointHistoryItem type={'review'} point={10} text={'마르코로호 리뷰'} createdAt={new Date()} />
+            {pointHistory.map(({ park, mall, pointActivityDate, earnedPoint }) => {
+              let type = '';
+              let text = '';
+
+              if (park) {
+                type = 'map';
+                text = park;
+              }
+              if (mall) {
+                type = 'review';
+                text = mall;
+              }
+
+              if (!type || !text) {
+                return null;
+              }
+
+              const createdAt = new Date(pointActivityDate);
+
+              // ? 백엔드에서 key 값 줄 수 있는지
+              return (
+                <PointHistoryItem
+                  key={`${type}-${text}`}
+                  type={type}
+                  point={earnedPoint}
+                  text={text}
+                  createdAt={createdAt}
+                />
+              );
+            })}
           </PointHistoryList>
         </Main>
       </Layout>
