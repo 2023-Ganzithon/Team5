@@ -45,15 +45,34 @@ const ReviewWrite = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleImageChange = (e) => {
+    const selectedImages = Array.from(e.target.files);
+    setInputs({
+      ...inputs,
+      img: [...inputs.img, ...selectedImages],
+    });
+  };
+
+  // 이미지 배열에서 이미지 제거
+  const handleRemoveImage = (index) => {
+    const updatedImages = [...inputs.img];
+    updatedImages.splice(index, 1);
+    setInputs({
+      ...inputs,
+      img: updatedImages,
+    });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('작성하기 눌림');
     console.log(inputs);
   };
 
   return (
     <Container>
       <Header title={'상품리뷰 작성'} backUrl={PATH.REVIEW_HOME} />
-      <Submit onClick={handleSubmit}>작성하기</Submit>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="dropdownBody">
           <Dropdown updateSelect={handleSelect} name="mall" />
         </div>
@@ -67,9 +86,29 @@ const ReviewWrite = () => {
           <textarea name="desc" placeholder={reviewPH} onChange={onChange} value={desc}></textarea>
         </ReviewBox>
         <AddPhotoBox>
-          <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.green500} width={20} height={20}></Icon>
-          <p>사진 추가하기</p>
+          <Label>
+            <HiddenFileInput
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+            <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.green500} width={20} height={20}></Icon>
+            <p>사진 추가하기</p>
+          </Label>
         </AddPhotoBox>
+        {img.length > 0 && (
+          <div>
+            {img.map((image, index) => (
+              <div key={index}>
+                <Preview src={URL.createObjectURL(image)} alt={`Preview ${index}`} />
+                <button onClick={() => handleRemoveImage(index)}>Remove</button>
+              </div>
+            ))}
+          </div>
+        )}
+        <Submit type="submit">작성하기</Submit>
       </form>
     </Container>
   );
@@ -96,6 +135,10 @@ const Container = styled.div`
 const Submit = styled.button`
   background-color: transparent;
   width: 70px;
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  z-index: 15;
   ${FONT.headline}
   color: ${COLOR.green500};
 `;
@@ -115,6 +158,15 @@ const TitleBox = styled.div`
   }
 `;
 
+const HiddenFileInput = styled.input`
+  display: none;
+`;
+
+const Label = styled.label`
+  display: flex;
+  cursor: pointer;
+`;
+
 const ReviewBox = styled.div`
   padding: 20px;
   border-bottom: 0.5px solid ${COLOR.gray300};
@@ -130,7 +182,7 @@ const ReviewBox = styled.div`
   }
 `;
 
-const AddPhotoBox = styled.button`
+const AddPhotoBox = styled.div`
   display: flex;
   padding-left: 20px;
   align-items: center;
@@ -146,4 +198,10 @@ const AddPhotoBox = styled.button`
     margin-bottom: 2px;
     display: flex;
   }
+`;
+
+const Preview = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  margin-top: 10px;
 `;
