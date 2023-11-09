@@ -13,6 +13,7 @@ import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 import { PATH } from '@constants/path';
 import { BUTTON_NAME } from '@constants/buttonName';
+import Rate from '@components/Rate';
 
 const ReviewDetail = () => {
   const { state } = useLocation();
@@ -24,7 +25,7 @@ const ReviewDetail = () => {
     year: 2023,
     month: 11,
     day: 12,
-    rate: 4,
+    rate: 3,
     img: [
       { id: 1, url: REVIEW_IMG },
       { id: 2, url: REVIEW_IMG },
@@ -50,7 +51,7 @@ const ReviewDetail = () => {
             <img src={review.userImg} />
             <div className="namerateinfo">
               <p className="name">{review.username}</p>
-              <div className="rate">{review.rate}</div>
+              <Rate size={'13'} rate={review.rate} />
             </div>
           </div>
           <p className="day">
