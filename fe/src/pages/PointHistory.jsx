@@ -40,32 +40,13 @@ const PointHistory = () => {
           </CurrentPointInfo>
           <PointHistoryList>
             {pointHistory.map(({ park, mall, pointActivityDate, earnedPoint }) => {
-              let type = '';
-              let text = '';
-
-              if (park) {
-                type = 'map';
-                text = park;
-              }
-              if (mall) {
-                type = 'review';
-                text = mall;
-              }
-
-              if (!type || !text) {
-                return null;
-              }
-
-              const createdAt = new Date(pointActivityDate);
-
-              // ? 백엔드에서 key 값 줄 수 있는지
               return (
                 <PointHistoryItem
-                  key={`${type}-${text}`}
-                  type={type}
+                  key={pointActivityDate}
+                  park={park}
+                  mall={mall}
                   point={earnedPoint}
-                  text={text}
-                  createdAt={createdAt}
+                  createdAt={new Date(pointActivityDate)}
                 />
               );
             })}
