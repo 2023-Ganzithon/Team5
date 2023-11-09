@@ -25,7 +25,11 @@ const ReviewDetail = () => {
     month: 11,
     day: 12,
     rate: 4,
-    img: [REVIEW_IMG, REVIEW_IMG, REVIEW_IMG],
+    img: [
+      { id: 1, url: REVIEW_IMG },
+      { id: 2, url: REVIEW_IMG },
+      { id: 3, url: REVIEW_IMG },
+    ],
     title: '땡땡의 아름다운 반지',
     desc: '누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑 누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 ',
     url: 'https://m.marcoroho.com/',
@@ -129,7 +133,6 @@ const InfoWrapper = styled.div`
 const SliderWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
   margin-bottom: 20px;
 `;
 const TextWrapper = styled.div`

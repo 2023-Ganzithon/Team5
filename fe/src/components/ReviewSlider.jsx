@@ -26,8 +26,6 @@ export default class ReviewSlider extends Component {
         <div
           style={{
             width: '100%',
-            position: 'absolute',
-            bottom: '20px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -44,8 +42,8 @@ export default class ReviewSlider extends Component {
         <StyledSlider {...settings}>
           {data.map((item) => {
             return (
-              <div key={item}>
-                <Image src={item} />
+              <div key={item.id}>
+                <Image src={item.url} />
               </div>
             );
           })}
@@ -61,6 +59,7 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   width: 100%;
+  height: 700px;
   border-radius: 20px;
 `;
 
@@ -74,6 +73,7 @@ const StyledSlider = styled(Slider)`
   height: 100%;
 
   .dotsCustom {
+    list-style: none;
     display: inline-block;
     vertical-align: middle;
     margin: auto 0;
@@ -89,8 +89,7 @@ const StyledSlider = styled(Slider)`
 
   .dotsCustom li button {
     border: none;
-    background: transparent;
-    color: ${COLOR.gray300};
+    background: ${COLOR.gray300};
     display: block;
     height: 8px;
     width: 8px;
