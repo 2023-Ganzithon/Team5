@@ -1,7 +1,7 @@
-from rest_framework import routers
-from .views import DonatePostViewSet
+from django.urls import path, include
+from .views import DonatePostView, DonationReadView
 
-router = routers.SimpleRouter()
-router.register("donate", DonatePostViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path("", DonationReadView.as_view(), name="donation"),
+    path("donate/", DonatePostView.as_view(), name="donate"),
+]
