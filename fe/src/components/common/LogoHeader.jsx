@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
-import LOGO from '@assets/LogoText.png'
+import LOGO from '@assets/Pseed1.svg'
 
 const LogoHeader = ({title, backUrl})=>{
     const navigate = useNavigate();
