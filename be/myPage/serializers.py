@@ -11,12 +11,12 @@ class DonationSerializer(ModelSerializer):
 class ParkEarnedPointSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParkVisitPoint
-        fields = ('park', 'pointActivityDate', 'earnedPoint')
+        fields = ('id', 'park', 'pointActivityDate', 'earnedPoint')
 
 class ShoppingMallEarnedPointSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShoppingMallReviewPoint
-        fields = ('mall', 'pointActivityDate', 'earnedPoint')
+        fields = ('id', 'mall', 'pointActivityDate', 'earnedPoint')
 
 
 

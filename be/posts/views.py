@@ -32,9 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
         try:
             mall_name = post.shoppingmall  # 쇼핑몰 이름 가져오기
-            user_points, created = ShoppingMallReviewPoint.objects.get_or_create(user=self.request.user, mall=mall_name)
-            user_points.earnedPoint += 15  # 예시로 15포인트 추가
-            user_points.pointActivityDate = datetime.now()
+            user_points = ShoppingMallReviewPoint.objects.create(user=self.request.user, mall=mall_name, earnedPoint=15, pointActivityDate=datetime.now())
             user_points.save()
         except ShoppingMallReviewPoint.DoesNotExist:
             return Response({'message': '해당 쇼핑몰 리뷰가 존재하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
