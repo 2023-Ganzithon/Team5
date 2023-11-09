@@ -6,6 +6,7 @@ from .serializers import (
     ParkEarnedPointSerializer,
     ShoppingMallEarnedPointSerializer,
 )
+from map.serializers import UserProfileSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -60,9 +61,11 @@ class EarnedPointListView(ListAPIView):
 
         park_serializer = ParkEarnedPointSerializer(park_points, many=True)
         mall_serializer = ShoppingMallEarnedPointSerializer(mall_points, many=True)
+        user_profile_serializer = UserProfileSerializer(user.profile)
 
         # 공원 포인트와 쇼핑몰 리뷰 포인트 시리얼라이저 결과를 병합
         result = {
+            "user_profile": user_profile_serializer.data,
             "park_points": park_serializer.data,
             "mall_points": mall_serializer.data,
         }

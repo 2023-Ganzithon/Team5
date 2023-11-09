@@ -10,7 +10,7 @@ from posts.models import Post
 # Create your models here.
 class Donation(models.Model):
     image = models.ImageField(verbose_name="기부처 사진", blank=False, null=False, upload_to="donation_images/")
-    group = models.CharField(verbose_name="그룹설정", max_length=20)
+    name = models.CharField(verbose_name="개인/그룹 이름", max_length=20)
     title = models.CharField(verbose_name="제목", max_length=128)
     comment = models.TextField(verbose_name="한줄 소개")
     goal = models.IntegerField(verbose_name="목표 금액")
