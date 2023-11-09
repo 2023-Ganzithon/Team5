@@ -17,6 +17,7 @@ const DonationRegistration = () => {
   const titleInputRef = useRef(null);
   const commentInputRef = useRef(null);
   const goalInputRef = useRef(null);
+  const uploadButtonRef = useRef(null);
 
   const handleImgUpload = ({ target }) => {
     const reader = new FileReader();
@@ -79,6 +80,7 @@ const DonationRegistration = () => {
             />
             <ImgButton
               type="button"
+              ref={uploadButtonRef}
               onClick={() => {
                 imgInputRef?.current?.click();
               }}
