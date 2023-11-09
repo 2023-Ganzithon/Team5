@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ImStarFull } from 'react-icons/im';
 
 import COLOR from '@styles/color';
+import { ImStarFull } from 'react-icons/im';
 
 const Rate = ({ size, rate }) => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);

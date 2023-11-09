@@ -1,10 +1,10 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import COLOR from '@styles/color';
 import { styled } from 'styled-components';
 import { Component } from 'react';
-import MARCOROHO from '@assets/marcoroho.png';
-import COLOR from '@styles/color';
 
 export default class ReviewSlider extends Component {
   render() {

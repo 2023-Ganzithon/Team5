@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
@@ -8,12 +8,12 @@ import REVIEW_IMG from '@assets/reviewImg.png';
 import Header from '@common/Header';
 import ReviewSlider from '@components/ReviewSlider';
 import Button from '@common/Button';
+import Rate from '@components/Rate';
 
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 import { PATH } from '@constants/path';
 import { BUTTON_NAME } from '@constants/buttonName';
-import Rate from '@components/Rate';
 
 const ReviewDetail = () => {
   const { state } = useLocation();
