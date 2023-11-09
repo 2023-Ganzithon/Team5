@@ -30,6 +30,36 @@ const DonationRegistration = () => {
     };
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append('image', imgInputRef.current.files[0]);
+    formData.append('name', nameInputRef.current.value);
+    formData.append('title', titleInputRef.current.value);
+    formData.append('goal', goalInputRef.current.valueAsNumber);
+
+    // * test
+    console.log({
+      image: imgInputRef.current.files[0],
+      name: nameInputRef.current.value,
+      title: titleInputRef.current.value,
+      goal: goalInputRef.current.valueAsNumber,
+    });
+
+    fetch('/myPage/donationRegister', {
+      method: 'POST',
+      cache: 'no-cache',
+      'Content-Type': 'multipart/form-data',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <>
       <Layout>
@@ -75,7 +105,7 @@ const DonationRegistration = () => {
             <Label htmlFor="money">목표 금액 *</Label>
             <Input type="number" id="money" min={0} step={10} ref={goalInputRef} />
           </InputLayout>
-          <Button text="등록하기" />
+          <Button text="등록하기" eventName={handleFormSubmit} />
         </Form>
       </Layout>
       <TabBar currentTab={TAB_NAME.MY_PAGE} />
