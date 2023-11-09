@@ -98,8 +98,8 @@ const DonationRegistration = () => {
             <Input type="text" id="title" ref={titleInputRef} />
           </InputLayout>
           <InputLayout>
-            <Label htmlFor="description">한 줄 소개 *</Label>
-            <Input type="text" id="description" ref={commentInputRef} />
+            <Label htmlFor="comment">한 줄 소개 *</Label>
+            <Input type="text" id="comment" ref={commentInputRef} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="money">목표 금액 *</Label>
