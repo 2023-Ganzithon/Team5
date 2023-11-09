@@ -6,7 +6,20 @@ import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 import { formatTommdd } from '@utils/index';
 
-const PointHistoryItem = ({ type, point, text, createdAt }) => {
+const PointHistoryItem = ({ park, mall, point, createdAt }) => {
+  let type = '';
+  let text = '';
+  if (park) {
+    type = 'map';
+    text = park;
+  }
+  if (mall) {
+    type = 'review';
+    text = mall;
+  }
+
+  if (!type || !text) return null;
+
   return (
     <Item>
       <IconBackGround type={type}>

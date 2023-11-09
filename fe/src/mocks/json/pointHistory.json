@@ -1,0 +1,26 @@
+{
+  "park_points": [
+    {
+      "park": "영등포공원",
+      "pointActivityDate": "2023-11-09T03:32:11.176775+09:00",
+      "earnedPoint": 40
+    },
+    {
+      "park": "안산공원",
+      "pointActivityDate": "2023-11-09T04:32:34.220158+09:00",
+      "earnedPoint": 10
+    }
+  ],
+  "mall_points": [
+    {
+      "mall": "쇼핑몰",
+      "pointActivityDate": "2023-11-09T04:18:41.651523+09:00",
+      "earnedPoint": 15
+    },
+    {
+      "mall": "쇼핑몰2",
+      "pointActivityDate": "2023-11-09T04:31:50.527320+09:00",
+      "earnedPoint": 15
+    }
+  ]
+}
