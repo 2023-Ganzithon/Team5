@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "image": "/media/donation_images/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_xSKT9sg.png",
+    "name": "장우림",
+    "title": "test",
+    "comment": "잘들어가나",
+    "goal": 1000000
+  },
+  {
+    "id": 2,
+    "image": "/media/donation_images/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_TcL5d17.png",
+    "name": "장우림",
+    "title": "test",
+    "comment": "잘들어가나2",
+    "goal": 500000
+  }
+]
