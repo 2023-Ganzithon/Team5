@@ -87,12 +87,12 @@ class DonatedListView(APIView):
             user = request.user
             donation_points = Donate.objects.filter(user=user).order_by("-date")
 
-            # 총 기부 금액 계산
-            total_donation_amount = donation_points.aggregate(Sum("price"))[
-                "price__sum"
-            ]
+            # 총 기부액 계산
+            total_donation_amount = (
+                donation_points.aggregate(Sum("price"))["price__sum"] or 0
+            )
 
-            # 기부 내역 직렬화
+            # 기부 상세 정보 시리얼라이즈
             serializer = DonationUsedPointSerializer(donation_points, many=True)
 
             # 응답 딕셔너리 생성
