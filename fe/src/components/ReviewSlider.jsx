@@ -40,13 +40,19 @@ export default class ReviewSlider extends Component {
     return (
       <Container>
         <StyledSlider {...settings}>
-          {data.map((item) => {
+          {/* front local 데이터 사용 시 */}
+          {/* {data.map((item) => {
             return (
               <div key={item.id}>
                 <Image src={item.url} />
               </div>
             );
-          })}
+          })} */}
+
+          {/* 사진 한 개인 경우 */}
+          <div>
+            <Image src={data} />
+          </div>
         </StyledSlider>
       </Container>
     );
@@ -59,7 +65,8 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   width: 100%;
-  height: 400px;
+  /* height: 400px; */
+  height: 350px;
 `;
 
 const Image = styled.img`
