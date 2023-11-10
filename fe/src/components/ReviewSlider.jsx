@@ -60,12 +60,12 @@ const Container = styled.div`
   align-content: center;
   width: 100%;
   height: 400px;
-  border-radius: 20px;
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 20px;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -88,9 +88,10 @@ const StyledSlider = styled(Slider)`
   }
 
   .dotsCustom li button {
+    /* display: block; */
+    text-indent: -9999px;
     border: none;
     background: ${COLOR.gray300};
-    display: block;
     height: 8px;
     width: 8px;
     border-radius: 100%;
