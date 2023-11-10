@@ -3,5 +3,5 @@ from .views import DonatePostView, DonationReadView
 
 urlpatterns = [
     path("", DonationReadView.as_view(), name="donation"),
-    path("donate/", DonatePostView.as_view(), name="donate"),
+    path("<int:pk>/", DonatePostView.as_view(), name="donate"),
 ]

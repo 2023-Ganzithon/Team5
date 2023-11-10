@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserProfileSerializer
+from users.serializers import ProfileSerializer
 from .models import Park  
 from myPage.models import Profile
 from myPage.models import ParkVisitPoint
@@ -31,10 +31,10 @@ class EarnParkPointsView(APIView):
 
                 # 사용자 프로필 정보 가져오기
                 user_profile, created = Profile.objects.get_or_create(user=request.user)
-                serializer = UserProfileSerializer(user_profile)
+                serializer = ProfileSerializer(user_profile)
                 return Response({
                     'message': f'포인트가 10 추가되었습니다 ({park_name})',
-                    'user_profile': serializer.data  # 사용자 프로필 정보를 JSON에 포함
+                    'profile': serializer.data  # 사용자 프로필 정보를 JSON에 포함
                 }, status=status.HTTP_200_OK)
                 
             except Park.DoesNotExist:
