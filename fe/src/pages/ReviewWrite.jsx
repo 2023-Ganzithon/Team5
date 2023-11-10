@@ -77,6 +77,19 @@ const ReviewWrite = () => {
     });
   };
 
+  // // 이미지 업로드
+  // const handleImgUpload = ({ target }) => {
+  //   const reader = new FileReader();
+
+  //   if (!target?.files?.[0]) return;
+
+  //   reader.readAsDataURL(target.files[0]);
+
+  //   reader.onload = () => {
+  //     setImgSrc(reader.result);
+  //   };
+  // };
+
   // 작성하기 버튼
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -93,8 +106,38 @@ const ReviewWrite = () => {
         alert('리뷰 내용을 입력해주세요.');
       }
       return;
+    } else {
+      const formData = new FormData();
+
+      const title = inputs.title;
+      const body = inputs.desc;
+      const shoppingmall = inputs.mall;
+      const star = inputs.score;
+      const image = inputs.img;
+
+      formData.append('title', title);
+      formData.append('body', body);
+      formData.append('shoppingmall', shoppingmall);
+      formData.append('star', star);
+      if (image) {
+        formData.append('image', image);
+      } else {
+        return;
+      }
+
+      fetch('/myPage/donationRegister', {
+        method: 'POST',
+        cache: 'no-cache',
+        'Content-Type': 'multipart/form-data',
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+
+      navigate('/gainpoint');
     }
-    navigate('/gainpoint');
   };
 
   return (
