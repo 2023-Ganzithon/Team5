@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import Rate from '@components/Rate';
 import Dropdown from '@components/Dropdown';
-import COLOR from '@styles/color';
 import Header from '@common/Header';
-import { PATH } from '@constants/path';
+
+import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
-import { ICON_NAME } from '@constants/iconName';
 import Icon from '@common/Icon';
+import { PATH } from '@constants/path';
+import { ICON_NAME } from '@constants/iconName';
 
 const reviewPH =
   '솔직하고 유용한 상품리뷰를 작성해주세요. 이 상품을 사용한 후\n어떤 점이 좋았나요? 이 상품을 다른 분에게 추천하시겠습니까?\n \n* 타인의 저작권을 침해하거나 근거 없는 악성비방글, 서비스의\n성격에 맞지 않는 글은 삭제 될 수 있으니 양해 부탁드립니다.';
 
 const ReviewWrite = () => {
+  const navigate = useNavigate();
+
   // 입력 값
   const [inputs, setInputs] = useState({
     mall: '',
@@ -89,8 +94,7 @@ const ReviewWrite = () => {
       }
       return;
     }
-
-    console.log(inputs);
+    navigate('/gainpoint');
   };
 
   return (
