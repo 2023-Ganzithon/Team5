@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,39 +16,41 @@ import { TAB_NAME } from '@constants/tabName';
 
 const Home = () => {
   const pointList = ['특정 장소\n방문하기', '기부 쇼핑몰\n리뷰 작성하기'];
-  const donaList = [
-    {
-      id: 1,
-      img: DONA_IMG,
-      category: '자선단체',
-      title: '세이브더칠드런 아동 식사지원캠페인',
-      perAccomp: 75,
-      moneyAccomp: 75000,
-    },
-    {
-      id: 2,
-      img: DONA_IMG,
-      category: '개인',
-      title: '보건위생물품이 필요합니다.',
-      perAccomp: 30,
-      moneyAccomp: 35000,
-    },
-    {
-      id: 3,
-      img: DONA_IMG,
-      category: '개인',
-      title: '보건위생물품이 필요합니다.',
-      perAccomp: 5,
-      moneyAccomp: 1000,
-    },
-  ];
+  // const donaList = [
+  //   {
+  //     id: 1,
+  //     image: DONA_IMG,
+  //     category: '자선단체',
+  //     title: '세이브더칠드런 아동 식사지원캠페인',
+  //     perAccomp: 75,
+  //     goal: 75000,
+  //   },
+  //   {
+  //     id: 2,
+  //     image: DONA_IMG,
+  //     category: '개인',
+  //     title: '보건위생물품이 필요합니다.',
+  //     perAccomp: 30,
+  //     goal: 35000,
+  //   },
+  //   {
+  //     id: 3,
+  //     image: DONA_IMG,
+  //     category: '개인',
+  //     title: '보건위생물품이 필요합니다.',
+  //     perAccomp: 5,
+  //     goal: 1000,
+  //   },
+  // ];
 
-  //리스트 받아오기
+  const [donaList, setDonaList] = useState([]);
+
+  // 리스트 받아오기
   useEffect(() => {
     fetch('/')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setDonaList(data);
       });
   }, []);
 
@@ -63,8 +65,6 @@ const Home = () => {
   };
 
   const handleList = (id) => {
-    console.log('Home');
-    console.log(id);
     navigate(PATH.DONATION, { state: id });
   };
 
@@ -101,7 +101,7 @@ const Home = () => {
                     handleList(item.id);
                   }}
                 >
-                  <Img src={item.img} alt="Donation Img" />
+                  <Img src={item.image} alt="Donation Img" />
                   <div
                     style={{
                       display: 'flex',
@@ -111,6 +111,7 @@ const Home = () => {
                       height: '90px',
                     }}
                   >
+                    {/* 카테고리 데이터 없음 */}
                     <CategoryT>{item.category}</CategoryT>
                     <DonaTitle>{item.title}</DonaTitle>
                     <div
@@ -122,8 +123,9 @@ const Home = () => {
                         width: '100%',
                       }}
                     >
+                      {/* 달성도 데이터 없음 */}
                       <PerAccomp>{item.perAccomp}%</PerAccomp>
-                      <MoneyAccomp>{item.moneyAccomp}원 달성</MoneyAccomp>
+                      <MoneyAccomp>{item.goal}원 달성</MoneyAccomp>
                     </div>
                     <div>
                       <Bar>
