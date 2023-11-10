@@ -1,43 +1,15 @@
 import { createContext, useState } from "react";
 
-const AuthContext = createContext({
+export const AuthContext = createContext({
     token:'',
     user: {
         nickname: '',
         image:null,
     },
     loggedIn: false,
-    setToken: () => {},
-    setLoggedIn: () => {},
-    setUser: () => {},
 });
 
-export default AuthContext;
-
-export const AuthContextProvider = ({ children }) => {
-    const setToken = (newToken) => {
-        setState(prevState => ({
-            ...prevState, 
-            token: newToken
-        }))
-    }
-    
-    const setLoggedIn = () => {
-        setState(prevState => ({
-            ...prevState, 
-            loggedIn: !prevState.loggedIn
-        }))
-    }
-
-    const setUser = (nickname, image) => {
-        setState(prevState => ({
-            ...prevState,
-            user: {
-                nickname,
-                image,
-            },
-        }))
-    }
+const AuthContextProvider = ({ children }) => {
 
     const initialState = {
         token: '',
@@ -46,16 +18,39 @@ export const AuthContextProvider = ({ children }) => {
             image: null,
         },
         loggedIn: false,
-        setToken,
-        setLoggedIn,
-        setUser,
     }
 
-    const [state, setState] = useState(initialState);
+    const setToken = (newToken) => {
+        setUser(prevState => ({
+            ...prevState, 
+            token: newToken
+        }))
+    }
+    
+    const setLoggedIn = () => {
+        setUser(prevState => ({
+            ...prevState, 
+            loggedIn: !prevState.loggedIn
+        }))
+    }
+
+    const setUserInfo = (nickname, image) => {
+        setUser(prevState => ({
+            ...prevState,
+            user: {
+                nickname,
+                image,
+            },
+        }))
+    }
+
+    const [user, setUser] = useState(initialState);
 
     return (
-        <AuthContext.Provider value={state}>
+        <AuthContext.Provider value={{user, setToken, setLoggedIn, setUserInfo}}>
             {children}
         </AuthContext.Provider>
     );
 };
+
+export default AuthContextProvider;

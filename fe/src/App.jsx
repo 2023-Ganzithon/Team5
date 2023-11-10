@@ -20,7 +20,7 @@ import AuthContextProvider from '@store/AuthContextProvider';
 function App() {
   return (
     <>
-    <AuthContextProvider.Provider>
+    <AuthContextProvider>
       <GlobalStyle />
         <Routes>
           <Route index path={PATH.HOME} element={<Home />} />
@@ -38,7 +38,7 @@ function App() {
           <Route path={PATH.LOGIN} element={<Login />} />
           <Route path={PATH.SIGNUP} element={<SignUp />} />
         </Routes>
-    </AuthContextProvider.Provider>
+    </AuthContextProvider>
     </>
     
   );
