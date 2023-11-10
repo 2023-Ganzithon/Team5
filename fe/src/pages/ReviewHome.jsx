@@ -18,43 +18,43 @@ import { PATH } from '@constants/path';
 import { TAB_NAME } from '@constants/tabName';
 import { BUTTON_NAME } from '@constants/buttonName';
 
-// const reviewList = [
-//   {
-//     pk: 1,
-//     image: PreviewReview_IMG,
-//     title: '땡땡의 아름다운 반지',
-//     body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-//     userImg: User_IMG,
-//     nickname: '김예은',
-//     published_date: '2023-11-03',
-//     star: 5,
-//   },
-//   {
-//     pk: 2,
-//     image: PreviewReview_IMG,
-//     title: '세이브더칠드런 아동 식사지원캠페인',
-//     body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-//     userImg: User_IMG,
-//     nickname: '김예은',
-//     published_date: '2023-11-03',
-//     star: 4,
-//   },
-//   {
-//     pk: 3,
-//     image: PreviewReview_IMG,
-//     title: '세이브더칠드런 아동 식사지원캠페인',
-//     body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
-//     userImg: User_IMG,
-//     nickname: '김예은',
-//     published_date: '2023-11-03',
-//     star: 4,
-//   },
-// ];
+const reviewList = [
+  {
+    pk: 1,
+    image: PreviewReview_IMG,
+    title: '땡땡의 아름다운 반지',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    nickname: '김예은',
+    published_date: '2023-11-03',
+    star: 5,
+  },
+  {
+    pk: 2,
+    image: PreviewReview_IMG,
+    title: '세이브더칠드런 아동 식사지원캠페인',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    nickname: '김예은',
+    published_date: '2023-11-03',
+    star: 4,
+  },
+  {
+    pk: 3,
+    image: PreviewReview_IMG,
+    title: '세이브더칠드런 아동 식사지원캠페인',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    userImg: User_IMG,
+    nickname: '김예은',
+    published_date: '2023-11-03',
+    star: 4,
+  },
+];
 
 const ReviewHome = () => {
   const navigate = useNavigate();
 
-  const [reviewList, setReviewList] = useState([]);
+  // const [reviewList, setReviewList] = useState([]);
 
   const handleReviewClick = (id) => {
     navigate(PATH.REVIEW_DETAIL, { state: id });
@@ -69,7 +69,7 @@ const ReviewHome = () => {
     fetch('/review')
       .then((res) => res.json())
       .then((data) => {
-        setReviewList(data.results);
+        // setReviewList(data.results);
       });
   }, []);
 
@@ -115,9 +115,10 @@ const ReviewHome = () => {
                     <div className="reviewBottom">
                       <div className="userInfo">
                         {/* back 연동 시, profile.image / profile.nickname */}
-                        <img src={index.profile.image} alt={index.pk} className="userimg" />
+                        {/* front 테스트 시, userImg / nickname */}
+                        <img src={index.userImg} alt={index.pk} className="userimg" />
                         <div>
-                          <p className="userName">{index.profile.nickname}</p>
+                          <p className="userName">{index.nickname}</p>
                           <p className="uploadDay">{ChangeDate(index.published_date)}</p>
                         </div>
                       </div>

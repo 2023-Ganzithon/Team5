@@ -19,43 +19,43 @@ import { MALLNAME, MALLPATH } from '@constants/mall';
 const ReviewDetail = () => {
   const { state } = useLocation();
 
-  // const review = {
-  //   id: state,
-  //   userImg: USER_IMG,
-  //   nickname: '김예은',
-  //   published_date: '2023-11-02',
-  //   star: 2,
-  //   image: REVIEW_IMG,
-  //   //  [
-  //   //   { id: 1, url: REVIEW_IMG },
-  //   //   { id: 2, url: REVIEW_IMG },
-  //   //   { id: 3, url: REVIEW_IMG },
-  //   // ],
-  //   title: '땡땡의 아름다운 반지',
-  //   body: '누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑 누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 ',
-  //   shoppingmall: '마로코로호',
-  // };
+  const review = {
+    id: state,
+    userImg: USER_IMG,
+    nickname: '김예은',
+    published_date: '2023-11-02',
+    star: 2,
+    image: REVIEW_IMG,
+    //  [
+    //   { id: 1, url: REVIEW_IMG },
+    //   { id: 2, url: REVIEW_IMG },
+    //   { id: 3, url: REVIEW_IMG },
+    // ],
+    title: '땡땡의 아름다운 반지',
+    body: '누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑 누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 샀는데 너무 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 좋아하고 어쩌고 저쩌고 행복합니다람롱롱랑랑누구한테 선물 주려고 ',
+    shoppingmall: '마로코로호',
+  };
 
-  const [review, setReview] = useState({
-    pk: null,
-    profile: {
-      nickname: '',
-      image: '',
-    },
-    shoppingmall: '',
-    title: '',
-    body: '',
-    image: '',
-    published_date: '',
-    star: 0,
-  });
+  // const [review, setReview] = useState({
+  //   pk: null,
+  //   profile: {
+  //     nickname: '',
+  //     image: '',
+  //   },
+  //   shoppingmall: '',
+  //   title: '',
+  //   body: '',
+  //   image: '',
+  //   published_date: '',
+  //   star: 0,
+  // });
 
   // 리스트 받아오기
   useEffect(() => {
     fetch(`/review/1/`)
       .then((res) => res.json())
       .then((data) => {
-        setReview(data);
+        // setReview(data);
       });
   }, []);
 
@@ -79,6 +79,7 @@ const ReviewDetail = () => {
     switch (mallName) {
       case MALLNAME.MARCOROHO:
         return MALLPATH.MARCOROHO;
+        console.log(MALLPATH.MARCOROHO);
       case MALLNAME.DAY30:
         return MALLPATH.DAY30;
       case MALLNAME.PLM:
@@ -107,9 +108,9 @@ const ReviewDetail = () => {
           <div style={{ display: 'flex' }}>
             {/* front - userImg / nickname */}
             {/* back - profile.image / profile.nickname */}
-            <img src={review.profile.image} />
+            <img src={review.userImg} />
             <div className="namerateinfo">
-              <p className="name">{review.profile.nickname}</p>
+              <p className="name">{review.nickname}</p>
               <Rate size={'13'} rate={review.star} />
             </div>
           </div>
