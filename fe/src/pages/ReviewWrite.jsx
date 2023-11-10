@@ -60,26 +60,35 @@ const ReviewWrite = () => {
 
   // 이미지 추가
   const handleImageChange = (e) => {
-    const selectedImages = Array.from(e.target.files);
-    setInputs({
-      ...inputs,
-      img: [...inputs.img, ...selectedImages],
-    });
+    const selectedImage = e.target.files[0];
+
+    if (!selectedImage) return;
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(selectedImage);
+
+    reader.onload = () => {
+      setInputs({
+        ...inputs,
+        img: reader.result,
+      });
+    };
   };
 
   // 이미지 배열에서 이미지 제거
   const handleRemoveImage = (index) => {
-    const updatedImages = [...inputs.img];
-    updatedImages.splice(index, 1);
     setInputs({
       ...inputs,
-      img: updatedImages,
+      img: '', // 이미지를 제거하므로 null로 설정
     });
   };
 
   // 작성하기 버튼
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+    console.log(inputs);
 
     // 입력값 확인
     if (!inputs.mall || !inputs.title || !inputs.score || !inputs.desc) {
@@ -93,8 +102,38 @@ const ReviewWrite = () => {
         alert('리뷰 내용을 입력해주세요.');
       }
       return;
+    } else {
+      const formData = new FormData();
+
+      const title = inputs.title;
+      const body = inputs.desc;
+      const shoppingmall = inputs.mall;
+      const star = inputs.score;
+      const image = inputs.img;
+
+      formData.append('title', title);
+      formData.append('body', body);
+      formData.append('shoppingmall', shoppingmall);
+      formData.append('star', star);
+      if (image) {
+        formData.append('image', image);
+      }
+
+      console.log(formData);
+
+      fetch('/review/', {
+        method: 'POST',
+        cache: 'no-cache',
+        'Content-Type': 'multipart/form-data',
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+
+      navigate('/gainpoint');
     }
-    navigate('/gainpoint');
   };
 
   return (
@@ -126,14 +165,10 @@ const ReviewWrite = () => {
             <p>사진 추가하기</p>
           </Label>
         </AddPhotoBox>
-        {img.length > 0 && (
+        {img && (
           <div>
-            {img.map((image, index) => (
-              <div key={index}>
-                <Preview src={URL.createObjectURL(image)} alt={`Preview ${index}`} />
-                <button onClick={() => handleRemoveImage(index)}>Remove</button>
-              </div>
-            ))}
+            <Preview src={img} alt={`Preview`} />
+            <button onClick={() => setInputs({ ...inputs, img: '' })}>Remove</button>
           </div>
         )}
         <Submit type="submit">작성하기</Submit>
