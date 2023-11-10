@@ -23,13 +23,6 @@ const MyPage = () => {
         const { park_points: parkPointHistory, mall_points: mallPointHistory } = data;
         const history = [...parkPointHistory, ...mallPointHistory];
 
-        history.sort((a, b) => {
-          const dateA = new Date(a.pointActivityDate);
-          const dateB = new Date(b.pointActivityDate);
-
-          return dateB - dateA;
-        });
-
         setPointHistory(history.slice(0, 3));
       });
   }, []);
