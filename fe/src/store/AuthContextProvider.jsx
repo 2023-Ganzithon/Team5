@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const AuthContext = createContext({
     token:'',
-    user: {
+    userInfo: {
         nickname: '',
         image:null,
     },
@@ -13,7 +13,7 @@ const AuthContextProvider = ({ children }) => {
 
     const initialState = {
         token: '',
-        user: {
+        userInfo: {
             nickname: '',
             image: null,
         },
@@ -37,7 +37,7 @@ const AuthContextProvider = ({ children }) => {
     const setUserInfo = (nickname, image) => {
         setUser(prevState => ({
             ...prevState,
-            user: {
+            userInfo: {
                 nickname,
                 image,
             },
