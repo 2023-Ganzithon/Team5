@@ -41,8 +41,12 @@ class EarnedPointListView(ListAPIView):
         if self.request.user.is_authenticated:
             user = self.request.user
             # 사용자가 얻은 공원 포인트와 쇼핑몰 리뷰 포인트를 가져옵니다.
-            park_points = ParkVisitPoint.objects.filter(user=user).order_by('-pointActivityDate')
-            mall_points = ShoppingMallReviewPoint.objects.filter(user=user).order_by('-pointActivityDate')
+            park_points = ParkVisitPoint.objects.filter(user=user).order_by(
+                "-pointActivityDate"
+            )
+            mall_points = ShoppingMallReviewPoint.objects.filter(user=user).order_by(
+                "-pointActivityDate"
+            )
             return {
                 "user": user,
                 "park_points": park_points,
@@ -73,30 +77,55 @@ class EarnedPointListView(ListAPIView):
 
         return Response(result)
 
-class DonatedListView(ListAPIView):
-    serializer_class = DonationUsedPointSerializer
 
-    def get_queryset(self):
-        if self.request.user.is_authenticated:
-            user = self.request.user
-            donation_points = Donate.objects.filter(user=user).order_by('-date')
-            return donation_points
+from django.db.models import Sum
+
+
+class DonatedListView(APIView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            user = request.user
+            donation_points = Donate.objects.filter(user=user).order_by("-date")
+
+            # 총 기부 금액 계산
+            total_donation_amount = donation_points.aggregate(Sum("price"))[
+                "price__sum"
+            ]
+
+            # 기부 내역 직렬화
+            serializer = DonationUsedPointSerializer(donation_points, many=True)
+
+            # 응답 딕셔너리 생성
+            response_data = {
+                "donation_points": serializer.data,
+                "total_donation_amount": total_donation_amount,
+            }
+
+            return Response(response_data, status=status.HTTP_200_OK)
+
         else:
-            return Donate.objects.none()
-        
-# 마이페이지홈        
+            return Response(
+                {"detail": "사용자가 인증되지 않았습니다."}, status=status.HTTP_401_UNAUTHORIZED
+            )
+
+
+# 마이페이지홈
 class MypageView(ListAPIView):
-    serializer_class = RegisterSerializer 
+    serializer_class = RegisterSerializer
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
             user = self.request.user
 
             # 사용자가 얻은 공원 포인트와 쇼핑몰 리뷰 포인트를 가져옵니다.
-            park_points = ParkVisitPoint.objects.filter(user=user).order_by('-pointActivityDate')
-            mall_points = ShoppingMallReviewPoint.objects.filter(user=user).order_by('-pointActivityDate')
-            donation_points = Donate.objects.filter(user=user).order_by('-date')
-            
+            park_points = ParkVisitPoint.objects.filter(user=user).order_by(
+                "-pointActivityDate"
+            )
+            mall_points = ShoppingMallReviewPoint.objects.filter(user=user).order_by(
+                "-pointActivityDate"
+            )
+            donation_points = Donate.objects.filter(user=user).order_by("-date")
+
             return {
                 "user": user,
                 "park_points": park_points,

@@ -17,8 +17,13 @@ class LoginView(generics.GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        token = serializer.validated_data
-        return Response({"token": token.key}, status=status.HTTP_200_OK)
+        user = serializer.validated_data["user"]
+
+        # serializer에서 이미 얻은 토큰 값 사용
+        token = serializer.validated_data["token"]
+
+        # 토큰 값과 사용자의 PK 반환
+        return Response({"token": token, "user_pk": user.pk}, status=status.HTTP_200_OK)
 
 
 class ProfileView(generics.RetrieveUpdateAPIView):

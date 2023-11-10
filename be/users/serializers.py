@@ -52,8 +52,12 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(**data)
         if user:
-            token = Token.objects.get(user=user)
-            return token
+            token, created = Token.objects.get_or_create(user=user)
+
+            # 여기서 사용자의 PK를 추가
+            data["user"] = user
+            data["token"] = token.key
+            return data
         raise serializers.ValidationError(
             {"error": "Unable to log in with provided credentials."}
         )
