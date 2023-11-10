@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from myPage.models import Donation
-from .models import Donate
+from .models import User
 from users.models import Profile
 
 
@@ -22,7 +22,7 @@ class DonatePostView(APIView):
 
         serializer = DonatePostSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save(donator=self.request.user, donation=donation)
+            serializer.save(user=self.request.user, donation=donation)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
