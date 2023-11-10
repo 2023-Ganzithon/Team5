@@ -30,17 +30,25 @@ class ShoppingMallReviewPoint(models.Model):
     earnedPoint = models.IntegerField(default=0)
     pointActivityDate = models.DateTimeField(default=datetime.now)
 
+class DonationPoint(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    donation = models.ForeignKey(Donation, on_delete=models.CASCADE)
+    usedPoint = models.IntegerField(default=0)
+    pointActivityDate = models.DateTimeField(default=datetime.now)
+
 
 # 유저의 총 포인트도 실시간 업데이트하는 
 @receiver(post_save, sender=ParkVisitPoint)
 @receiver(post_save, sender=ShoppingMallReviewPoint)
+@receiver(post_save, sender=DonationPoint)
 def update_user_points(sender, instance, **kwargs):
     user = instance.user
     # 공원 포인트와 쇼핑몰 리뷰 포인트를 모두 가져와서 합침
     park_points = ParkVisitPoint.objects.filter(user=user).aggregate(earned_points=models.Sum('earnedPoint'))['earned_points'] or 0
     mall_points = ShoppingMallReviewPoint.objects.filter(user=user).aggregate(earned_points=models.Sum('earnedPoint'))['earned_points'] or 0
+    donation_points = DonationPoint.objects.filter(user=user).aggregate(used_points=models.Sum('usedPoint'))['used_points'] or 0
 
-    total_points = park_points + mall_points
+    total_points = park_points + mall_points - donation_points
     user.profile.points = total_points
     user.profile.save()
 

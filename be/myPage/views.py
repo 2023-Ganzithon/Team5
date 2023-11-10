@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from datetime import datetime
-from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint
+from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint, DonationPoint
 from .serializers import (
     DonationSerializer,
     ParkEarnedPointSerializer,
     ShoppingMallEarnedPointSerializer,
+    DonationUsedPointSerializer,
 )
-from map.serializers import UserProfileSerializer
+from users.serializers import ProfileSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -61,13 +62,24 @@ class EarnedPointListView(ListAPIView):
 
         park_serializer = ParkEarnedPointSerializer(park_points, many=True)
         mall_serializer = ShoppingMallEarnedPointSerializer(mall_points, many=True)
-        user_profile_serializer = UserProfileSerializer(user.profile)
+        user_profile_serializer = ProfileSerializer(user.profile)
 
         # 공원 포인트와 쇼핑몰 리뷰 포인트 시리얼라이저 결과를 병합
         result = {
-            "user_profile": user_profile_serializer.data,
+            "profile": user_profile_serializer.data,
             "park_points": park_serializer.data,
             "mall_points": mall_serializer.data,
         }
 
         return Response(result)
+    
+class DonatedListView(ListAPIView):
+    serializer_class = DonationUsedPointSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            donation_points = DonationPoint.objects.filter(user=user)
+            return donation_points
+        else:
+            return DonationPoint.objects.none()

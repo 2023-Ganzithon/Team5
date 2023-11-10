@@ -6,4 +6,4 @@ from users.serializers import ProfileSerializer
 class DonatePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donate
-        fields = ("price", "donation")
+        fields = ("profile", "price")
