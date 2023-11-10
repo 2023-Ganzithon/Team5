@@ -1,9 +1,9 @@
 import { HttpResponse, http } from 'msw';
-import pointHistory from './json/pointHistory.json';
+import reviewHome from './json/reviewHome.json';
 
 // * test
 export const handlers = [
-  http.get('myPage/myPoint', () => {
-    return HttpResponse.json(pointHistory);
+  http.get('/review', ({ request }) => {
+    return HttpResponse.json(reviewHome);
   }),
 ];
