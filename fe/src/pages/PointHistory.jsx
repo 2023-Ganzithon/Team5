@@ -8,23 +8,22 @@ import TabBar from '@common/TabBar';
 import PointHistoryItem from '@components/PointHistoryItem';
 
 const PointHistory = () => {
+  const [profile, setProfile] = useState({
+    nickname: null,
+    points: null,
+  });
   const [pointHistory, setPointHistory] = useState([]);
 
   useEffect(() => {
     fetch('/myPage/myPoint')
       .then((res) => res.json())
       .then((data) => {
-        const { park_points: parkPointHistory, mall_points: mallPointHistory } = data;
+        const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;
         const history = [...parkPointHistory, ...mallPointHistory];
-
-        history.sort((a, b) => {
-          const dateA = new Date(a.pointActivityDate);
-          const dateB = new Date(b.pointActivityDate);
-
-          return dateB - dateA;
-        });
+        const { nickname, points } = profile;
 
         setPointHistory(history);
+        setProfile({ nickname, points });
       });
   }, []);
 
@@ -35,8 +34,8 @@ const PointHistory = () => {
         <Header title="포인트 적립 내역" backUrl={-1} />
         <Main>
           <CurrentPointInfo>
-            <PointInfo>name님이 현재 보유한 포인트는</PointInfo>
-            <PointInfo>600p</PointInfo>
+            <PointInfo>{profile.nickname}님이 현재 보유한 포인트는</PointInfo>
+            <PointInfo>{profile.points ?? 0}p</PointInfo>
           </CurrentPointInfo>
           <PointHistoryList>
             {pointHistory.map(({ park, mall, pointActivityDate, earnedPoint }) => {

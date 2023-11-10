@@ -11,4 +11,13 @@ export const handlers = [
 
     return HttpResponse.json({ title, body, shoppingmall, star });
   }),
+  http.post('myPage/donationRegister', async ({ request }) => {
+    const formData = await request.formData();
+    const name = formData.get('name');
+    const title = formData.get('title');
+    const comment = formData.get('comment');
+    const goal = formData.get('goal');
+
+    return HttpResponse.json({ name, title, comment, goal });
+  }),
 ];

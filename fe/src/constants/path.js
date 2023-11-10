@@ -12,4 +12,5 @@ export const PATH = {
   DONATION_REGISTRATION: '/donationRegistration',
   MAP: '/map',
   LOGIN: '/login',
+  SIGNUP: '/signUp',
 };

@@ -11,29 +11,34 @@ import MyPage from '@pages/MyPage';
 import PointHistory from '@pages/PointHistory';
 import DonationHistory from '@pages/DonationHistory';
 import DonationRegistration from '@pages/DonationRegistration';
-import Map from '@pages/Map';
+import PseedMap from '@pages/PseedMap';
 import Login from '@pages/Login';
+import SignUp from '@pages/SignUp';
 import GlobalStyle from '@styles/GlobalStyle';
+import AuthContextProvider from '@store/AuthContextProvider';
 
 function App() {
   return (
     <>
-    <GlobalStyle/>
-    <Routes>
-      <Route index path={PATH.HOME} element={<Home />} />
-      <Route path={PATH.DONATION} element={<Donation />} />
-      <Route path={PATH.REVIEW_HOME} element={<ReviewHome />} />
-      <Route path={PATH.REVIEW_WRITE} element={<ReviewWrite />} />
-      <Route path={PATH.GAIN_POINT} element={<GainPoint />} />
-      <Route path={PATH.REVIEW_DETAIL} element={<ReviewDetail />} />
-      <Route path={PATH.MALL_LIST} element={<MallList />} />
-      <Route path={PATH.MY_PAGE} element={<MyPage />} />
-      <Route path={PATH.POINT_HISTORY} element={<PointHistory />} />
-      <Route path={PATH.DONATION_HISTORY} element={<DonationHistory />} />
-      <Route path={PATH.DONATION_REGISTRATION} element={<DonationRegistration />} />
-      <Route path={PATH.MAP} element={<Map />} />
-      <Route path={PATH.LOGIN} element={<Login />} />
-    </Routes>
+    <AuthContextProvider>
+      <GlobalStyle />
+        <Routes>
+          <Route index path={PATH.HOME} element={<Home />} />
+          <Route path={PATH.DONATION} element={<Donation />} />
+          <Route path={PATH.REVIEW_HOME} element={<ReviewHome />} />
+          <Route path={PATH.REVIEW_WRITE} element={<ReviewWrite />} />
+          <Route path={PATH.GAIN_POINT} element={<GainPoint />} />
+          <Route path={PATH.REVIEW_DETAIL} element={<ReviewDetail />} />
+          <Route path={PATH.MALL_LIST} element={<MallList />} />
+          <Route path={PATH.MY_PAGE} element={<MyPage />} />
+          <Route path={PATH.POINT_HISTORY} element={<PointHistory />} />
+          <Route path={PATH.DONATION_HISTORY} element={<DonationHistory />} />
+          <Route path={PATH.DONATION_REGISTRATION} element={<DonationRegistration />} />
+          <Route path={PATH.MAP} element={<PseedMap />} />
+          <Route path={PATH.LOGIN} element={<Login />} />
+          <Route path={PATH.SIGNUP} element={<SignUp />} />
+        </Routes>
+    </AuthContextProvider>
     </>
     
   );

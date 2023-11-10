@@ -13,6 +13,11 @@ import PointHistoryItem from '@components/PointHistoryItem';
 import { PATH } from '@constants/path';
 
 const MyPage = () => {
+  const [profile, setProfile] = useState({
+    nickname: null,
+    image: null,
+    points: null,
+  });
   const [pointHistory, setPointHistory] = useState([]);
   const navigate = useNavigate();
 
@@ -20,17 +25,12 @@ const MyPage = () => {
     fetch('/myPage/myPoint')
       .then((res) => res.json())
       .then((data) => {
-        const { park_points: parkPointHistory, mall_points: mallPointHistory } = data;
+        const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;
         const history = [...parkPointHistory, ...mallPointHistory];
-
-        history.sort((a, b) => {
-          const dateA = new Date(a.pointActivityDate);
-          const dateB = new Date(b.pointActivityDate);
-
-          return dateB - dateA;
-        });
+        const { nickname, image, points } = profile;
 
         setPointHistory(history.slice(0, 3));
+        setProfile({ nickname, image, points });
       });
   }, []);
 
@@ -45,8 +45,7 @@ const MyPage = () => {
           <UserInfoLayout>
             <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
             <UserInfo>
-              <UserName>name</UserName>
-              <UserEmail>email@naver.com</UserEmail>
+              <UserName>{profile.nickname}</UserName>
             </UserInfo>
           </UserInfoLayout>
           <ButtonLayout>
@@ -56,7 +55,7 @@ const MyPage = () => {
             <Title>내 포인트</Title>
             <MyPointInfo>
               <Icon name={ICON_NAME.POINT2} iconColor={COLOR.green800} width={36} height={36} />
-              <span>600p</span>
+              <span>{profile.points ?? 0}p</span>
             </MyPointInfo>
           </MyPointLayout>
           <ListLayout>
