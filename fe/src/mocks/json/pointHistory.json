@@ -1,25 +1,46 @@
 {
+  "profile": {
+    "nickname": "j",
+    "image": "/media/profile/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_KCOchU2.png",
+    "points": 70
+  },
   "park_points": [
     {
-      "park": "영등포공원",
-      "pointActivityDate": "2023-11-09T03:32:11.176775+09:00",
-      "earnedPoint": 40
+      "id": 4,
+      "park": "안산공원4",
+      "pointActivityDate": "2023-11-10T03:59:52.131605+09:00",
+      "earnedPoint": 10
     },
     {
-      "park": "안산공원",
-      "pointActivityDate": "2023-11-09T04:32:34.220158+09:00",
+      "id": 3,
+      "park": "안산공원3",
+      "pointActivityDate": "2023-11-10T03:59:12.756970+09:00",
+      "earnedPoint": 10
+    },
+    {
+      "id": 2,
+      "park": "안산공원2",
+      "pointActivityDate": "2023-11-10T03:42:42.251542+09:00",
+      "earnedPoint": 10
+    },
+    {
+      "id": 1,
+      "park": "안산공원1",
+      "pointActivityDate": "2023-11-10T03:15:55.462796+09:00",
       "earnedPoint": 10
     }
   ],
   "mall_points": [
     {
-      "mall": "쇼핑몰",
-      "pointActivityDate": "2023-11-09T04:18:41.651523+09:00",
+      "id": 2,
+      "mall": "쇼핑몰2",
+      "pointActivityDate": "2023-11-10T03:45:10.625481+09:00",
       "earnedPoint": 15
     },
     {
-      "mall": "쇼핑몰2",
-      "pointActivityDate": "2023-11-09T04:31:50.527320+09:00",
+      "id": 1,
+      "mall": "쇼핑몰1",
+      "pointActivityDate": "2023-11-10T03:43:20.913636+09:00",
       "earnedPoint": 15
     }
   ]
