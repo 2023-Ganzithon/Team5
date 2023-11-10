@@ -65,28 +65,20 @@ const ReviewHome = () => {
     navigate(PATH.MALL_LIST);
   };
 
-  // //리스트 받아오기
-  // const getReview = async () => {
-  //   const url = 'http://127.0.0.1:8000/review/';
-  //   try {
-  //     const res = await axios.get(url);
-  //     console.log(res.results);
-  //     setReviewList(res.results);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  //리스트 받아오기
+  useEffect(() => {
+    fetch('/review').then((res) => console.log(res));
+    // .then((data) => {
+    //   console.log(data);
+    // });
+  }, []);
 
-  // useEffect(() => {
-  //   getReview();
-  // }, []);
-
-  // // 날짜 yyyy-mm-dd 변환
-  // const ChangeDate = (fullDate) => {
-  //   const regex = /(\d{4}-\d{2}-\d{2})/;
-  //   const match = fullDate.match(regex);
-  //   return match;
-  // };
+  // 날짜 yyyy-mm-dd 변환
+  const ChangeDate = (fullDate) => {
+    const regex = /(\d{4}-\d{2}-\d{2})/;
+    const match = fullDate.match(regex);
+    return match;
+  };
 
   //   {
   //     "pk": 4,

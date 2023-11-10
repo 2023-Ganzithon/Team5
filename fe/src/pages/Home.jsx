@@ -43,24 +43,14 @@ const Home = () => {
     },
   ];
 
-  // //리스트 받아오기
-  // const getDonaList = async () => {
-  //   const url = 'http://127.0.0.1:8000/';
-  //   try {
-  //     const res = await axios.get(url, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     console.log(res);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getDonaList();
-  // }, []);
+  //리스트 받아오기
+  useEffect(() => {
+    fetch('/')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   const navigate = useNavigate();
 
