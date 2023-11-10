@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
-from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint, DonationPoint
+from .models import Donation, ParkVisitPoint, ShoppingMallReviewPoint, Donate
 from .serializers import (
     DonationSerializer,
     ParkEarnedPointSerializer,
@@ -72,14 +72,15 @@ class EarnedPointListView(ListAPIView):
         }
 
         return Response(result)
-    
+
+
 class DonatedListView(ListAPIView):
     serializer_class = DonationUsedPointSerializer
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
             user = self.request.user
-            donation_points = DonationPoint.objects.filter(user=user)
+            donation_points = Donate.objects.filter(user=user)
             return donation_points
         else:
-            return DonationPoint.objects.none()
+            return Donate.objects.none()

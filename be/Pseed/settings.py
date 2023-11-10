@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "myPage",
     "map",
+    "django_filters",
+    "donate",
     "users",
     "rest_framework.authtoken",
     "posts",
-    "django_filters",
-    "donate",
 ]
 
 MIDDLEWARE = [
