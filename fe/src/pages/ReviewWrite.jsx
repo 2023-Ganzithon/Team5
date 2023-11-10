@@ -13,28 +13,36 @@ const reviewPH =
   '솔직하고 유용한 상품리뷰를 작성해주세요. 이 상품을 사용한 후\n어떤 점이 좋았나요? 이 상품을 다른 분에게 추천하시겠습니까?\n \n* 타인의 저작권을 침해하거나 근거 없는 악성비방글, 서비스의\n성격에 맞지 않는 글은 삭제 될 수 있으니 양해 부탁드립니다.';
 
 const ReviewWrite = () => {
-  // 설정된 rate 점수
-  const [score, setScore] = useState(0);
-  const updateScore = (newScore) => {
-    setScore(newScore);
-  };
-
-  // dropdown 선택된 값
-  const [select, setSelect] = useState('');
-  const handleSelect = (newSelect) => {
-    setSelect(newSelect);
-  };
-
-  console.log(select);
-  console.log(score);
   // 입력 값
   const [inputs, setInputs] = useState({
+    mall: '',
+    score: 0,
     title: '',
     desc: '',
     img: '',
   });
 
-  console.log(inputs);
+  // mall 선택된 값
+  const [select, setSelect] = useState('');
+  const handleSelect = (newSelect) => {
+    setSelect(newSelect);
+    setInputs({
+      ...inputs,
+      mall: newSelect,
+    });
+  };
+
+  // 설정된 rate 점수
+  const [score, setScore] = useState(0);
+  const updateScore = (newScore) => {
+    setScore(newScore);
+    setInputs({
+      ...inputs,
+      score: newScore,
+    });
+  };
+
+  // title, desc, img 추가
   const { title, desc, img } = inputs;
 
   const onChange = (e) => {
@@ -45,6 +53,7 @@ const ReviewWrite = () => {
     });
   };
 
+  // 이미지 추가
   const handleImageChange = (e) => {
     const selectedImages = Array.from(e.target.files);
     setInputs({
@@ -63,9 +72,24 @@ const ReviewWrite = () => {
     });
   };
 
+  // 작성하기 버튼
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log('작성하기 눌림');
+
+    // 입력값 확인
+    if (!inputs.mall || !inputs.title || !inputs.score || !inputs.desc) {
+      if (!inputs.mall) {
+        alert('쇼핑몰을 검색해주세요.');
+      } else if (!inputs.title) {
+        alert('제목을 입력해주세요.');
+      } else if (!inputs.score) {
+        alert('평점을 선택해주세요.');
+      } else if (!inputs.desc) {
+        alert('리뷰 내용을 입력해주세요.');
+      }
+      return;
+    }
+
     console.log(inputs);
   };
 
