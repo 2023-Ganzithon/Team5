@@ -14,24 +14,19 @@ const AuthContext = createContext({
 
 export default AuthContext;
 
-
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
     const setToken = (newToken) => {
-        setState(prevState => (
-            {
-                ...prevState, 
-                token: newToken
-            }
-        ))
+        setState(prevState => ({
+            ...prevState, 
+            token: newToken
+        }))
     }
     
     const setLoggedIn = () => {
-        setState(prevState => (
-            {
-                ...prevState, 
-                loggedIn: !prevState.loggedIn
-            }
-        ))
+        setState(prevState => ({
+            ...prevState, 
+            loggedIn: !prevState.loggedIn
+        }))
     }
 
     const setUser = (nickname, image) => {
