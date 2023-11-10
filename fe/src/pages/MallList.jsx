@@ -1,72 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 import Header from '@common/Header';
 import TabBar from '@common/TabBar';
-import MARCHROHO_BASIC from '@assets/marcoroho_basic.png';
 import MOVE_ARROW from '@assets/moveArrow.png';
 import FONT from '@styles/fonts';
 import COLOR from '@styles/color';
 import { PATH } from '@constants/path';
 import { TAB_NAME } from '@constants/tabName';
-
-const mallList = [
-  {
-    id: 1,
-    img: MARCHROHO_BASIC,
-    title: '마르코로호',
-    desc: '할머니의 일상을 행복하게 할머니의 일상을 행복하게',
-    url: 'https://m.marcoroho.com/',
-  },
-  {
-    id: 2,
-    img: MARCHROHO_BASIC,
-    title: '마르코로호',
-    desc: '할머니의 일상을 행복하게',
-    url: 'https://m.marcoroho.com/',
-  },
-  {
-    id: 3,
-    img: MARCHROHO_BASIC,
-    title: '마르코로호',
-    desc: '할머니의 일상을 행복하게',
-    url: 'https://m.marcoroho.com/',
-  },
-  {
-    id: 4,
-    img: MARCHROHO_BASIC,
-    title: '마르코로호',
-    desc: '할머니의 일상을 행복하게',
-    url: 'https://m.marcoroho.com/',
-  },
-  {
-    id: 5,
-    img: MARCHROHO_BASIC,
-    title: '마르코로호',
-    desc: '할머니의 일상을 행복하게',
-    url: 'https://m.marcoroho.com/',
-  },
-];
+import { MALLNAME, MALL_DESC, MALL_SMALLIMG, MALLPATH } from '@constants/mall';
 
 const MallList = () => {
   const handleClick = (path) => {
     window.location.href = path;
   };
+
+  const mallName = Object.values(MALLNAME);
+  const mallImg = Object.values(MALL_SMALLIMG);
+  const mallDesc = Object.values(MALL_DESC);
+  const mallPath = Object.values(MALLPATH);
+
   return (
     <>
       <Container>
         <Header title={'기부 쇼핑몰'} backUrl={PATH.REVIEW_HOME} />
         <Wrapper>
           <ListBox>
-            {mallList.map((index) => {
+            {mallName.map((item, index) => {
               return (
-                <MallContainer onClick={() => handleClick(index.url)}>
+                <MallContainer onClick={() => handleClick(mallPath[index])}>
                   <div className="mallwrap">
-                    <img src={index.img} alt={index.id} />
+                    <img src={mallImg[index]} alt={index} />
                     <div className="infowrap">
-                      <p className="title">{index.title}</p>
-                      <p className="desc">{index.desc}</p>
+                      <p className="title">{item}</p>
+                      <p className="desc">{mallDesc[index]}</p>
                       <div className="arrowWrap">
                         <img src={MOVE_ARROW} className="movearrow" />
                       </div>

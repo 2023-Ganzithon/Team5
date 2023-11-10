@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,50 +16,43 @@ import { TAB_NAME } from '@constants/tabName';
 
 const Home = () => {
   const pointList = ['특정 장소\n방문하기', '기부 쇼핑몰\n리뷰 작성하기'];
+
   const donaList = [
     {
       id: 1,
-      img: DONA_IMG,
+      image: DONA_IMG,
       category: '자선단체',
       title: '세이브더칠드런 아동 식사지원캠페인',
-      perAccomp: 75,
-      moneyAccomp: 75000,
+      achievement_rate: 75,
+      goal: 75000,
     },
     {
       id: 2,
-      img: DONA_IMG,
+      image: DONA_IMG,
       category: '개인',
       title: '보건위생물품이 필요합니다.',
-      perAccomp: 30,
-      moneyAccomp: 35000,
+      achievement_rate: 30,
+      goal: 35000,
     },
     {
       id: 3,
-      img: DONA_IMG,
+      image: DONA_IMG,
       category: '개인',
       title: '보건위생물품이 필요합니다.',
-      perAccomp: 5,
-      moneyAccomp: 1000,
+      achievement_rate: 5,
+      goal: 1000,
     },
   ];
 
-  // //리스트 받아오기
-  // const getDonaList = async () => {
-  //   const url = 'http://127.0.0.1:8000/';
-  //   try {
-  //     const res = await axios.get(url, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     console.log(res);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  // const [donaList, setDonaList] = useState([]);
 
+  // // 리스트 받아오기
   // useEffect(() => {
-  //   getDonaList();
+  //   fetch('/')
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setDonaList(data);
+  //     });
   // }, []);
 
   const navigate = useNavigate();
@@ -73,8 +66,6 @@ const Home = () => {
   };
 
   const handleList = (id) => {
-    console.log('Home');
-    console.log(id);
     navigate(PATH.DONATION, { state: id });
   };
 
@@ -111,7 +102,7 @@ const Home = () => {
                     handleList(item.id);
                   }}
                 >
-                  <Img src={item.img} alt="Donation Img" />
+                  <Img src={item.image} alt="Donation Img" />
                   <div
                     style={{
                       display: 'flex',
@@ -121,7 +112,6 @@ const Home = () => {
                       height: '90px',
                     }}
                   >
-                    <CategoryT>{item.category}</CategoryT>
                     <DonaTitle>{item.title}</DonaTitle>
                     <div
                       style={{
@@ -132,12 +122,12 @@ const Home = () => {
                         width: '100%',
                       }}
                     >
-                      <PerAccomp>{item.perAccomp}%</PerAccomp>
-                      <MoneyAccomp>{item.moneyAccomp}원 달성</MoneyAccomp>
+                      <PerAccomp>{item.achievement_rate}%</PerAccomp>
+                      <MoneyAccomp>{item.goal}원 달성</MoneyAccomp>
                     </div>
                     <div>
                       <Bar>
-                        <ColorBar perAccomp={item.perAccomp}></ColorBar>
+                        <ColorBar perAccomp={item.achievement_rate}></ColorBar>
                       </Bar>
                     </div>
                   </div>

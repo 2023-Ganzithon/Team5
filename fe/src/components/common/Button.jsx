@@ -10,9 +10,9 @@ import { PATH } from '@constants/path';
 const Button = ({ text, path, eventName }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     if (eventName) {
-      eventName();
+      eventName(e);
     }
 
     if (path) {
@@ -45,6 +45,7 @@ const ButtonWrapper = styled.button`
   width: 60%;
   height: 45px;
   border-radius: 50px;
+  cursor: pointer;
 
     background-color: ${({ text }) => (text === "홈 화면으로" ? COLOR.white : COLOR.green500)};
     border: ${({ text }) => (text === "홈 화면으로" ? `1px solid ${COLOR.gray300}`  : 'none')};

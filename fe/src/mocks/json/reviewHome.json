@@ -1,0 +1,59 @@
+{
+  "count": 6,
+  "next": "http://127.0.0.1:8000/review/posts/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "pk": 1,
+      "profile": {
+        "nickname": "gksekdms",
+        "image": "http://127.0.0.1:8000/media/default.png"
+      },
+      "shoppingmall": "ddddd",
+      "title": "titi",
+      "body": "ddd",
+      "image": "http://127.0.0.1:8000/media/default.png",
+      "published_date": "2023-11-08T11:26:36.302657+09:00",
+      "star": 1
+    },
+    {
+      "pk": 2,
+      "profile": {
+        "nickname": "gksekdms",
+        "image": "http://127.0.0.1:8000/media/default.png"
+      },
+      "shoppingmall": "ddddd",
+      "title": "titi",
+      "body": "ddd",
+      "image": "http://127.0.0.1:8000/media/post/Frame_320pseed.png",
+      "published_date": "2023-11-08T11:27:18.976420+09:00",
+      "star": 1
+    },
+    {
+      "pk": 3,
+      "profile": {
+        "nickname": "gksekdms",
+        "image": "http://127.0.0.1:8000/media/default.png"
+      },
+      "shoppingmall": "ddddd",
+      "title": "titi",
+      "body": "ddd",
+      "image": "http://127.0.0.1:8000/media/post/Frame_320pseed_v2Xzr52.png",
+      "published_date": "2023-11-08T11:27:22.861403+09:00",
+      "star": 1
+    },
+    {
+      "pk": 4,
+      "profile": {
+        "nickname": "gksekdms",
+        "image": "http://127.0.0.1:8000/media/default.png"
+      },
+      "shoppingmall": "ddddd",
+      "title": "titi",
+      "body": "ddd",
+      "image": "http://127.0.0.1:8000/media/post/Frame_320pseed_JEu0VGe.png",
+      "published_date": "2023-11-08T11:27:25.170577+09:00",
+      "star": 1
+    }
+  ]
+}

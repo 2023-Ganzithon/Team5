@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import LogoHeader from '@common/LogoHeader';
@@ -21,33 +20,33 @@ import { BUTTON_NAME } from '@constants/buttonName';
 
 const reviewList = [
   {
-    id: 1,
-    img: PreviewReview_IMG,
+    pk: 1,
+    image: PreviewReview_IMG,
     title: '땡땡의 아름다운 반지',
-    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
-    userName: '김예은',
-    date: '2023-11-03',
+    nickname: '김예은',
+    published_date: '2023-11-03',
     star: 5,
   },
   {
-    id: 2,
-    img: PreviewReview_IMG,
+    pk: 2,
+    image: PreviewReview_IMG,
     title: '세이브더칠드런 아동 식사지원캠페인',
-    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐 누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
-    userName: '김예은',
-    date: '2023-11-03',
+    nickname: '김예은',
+    published_date: '2023-11-03',
     star: 4,
   },
   {
-    id: 3,
-    img: PreviewReview_IMG,
+    pk: 3,
+    image: PreviewReview_IMG,
     title: '세이브더칠드런 아동 식사지원캠페인',
-    desc: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
+    body: '누구한테 선물 받았는데 너무 좋았고 어쩌고 저쩌고 행복합니다람쥐람쥐',
     userImg: User_IMG,
-    userName: '김예은',
-    date: '2023-11-03',
+    nickname: '김예은',
+    published_date: '2023-11-03',
     star: 4,
   },
 ];
@@ -65,42 +64,28 @@ const ReviewHome = () => {
     navigate(PATH.MALL_LIST);
   };
 
-  // //리스트 받아오기
-  // const getReview = async () => {
-  //   const url = 'http://127.0.0.1:8000/review/';
-  //   try {
-  //     const res = await axios.get(url);
-  //     console.log(res.results);
-  //     setReviewList(res.results);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  // 리스트 받아오기
+  useEffect(() => {
+    fetch('/review')
+      .then((res) => res.json())
+      .then((data) => {
+        // setReviewList(data.results);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   getReview();
-  // }, []);
+  // 날짜 yyyy-mm-dd 변환
+  const ChangeDate = (fullDate) => {
+    const regex = /^(\d{4}-\d{2}-\d{2})/;
+    const match = fullDate.match(regex);
 
-  // // 날짜 yyyy-mm-dd 변환
-  // const ChangeDate = (fullDate) => {
-  //   const regex = /(\d{4}-\d{2}-\d{2})/;
-  //   const match = fullDate.match(regex);
-  //   return match;
-  // };
-
-  //   {
-  //     "pk": 4,
-  //     "profile": {
-  //         "nickname": "gksekdms",
-  //         "image": "http://127.0.0.1:8000/media/default.png"
-  //     },
-  //     "shoppingmall": "ddddd",
-  //     "title": "titi",
-  //     "body": "ddd",
-  //     "image": "http://127.0.0.1:8000/media/post/Frame_320pseed_JEu0VGe.png",
-  //     "published_date": "2023-11-08T11:27:25.170577+09:00",
-  //     "star": 1
-  // }
+    if (match && match[1]) {
+      return match[1];
+    } else {
+      // 잘못된 또는 다른 날짜 형식 처리
+      console.error('잘못된 날짜 형식:', fullDate);
+      return null; // 또는 사용 사례에 따라 원래 fullDate를 반환합니다.
+    }
+  };
 
   return (
     <>
@@ -117,22 +102,24 @@ const ReviewHome = () => {
           </Subtitle>
           <Button text={BUTTON_NAME.REVIEW_WRITE} path={PATH.REVIEW_WRITE} />
         </Wrapper>
-        <Wrapper height={'auto'}>
+        <Wrapper height={'auto'} style={{ boxShadow: 'none' }}>
           <Subtitle style={{ marginTop: '35px' }}>리뷰 모아보기</Subtitle>
           <ReviewListBox>
             {reviewList.map((index) => {
               return (
-                <ReviewContainer onClick={() => handleReviewClick(index.id)}>
-                  <img src={index.img} alt={index.id} />
+                <ReviewContainer onClick={() => handleReviewClick(index.pk)}>
+                  <img src={index.image} alt={index.pk} />
                   <div className="reviewInfoBox">
                     <ReviewTitle>{index.title}</ReviewTitle>
-                    <ReviewDesc>{index.desc}</ReviewDesc>
+                    <ReviewDesc>{index.body}</ReviewDesc>
                     <div className="reviewBottom">
                       <div className="userInfo">
+                        {/* back 연동 시, profile.image / profile.nickname */}
+                        {/* front 테스트 시, userImg / nickname */}
                         <img src={index.userImg} alt={index.pk} className="userimg" />
                         <div>
-                          <p className="userName">{index.userName}</p>
-                          <p className="uploadDay">{index.date}</p>
+                          <p className="userName">{index.nickname}</p>
+                          <p className="uploadDay">{ChangeDate(index.published_date)}</p>
                         </div>
                       </div>
                       <Rate size={8} rate={index.star - 1} />

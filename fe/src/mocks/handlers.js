@@ -1,10 +1,15 @@
 import { HttpResponse, http } from 'msw';
-import pointHistory from './json/pointHistory.json';
-
 // * test
 export const handlers = [
-  http.get('myPage/myPoint', () => {
-    return HttpResponse.json(pointHistory);
+  http.post('/review/', async ({ request }) => {
+    const formData = await request.formData();
+    const title = formData.get('title');
+    const body = formData.get('body');
+    const shoppingmall = formData.get('shoppingmall');
+    const star = formData.get('star');
+    const image = formData.get('image');
+
+    return HttpResponse.json({ title, body, shoppingmall, star });
   }),
   http.post('myPage/donationRegister', async ({ request }) => {
     const formData = await request.formData();

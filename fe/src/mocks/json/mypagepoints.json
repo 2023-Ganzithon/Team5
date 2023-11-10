@@ -1,0 +1,71 @@
+{
+  "user": {
+    "username": "장우림",
+    "email": "w@gmail.com"
+  },
+  "profile": {
+    "nickname": "j",
+    "image": "/media/profile/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_x1ymVwv.png",
+    "points": 0
+  },
+  "park_points": [
+    {
+      "id": 1159,
+      "park": "영등포공원",
+      "pointActivityDate": "2023-11-10T20:01:58.731326+09:00",
+      "earnedPoint": 10
+    },
+    {
+      "id": 1158,
+      "park": "영등포공원",
+      "pointActivityDate": "2023-11-10T20:00:53.200124+09:00",
+      "earnedPoint": 10
+    },
+    {
+      "id": 1157,
+      "park": "영등포공원",
+      "pointActivityDate": "2023-11-10T19:53:27.253197+09:00",
+      "earnedPoint": 10
+    },
+    {
+      "id": 1156,
+      "park": "여의도공원",
+      "pointActivityDate": "2023-11-10T19:51:04.778884+09:00",
+      "earnedPoint": 10
+    }
+  ],
+  "mall_points": [
+    {
+      "id": 7,
+      "mall": "쇼핑몰4",
+      "pointActivityDate": "2023-11-10T20:30:45.096840+09:00",
+      "earnedPoint": 15
+    },
+    {
+      "id": 6,
+      "mall": "쇼핑몰3",
+      "pointActivityDate": "2023-11-10T20:30:22.831301+09:00",
+      "earnedPoint": 15
+    },
+    {
+      "id": 5,
+      "mall": "쇼핑몰2",
+      "pointActivityDate": "2023-11-10T20:30:10.450371+09:00",
+      "earnedPoint": 15
+    },
+    {
+      "id": 4,
+      "mall": "쇼핑몰",
+      "pointActivityDate": "2023-11-10T20:29:59.900223+09:00",
+      "earnedPoint": 15
+    }
+  ],
+  "donation_points": [
+    {
+      "id": 3,
+      "donation": 2,
+      "date": "2023-11-10T20:02:20.488437+09:00",
+      "price": 100
+    }
+  ]
+}

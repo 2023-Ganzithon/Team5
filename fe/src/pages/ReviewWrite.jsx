@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import Rate from '@components/Rate';
 import Dropdown from '@components/Dropdown';
-import COLOR from '@styles/color';
 import Header from '@common/Header';
-import { PATH } from '@constants/path';
+
+import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
-import { ICON_NAME } from '@constants/iconName';
 import Icon from '@common/Icon';
+import { PATH } from '@constants/path';
+import { ICON_NAME } from '@constants/iconName';
 
 const reviewPH =
   '솔직하고 유용한 상품리뷰를 작성해주세요. 이 상품을 사용한 후\n어떤 점이 좋았나요? 이 상품을 다른 분에게 추천하시겠습니까?\n \n* 타인의 저작권을 침해하거나 근거 없는 악성비방글, 서비스의\n성격에 맞지 않는 글은 삭제 될 수 있으니 양해 부탁드립니다.';
 
 const ReviewWrite = () => {
-  // 설정된 rate 점수
-  const [score, setScore] = useState(0);
-  const updateScore = (newScore) => {
-    setScore(newScore);
-  };
+  const navigate = useNavigate();
 
-  // dropdown 선택된 값
-  const [select, setSelect] = useState('');
-  const handleSelect = (newSelect) => {
-    setSelect(newSelect);
-  };
-
-  console.log(select);
-  console.log(score);
   // 입력 값
   const [inputs, setInputs] = useState({
+    mall: '',
+    score: 0,
     title: '',
     desc: '',
     img: '',
   });
 
-  console.log(inputs);
+  // mall 선택된 값
+  const [select, setSelect] = useState('');
+  const handleSelect = (newSelect) => {
+    setSelect(newSelect);
+    setInputs({
+      ...inputs,
+      mall: newSelect,
+    });
+  };
+
+  // 설정된 rate 점수
+  const [score, setScore] = useState(0);
+  const updateScore = (newScore) => {
+    setScore(newScore);
+    setInputs({
+      ...inputs,
+      score: newScore,
+    });
+  };
+
+  // title, desc, img 추가
   const { title, desc, img } = inputs;
 
   const onChange = (e) => {
@@ -45,15 +58,88 @@ const ReviewWrite = () => {
     });
   };
 
-  const handleSubmit = () => {
+  // 이미지 추가
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+
+    if (!selectedImage) return;
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(selectedImage);
+
+    reader.onload = () => {
+      setInputs({
+        ...inputs,
+        img: reader.result,
+      });
+    };
+  };
+
+  // 이미지 배열에서 이미지 제거
+  const handleRemoveImage = (index) => {
+    setInputs({
+      ...inputs,
+      img: '', // 이미지를 제거하므로 null로 설정
+    });
+  };
+
+  // 작성하기 버튼
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
     console.log(inputs);
+
+    // 입력값 확인
+    if (!inputs.mall || !inputs.title || !inputs.score || !inputs.desc) {
+      if (!inputs.mall) {
+        alert('쇼핑몰을 검색해주세요.');
+      } else if (!inputs.title) {
+        alert('제목을 입력해주세요.');
+      } else if (!inputs.score) {
+        alert('평점을 선택해주세요.');
+      } else if (!inputs.desc) {
+        alert('리뷰 내용을 입력해주세요.');
+      }
+      return;
+    } else {
+      const formData = new FormData();
+
+      const title = inputs.title;
+      const body = inputs.desc;
+      const shoppingmall = inputs.mall;
+      const star = inputs.score;
+      const image = inputs.img;
+
+      formData.append('title', title);
+      formData.append('body', body);
+      formData.append('shoppingmall', shoppingmall);
+      formData.append('star', star);
+      if (image) {
+        formData.append('image', image);
+      }
+
+      console.log(formData);
+
+      fetch('/review/', {
+        method: 'POST',
+        cache: 'no-cache',
+        'Content-Type': 'multipart/form-data',
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+
+      navigate('/gainpoint');
+    }
   };
 
   return (
     <Container>
       <Header title={'상품리뷰 작성'} backUrl={PATH.REVIEW_HOME} />
-      <Submit onClick={handleSubmit}>작성하기</Submit>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <div className="dropdownBody">
           <Dropdown updateSelect={handleSelect} name="mall" />
         </div>
@@ -67,9 +153,25 @@ const ReviewWrite = () => {
           <textarea name="desc" placeholder={reviewPH} onChange={onChange} value={desc}></textarea>
         </ReviewBox>
         <AddPhotoBox>
-          <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.green500} width={20} height={20}></Icon>
-          <p>사진 추가하기</p>
+          <Label>
+            <HiddenFileInput
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
+            />
+            <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.green500} width={20} height={20}></Icon>
+            <p>사진 추가하기</p>
+          </Label>
         </AddPhotoBox>
+        {img && (
+          <div>
+            <Preview src={img} alt={`Preview`} />
+            <button onClick={() => setInputs({ ...inputs, img: '' })}>Remove</button>
+          </div>
+        )}
+        <Submit type="submit">작성하기</Submit>
       </form>
     </Container>
   );
@@ -96,6 +198,10 @@ const Container = styled.div`
 const Submit = styled.button`
   background-color: transparent;
   width: 70px;
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  z-index: 15;
   ${FONT.headline}
   color: ${COLOR.green500};
 `;
@@ -115,6 +221,15 @@ const TitleBox = styled.div`
   }
 `;
 
+const HiddenFileInput = styled.input`
+  display: none;
+`;
+
+const Label = styled.label`
+  display: flex;
+  cursor: pointer;
+`;
+
 const ReviewBox = styled.div`
   padding: 20px;
   border-bottom: 0.5px solid ${COLOR.gray300};
@@ -130,7 +245,7 @@ const ReviewBox = styled.div`
   }
 `;
 
-const AddPhotoBox = styled.button`
+const AddPhotoBox = styled.div`
   display: flex;
   padding-left: 20px;
   align-items: center;
@@ -146,4 +261,10 @@ const AddPhotoBox = styled.button`
     margin-bottom: 2px;
     display: flex;
   }
+`;
+
+const Preview = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  margin-top: 10px;
 `;
