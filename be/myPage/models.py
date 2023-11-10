@@ -5,10 +5,8 @@ from django.dispatch import receiver
 from datetime import datetime
 from map.models import Park
 from users.models import Profile
-from donate.models import Donate
 
 
-# Create your models here.
 class Donation(models.Model):
     image = models.ImageField(
         verbose_name="기부처 사진", blank=False, null=False, upload_to="donation_images/"
@@ -34,6 +32,9 @@ class ShoppingMallReviewPoint(models.Model):
     mall = models.CharField(max_length=128)  # 쇼핑몰의 이름을 문자열로 저장
     earnedPoint = models.IntegerField(default=0)
     pointActivityDate = models.DateTimeField(default=datetime.now)
+
+
+from donate.models import Donate
 
 
 # 유저의 총 포인트도 실시간 업데이트하는
