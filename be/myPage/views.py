@@ -86,7 +86,7 @@ class DonatedListView(ListAPIView):
         
 # 마이페이지홈        
 class MypageView(ListAPIView):
-    serializer_class = RegisterSerializer  # serializer_class를 사용하지 않습니다
+    serializer_class = RegisterSerializer 
 
     def get_queryset(self):
         if self.request.user.is_authenticated:

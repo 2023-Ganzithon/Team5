@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from users.serializers import ProfileSerializer
+from .serializers import ParkSerializer
 from .models import Park  
 from myPage.models import Profile
 from myPage.models import ParkVisitPoint
@@ -62,3 +64,11 @@ class EarnParkPointsView(APIView):
 
         else:
             return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+        
+class ParkListView(ListAPIView):
+    def get(self, request):
+        parks = Park.objects.all()
+        serializer = ParkSerializer(parks, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        
