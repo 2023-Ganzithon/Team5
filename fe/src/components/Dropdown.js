@@ -9,6 +9,7 @@ import FONT from '@styles/fonts';
 
 const Dropdown = ({ updateSelect }) => {
   const dropdownItems = Object.values(MALLNAME);
+  console.log(dropdownItems);
 
   const [isActive, setIsActive] = useState(false);
   const [item, setItem] = useState(null);

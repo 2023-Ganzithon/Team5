@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import POINT from '@assets/point.svg';
@@ -11,21 +11,10 @@ import { PATH } from '@constants/path';
 const GainPoint = () => {
   const [point, setPoint] = useState(10);
 
-  useEffect(() => {
-    fetch('/myPage/')
-      .then((res) => res.json())
-      .then((data) => {
-        setPoint(data.profile.points);
-      });
-  }, []);
-
   return (
     <Container>
       <img src={POINT} width={117} style={{ marginBottom: '36px' }} />
       <P>{point}P 획득 완료 💰</P>
-      <TotalP>
-        현재 누적 포인트: <span>{point}P</span>
-      </TotalP>
       <Button text={BUTTON_NAME.HOME} path={PATH.HOME} />
     </Container>
   );
@@ -47,15 +36,5 @@ const P = styled.p`
   font-size: 35px;
   font-weight: bold;
   color: ${COLOR.green600};
-  margin-bottom: 40px;
-`;
-
-const TotalP = styled.p`
-  ${FONT.subhead}
-  margin-bottom: 174px;
-
-  span {
-    color: ${COLOR.green500};
-    font-weight: bold;
-  }
+  margin-bottom: 214px;
 `;
