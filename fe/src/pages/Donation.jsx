@@ -1,10 +1,13 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import styled from 'styled-components';
 import Header from '@common/Header';
 import COLOR from '@styles/color';
 import TabBar from '@common/TabBar';
 import FONT from '@styles/fonts';
 import Button from '@common/Button';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const Donation = (id) => {
   // 실행시 id 이용해서 백엔드로부터 정보 받아오기 + 사용자의 보유 포인트
@@ -12,14 +15,59 @@ const Donation = (id) => {
   const [category,setCategory] = useState("개인");
   const [title,setTitle] = useState("테스트");
   const [perAccomp,setPerAccomp] = useState(70);
-  const [moneyAccomp,setMoneyAccomp] = useState("7000");
+  const [moneyAccomp,setMoneyAccomp] = useState(7000);
   const [comment,setComment] = useState("안녕하세요. 사용해주셔서 감사합니다.");
   const [point,setPoint] = useState(null);
+
+  const { user } = useContext(AuthContext)
+
+  useEffect(()=>{
+    fetchData();
+  },[]);
+
+  const fetchData = async () => {
+		try {
+		  const response = await axios.get("");
+		  const jsonData = response.data;
+      
+      setImageSrc(jsonData.donation.image);
+      setCategory(jsonData.donation.name);
+      setTitle(jsonData.donation.title);
+      setPerAccomp(jsonData.donation.achievement_rate * 100);
+      setMoneyAccomp(jsonData.donation.goal);
+      setComment(jsonData.donation.comment);
+      setPoint(jsonData.profile.points);
+
+		} catch (error) {
+		  console.error("Axios를 통한 요청 중 오류 발생:", error.message);
+		}
+	  };
+
   
   const handleDonation = () => {
+    const price = document.getElementById('donation').value;
+    const postApiUrl = `http://127.0.0.1:8000/${id}/`;
+    
+    const formData = new FormData();
+      formData.append('price', price);
 
-    //기부 버튼 눌렀을 때, 백엔드에 정보 보내기
-    alert("기부 완료");
+      fetch(postApiUrl, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${user.token}`, // 토큰을 헤더에 추가
+      },
+      body: formData, // FormData 객체를 요청 본문으로 설정
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("기부 요청 성공: ", data);
+        alert(data);
+        fetchData();
+      })
+      .catch((error) => {
+        console.error("기부 에러: ", error);
+        alert("기부 Error: ", error);
+      });
   };
 
   return (<>

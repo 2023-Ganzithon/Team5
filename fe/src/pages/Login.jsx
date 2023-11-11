@@ -1,18 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import FONT from '@styles/fonts';
 import LOGO from '@assets/LogoPseed2.svg'
 import COLOR from '@styles/color';
 import Button from '@common/Button';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const Login = () => {
 // 요청 - 유저이름, 비밀번호
 // 응답 -> 토큰
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  
   const navigate = useNavigate();
+
+  const { setToken, setUserId, setLoggedIn } = useContext(AuthContext);
 
   const loginClick = () => {
     const enteredName = document.getElementById('name').value;
@@ -39,13 +42,15 @@ const Login = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      setToken(data.token);
+      console.log("토큰 : ",data.token);
+      setToken(data.token);//Token.concat 해야하는건지?
+      setUserId(data.user_id);
+      setLoggedIn();
       navigate('/');
     })
     .catch((error) => {
-      console.error("Error:", error);
-      alert("Error:", error);
+      console.error("로그인 Error:", error);
+      alert("로그인 Error:", error);
     });
 }
 

@@ -46,12 +46,12 @@ const SignUp = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.username,"님 회원가입 성공");
       navigate('/login');
     })
     .catch((error) => {
-      console.error("Error:", error);
-      alert("Error:", error);
+      console.error("회원가입 에러 :", error);
+      alert("회원가입 Error : ", error);
     });
       };
 
