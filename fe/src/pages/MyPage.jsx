@@ -14,9 +14,10 @@ import { PATH } from '@constants/path';
 import { AuthContext } from '@store/AuthContextProvider';
 
 const MyPage = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [isEdited, setIsEdited] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
+  // * 연동되고 나서 nickname, image는 context에 저장된 정보 사용하기
   const [profile, setProfile] = useState({
     nickname: null,
     image: null,
@@ -70,7 +71,13 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    const pointHistoryPromise = fetch('/myPage/myPoint')
+    const pointHistoryPromise = fetch('/myPage/myPoint', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;
@@ -79,7 +86,13 @@ const MyPage = () => {
         return { profile, history: history.slice(0, 3) };
       });
 
-    const donationHistoryPromise = fetch('/myPage/mydonation/')
+    const donationHistoryPromise = fetch('/myPage/mydonation/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { donation_points: history } = data;

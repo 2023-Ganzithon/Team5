@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Icon from '@common/Icon';
 import Header from '@common/Header';
@@ -9,6 +9,7 @@ import { TAB_NAME } from '@constants/tabName';
 import { PATH } from '@constants/path';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -18,6 +19,8 @@ const DonationRegistration = () => {
   const commentInputRef = useRef(null);
   const goalInputRef = useRef(null);
   const uploadButtonRef = useRef(null);
+
+  const { user } = useContext(AuthContext);
 
   const handleImgUpload = ({ target }) => {
     const reader = new FileReader();
@@ -73,7 +76,9 @@ const DonationRegistration = () => {
     fetch('/myPage/donationRegister', {
       method: 'POST',
       cache: 'no-cache',
-      'Content-Type': 'multipart/form-data',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
       body: formData,
     })
       .then((response) => response.json())
