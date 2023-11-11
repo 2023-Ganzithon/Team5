@@ -82,9 +82,6 @@ const ReviewWrite = () => {
     });
   };
 
-  console.log('inputs입니다');
-  console.log(inputs);
-
   // 작성하기 버튼
   const handleFormSubmit = (e) => {
     e.preventDefault();
