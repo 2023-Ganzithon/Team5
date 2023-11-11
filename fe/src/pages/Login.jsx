@@ -34,8 +34,13 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        login({ token: data.token, userId: data.user_pk });
-        navigate('/');
+        console.log(data);
+        if(data.error === undefined){
+          login({ token: data.token, userId: data.user_pk });
+          navigate('/');
+        }else{
+          alert("이름과 비밀번호를 다시 한 번 확인해주세요.")
+        }
       })
       .catch((error) => {
         console.error('로그인 Error:', error);

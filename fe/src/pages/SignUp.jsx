@@ -9,10 +9,6 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     // 요청 - 유저이름, 비밀번호, 비밀번호 확인, 이메일
     // 응답 -> 유저이름, 이메일
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [email, setEmail] = useState("");
     const navigate = useNavigate();
     
     const signUpClick = () => {
@@ -41,8 +37,13 @@ const SignUp = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.username,"님 회원가입 성공");
-      navigate('/login');
+      if(data.username !== enteredName){
+        alert('다시 확인해주세요')
+      }else{
+        console.log(data.username,"님 회원가입 성공");
+        navigate('/login');
+      }
+      
     })
     .catch((error) => {
       console.error("회원가입 에러 :", error);
