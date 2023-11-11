@@ -23,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
 
   const login = ({ token, userId }) => {
-    fetch(`http://127.0.0.1:8000/users/profile/${userId}`, {
+    fetch(`http://127.0.0.1:8000/users/profile/${userId}/`, {
       headers: {
         Authorization: `Token ${token}`,
       },
