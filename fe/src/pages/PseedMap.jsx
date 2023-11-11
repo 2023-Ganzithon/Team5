@@ -13,7 +13,7 @@ import { AuthContext } from '@store/AuthContextProvider';
 
 const PseedMap = () => {
   const { user } = useContext(AuthContext);
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [location, setLoacation] = useState({ lat: 37.6550512, lng: 126.9496087 });
   const [mapMarkers, setMapMarkers] = useState([]);
   const [modalPlace, setModalPlace] = useState("Test");
@@ -47,14 +47,19 @@ console.log("PseedMap user.token"+user.token);
 
 	const sendPositionHandler = ()=>{
 		//백엔드에 현재 좌표 보낼 것
-		let apiUrl = `http://127.0.0.1:8000/map/points/?latitude=${location.lat}&longitude=${location.lng}`;
+		let apiUrl = `http://127.0.0.1:8000/map/points/`;
 		//성공시
+		const data = {
+			latitude: location.lat,
+			longitude: location.lng,
+		  };
 		console.log(apiUrl)
 		fetch(apiUrl, {
 			method: "POST",
 			headers: {
 				Authorization: `Token ${user.token}`,
-			  },
+			},
+			body: JSON.stringify(data),
 		  })
 		  .then((response) => response.json())
 		  .then((data) => {
