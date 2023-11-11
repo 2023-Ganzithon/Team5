@@ -55,14 +55,16 @@ const Login = () => {
   return (
     <LoginContainer>
       <Logo src={LOGO} />
-      <InputLayout>
-        <Label htmlFor="name">이름 *</Label>
-        <Input type="text" id="name" />
-      </InputLayout>
-      <InputLayout>
-        <Label htmlFor="name">비밀번호 *</Label>
-        <Input type="password" id="password" />
-      </InputLayout>
+      <div>
+        <InputLayout>
+          <Label htmlFor="name">이름 *</Label>
+          <Input type="text" id="name" />
+        </InputLayout>
+        <InputLayout>
+          <Label htmlFor="name">비밀번호 *</Label>
+          <Input type="password" id="password" />
+        </InputLayout>
+      </div>
       <Button text="로그인" path="/login" eventName={loginClick} />
       <Button text="회원가입" path="/signUp" eventName={null} />
     </LoginContainer>
@@ -72,18 +74,17 @@ const Login = () => {
 export default Login;
 
 const LoginContainer = styled.div`
-  min-height: calc(100vh - 84px);
   background: ${COLOR.white};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
 `;
 const Logo = styled.img`
   width: 200px;
   height: 250px;
-  margin-top: 100px;
+  margin-top:30px;
 `;
 const InputLayout = styled.div`
   display: flex;

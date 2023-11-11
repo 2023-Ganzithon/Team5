@@ -10,9 +10,6 @@ import UserIcon from '@assets/UserIcon.png'
 import TabBar from '@common/TabBar';
 import axios from "axios";
 
-//TODO1 : 사용자 위치 더 잘보이게(ImHere or 사진변경)
-
-
 const PseedMap = () => {
   const [modalOpen, setModalOpen] = useState(true);
   const [location, setLoacation] = useState({ lat: 37.4024064, lng: 127.101385 });
@@ -28,7 +25,7 @@ const PseedMap = () => {
 	const successHandler = (response) => {
 		console.log(response); 
 		const { latitude, longitude } = response.coords;
-		setLoacation({ latitude, longitude });
+		setLoacation({ lat: latitude, lng:longitude });
 	};
 
 	const errorHandler = (error) => {
@@ -76,13 +73,13 @@ const PseedMap = () => {
   <LogoHeader/>
   <KakaoMap
   center={{ lat: location.lat, lng: location.lng }}   // 지도의 중심 좌표
-  level={3} >
+  level={2} >
 	<UserMarker
 	key={`current-location`}
     position={location}
     image={{
         src: UserIcon,
-        size: { width: 50, height: 50 },
+        size: { width: 25, height: 25 },
     }}
 	title={'현재 위치'}/>
 	{mapMarkers.length>0?(mapMarkers.map((item,index)=><MapMarker
@@ -93,7 +90,10 @@ const PseedMap = () => {
         size: { width: 35, height: 40 },
     }}
 	title={item.name}/>)):(null)}
-
+	
+	<ButtonWrapper onClick={sendPositionHandler}>
+    <ButtonText>장소 도착 포인트 받기</ButtonText>
+  </ButtonWrapper>
 	{/* 모달창 제대로 뜨나 확인 필요함!! */}
 	{modalOpen && (
         <PseedModal
@@ -103,9 +103,6 @@ const PseedMap = () => {
           onClose={() => setModalOpen(false)}
         />
       )}
-  <ButtonWrapper onClick={sendPositionHandler}>
-    <ButtonText>포인트 장소 도착</ButtonText>
-  </ButtonWrapper>
   </KakaoMap>
   </MapContainer>
   <TabBar currentTab='map'/>
@@ -150,5 +147,5 @@ cursor:pointer;
 
 const ButtonText = styled.span`
 ${FONT.headline}
-  color: COLOR.white;
+  color: ${COLOR.white};
 `;
