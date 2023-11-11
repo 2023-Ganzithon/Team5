@@ -14,58 +14,50 @@ import { AuthContext } from '@store/AuthContextProvider';
 const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
   const imgInputRef = useRef(null);
-  const nameInputRef = useRef(null);
-  const titleInputRef = useRef(null);
-  const commentInputRef = useRef(null);
-  const goalInputRef = useRef(null);
   const uploadButtonRef = useRef(null);
 
   const { user } = useContext(AuthContext);
+  const [inputs, setInputs] = useState({
+    image: '',
+    name: '',
+    title: '',
+    comment: '',
+    goal: '',
+  });
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   const handleImgUpload = ({ target }) => {
+    const selectedImage = target.files[0];
+
+    if (!selectedImage) return;
+
     const reader = new FileReader();
-
-    if (!target?.files?.[0]) return;
-
-    reader.readAsDataURL(target.files[0]);
 
     reader.onload = () => {
       setImgSrc(reader.result);
     };
+
+    reader.readAsDataURL(selectedImage);
+
+    setInputs({ ...inputs, image: selectedImage });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    const { title, comment, name, goal, image } = inputs;
+
+    if (!image || !title || !comment || !name || !goal) {
+      return;
+    }
     const formData = new FormData();
-
-    const image = imgInputRef.current.files[0];
-    const name = nameInputRef.current.value;
-    const title = titleInputRef.current.value;
-    const comment = commentInputRef.current.value;
-    const goal = goalInputRef.current.value;
-
-    if (!image) {
-      uploadButtonRef.current.focus();
-      window.scrollTo(0, 0);
-      return;
-    }
-    if (!name) {
-      nameInputRef.current.focus();
-      return;
-    }
-    if (!title) {
-      titleInputRef.current.focus();
-      return;
-    }
-    if (!comment) {
-      commentInputRef.current.focus();
-      return;
-    }
-    if (!goal) {
-      goalInputRef.current.focus();
-      return;
-    }
 
     formData.append('image', image);
     formData.append('name', name);
@@ -73,15 +65,15 @@ const DonationRegistration = () => {
     formData.append('comment', comment);
     formData.append('goal', goal);
 
-    fetch('http://127.0.0.1:8000/myPage/donationRegister', {
+    fetch('http://127.0.0.1:8000/myPage/donationRegister/', {
       method: 'POST',
       cache: 'no-cache',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
       body: formData,
+      headers: {
+        Authorization: `Token ${user.token}`,
+      },
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
       });
@@ -91,19 +83,13 @@ const DonationRegistration = () => {
     <>
       <Layout>
         <Header title={'기부처 등록하기'} backUrl={PATH.MY_PAGE} />
-        <Form>
+        <Form onSubmit={handleFormSubmit} encType="multipart/form-data">
           <ImgLayout>
             <ImgLabel htmlFor="img-uploader">
               {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
               {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
-            <ImgInput
-              ref={imgInputRef}
-              type="file"
-              id="img-uploader"
-              accept="image/*"
-              onChange={handleImgUpload}
-            />
+            <ImgInput type="file" id="img-uploader" accept="image/*" onChange={handleImgUpload} />
             <ImgButton
               type="button"
               ref={uploadButtonRef}
@@ -119,21 +105,29 @@ const DonationRegistration = () => {
           </ImgLayout>
           <InputLayout>
             <Label htmlFor="name">개인 or 단체 이름 *</Label>
-            <Input type="text" id="name" ref={nameInputRef} />
+            <Input type="text" id="name" name="name" onChange={onChange} value={inputs.name} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="title">제목 *</Label>
-            <Input type="text" id="title" ref={titleInputRef} />
+            <Input type="text" id="title" name="title" onChange={onChange} value={inputs.title} />
           </InputLayout>
           <InputLayout>
             <Label htmlFor="comment">한 줄 소개 *</Label>
-            <Input type="text" id="comment" ref={commentInputRef} />
+            <Input type="text" id="comment" name="comment" onChange={onChange} value={inputs.comment} />
           </InputLayout>
           <InputLayout>
-            <Label htmlFor="money">목표 금액 *</Label>
-            <Input type="number" id="money" min={0} step={10} ref={goalInputRef} />
+            <Label htmlFor="goal">목표 금액 *</Label>
+            <Input
+              type="number"
+              id="goal"
+              name="goal"
+              min={0}
+              step={10}
+              onChange={onChange}
+              value={inputs.goal}
+            />
           </InputLayout>
-          <Button text="등록하기" eventName={handleFormSubmit} />
+          <Button text="등록하기" />
         </Form>
       </Layout>
       <TabBar currentTab={TAB_NAME.MY_PAGE} />
