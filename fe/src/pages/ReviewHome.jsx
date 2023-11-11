@@ -69,18 +69,6 @@ const ReviewHome = () => {
     navigate(PATH.MALL_LIST);
   };
 
-  const handleNext = () => {
-    setPage((prev) => prev + 1);
-  };
-
-  const handlePrev = () => {
-    if (page > 1) {
-      setPage((prev) => prev - 1);
-    } else {
-      return;
-    }
-  };
-
   // 리스트 받아오기
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/review/`)
@@ -146,12 +134,6 @@ const ReviewHome = () => {
                 </ReviewContainer>
               );
             })}
-            <div className="pagingwrapper">
-              <PagingBox>
-                <button onClick={handlePrev}>이전</button>
-                <button onClick={handleNext}>다음</button>
-              </PagingBox>
-            </div>
           </ReviewListBox>
         </Wrapper>
       </Container>
@@ -285,19 +267,4 @@ const ReviewDesc = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 3; /* 세 줄 이상은 '...'으로 표시 */
   -webkit-box-orient: vertical;
-`;
-
-const PagingBox = styled.div`
-  display: flex;
-  width: 30%;
-  justify-content: space-between;
-
-  button {
-    ${FONT.subhead}
-    background-color: transparent;
-    border-radius: 7px;
-    border: 1px solid ${COLOR.gray300};
-    padding: 10px;
-    cursor: pointer;
-  }
 `;
