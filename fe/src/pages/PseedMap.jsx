@@ -73,7 +73,7 @@ const PseedMap = () => {
   <LogoHeader/>
   <KakaoMap
   center={{ lat: location.lat, lng: location.lng }}   // 지도의 중심 좌표
-  level={3} >
+  level={2} >
 	<UserMarker
 	key={`current-location`}
     position={location}
@@ -92,7 +92,7 @@ const PseedMap = () => {
 	title={item.name}/>)):(null)}
 	
 	<ButtonWrapper onClick={sendPositionHandler}>
-    <ButtonText>포인트 장소 도착</ButtonText>
+    <ButtonText>장소 도착 포인트 받기</ButtonText>
   </ButtonWrapper>
 	{/* 모달창 제대로 뜨나 확인 필요함!! */}
 	{modalOpen && (
@@ -147,5 +147,5 @@ cursor:pointer;
 
 const ButtonText = styled.span`
 ${FONT.headline}
-  color: COLOR.white;
+  color: ${COLOR.white};
 `;
