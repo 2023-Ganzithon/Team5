@@ -14,8 +14,10 @@ import { PATH } from '@constants/path';
 import { AuthContext } from '@store/AuthContextProvider';
 
 const MyPage = () => {
+  const { user, logout } = useContext(AuthContext);
   const [isEdited, setIsEdited] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
+  // * 연동되고 나서 nickname, image는 context에 저장된 정보 사용하기
   const [profile, setProfile] = useState({
     nickname: null,
     image: null,
@@ -55,12 +57,12 @@ const MyPage = () => {
     console.log(selectedImage);
     console.log(nickname);
 
-    // fetch(`/users/profile/${userId}`, {
+    // fetch(`/users/profile/${user.userId}`, {
     //   method: 'PUT',
     //   cache: 'no-cache',
-    //   'Content-Type': 'multipart/form-data',
     //   headers: {
-    //     Authorization: `Token ${token}`,
+    //     'Content-Type': 'multipart/form-data',
+    //     Authorization: `Token ${user.token}`,
     //   },
     //   body: formData,
     // });
@@ -69,7 +71,13 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    const pointHistoryPromise = fetch('/myPage/myPoint')
+    const pointHistoryPromise = fetch('/myPage/myPoint', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;
@@ -78,7 +86,13 @@ const MyPage = () => {
         return { profile, history: history.slice(0, 3) };
       });
 
-    const donationHistoryPromise = fetch('/myPage/mydonation/')
+    const donationHistoryPromise = fetch('/myPage/mydonation/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { donation_points: history } = data;
@@ -109,7 +123,15 @@ const MyPage = () => {
               <SettingButton type="button" onClick={() => setIsEdited((prev) => !prev)}>
                 <Icon name={ICON_NAME.SETTING} iconColor={COLOR.gray500} />
               </SettingButton>
-              <LogoutButton type="button">로그아웃</LogoutButton>
+              <LogoutButton
+                type="button"
+                onClick={() => {
+                  logout();
+                  navigate('/login');
+                }}
+              >
+                로그아웃
+              </LogoutButton>
             </div>
           </Header>
           <UserInfoLayout>

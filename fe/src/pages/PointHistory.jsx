@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -6,16 +6,25 @@ import { TAB_NAME } from '@constants/tabName';
 import Header from '@common/Header';
 import TabBar from '@common/TabBar';
 import PointHistoryItem from '@components/PointHistoryItem';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const PointHistory = () => {
+  // * 연동되고 나서 profile은 context에 담긴 정보 사용
   const [profile, setProfile] = useState({
     nickname: null,
     points: null,
   });
   const [pointHistory, setPointHistory] = useState([]);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('/myPage/myPoint')
+    fetch('/myPage/myPoint', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -6,13 +6,22 @@ import { TAB_NAME } from '@constants/tabName';
 import Header from '@common/Header';
 import TabBar from '@common/TabBar';
 import DonationHistoryItem from '@components/DonationHistoryItem';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const DonationHistory = () => {
   const [donationAmount, setDonationAmount] = useState(null);
   const [donationHistory, setDonationHistory] = useState([]);
 
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    fetch('/myPage/mydonation/')
+    fetch('/myPage/mydonation/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${user.token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const { donation_points: history, total_donation_amount: totalDonationAmount } = data;
