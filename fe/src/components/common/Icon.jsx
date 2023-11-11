@@ -12,6 +12,7 @@ import { ReactComponent as Review } from '@assets/review.svg';
 import { ReactComponent as RightArrow } from '@assets/rightArrow.svg';
 import { ReactComponent as Search } from '@assets/search.svg';
 import { ReactComponent as Star } from '@assets/star.svg';
+import { ReactComponent as Setting } from '@assets/setting.svg';
 import { ICON_NAME } from '@constants/iconName';
 import PropTypes from 'prop-types';
 
@@ -30,6 +31,7 @@ const ICONS = {
   [ICON_NAME.RIGHT_ARROW]: RightArrow,
   [ICON_NAME.SEARCH]: Search,
   [ICON_NAME.STAR]: Star,
+  [ICON_NAME.SETTING]: Setting,
 };
 
 const Icon = ({ name, iconColor = 'black', ...rest }) => {
@@ -58,6 +60,7 @@ Icon.propTypes = {
     'rightArrow',
     'search',
     'star',
+    'setting',
   ]).isRequired,
   iconColor: PropTypes.string,
 };
