@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
@@ -11,8 +11,11 @@ import TabBar from '@common/TabBar';
 import DonationHistoryItem from '@components/DonationHistoryItem';
 import PointHistoryItem from '@components/PointHistoryItem';
 import { PATH } from '@constants/path';
+import { AuthContext } from '@store/AuthContextProvider';
 
 const MyPage = () => {
+  const [isEdited, setIsEdited] = useState(false);
+  const [imgSrc, setImgSrc] = useState(null);
   const [profile, setProfile] = useState({
     nickname: null,
     image: null,
@@ -20,7 +23,50 @@ const MyPage = () => {
   });
   const [pointHistory, setPointHistory] = useState([]);
   const [donationHistory, setDonationHistory] = useState([]);
+  const imgInputRef = useRef(null);
+  const nicknameInputRef = useRef(null);
+
   const navigate = useNavigate();
+
+  const handleImgUpload = ({ target }) => {
+    const reader = new FileReader();
+
+    if (!target?.files?.[0]) return;
+
+    reader.readAsDataURL(target.files[0]);
+
+    reader.onload = () => {
+      setImgSrc(reader.result);
+    };
+  };
+
+  const handleProfileSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    const selectedImage = imgInputRef.current.files[0];
+    const nickname = nicknameInputRef.current.value;
+
+    if (!selectedImage || !nickname) return;
+
+    if (selectedImage) formData.append('image', selectedImage);
+    if (nickname) formData.append('nickname', nickname);
+
+    console.log(selectedImage);
+    console.log(nickname);
+
+    // fetch(`/users/profile/${userId}`, {
+    //   method: 'PUT',
+    //   cache: 'no-cache',
+    //   'Content-Type': 'multipart/form-data',
+    //   headers: {
+    //     Authorization: `Token ${token}`,
+    //   },
+    //   body: formData,
+    // });
+    setImgSrc(null);
+    setIsEdited(false);
+  };
 
   useEffect(() => {
     const pointHistoryPromise = fetch('/myPage/myPoint')
@@ -60,20 +106,47 @@ const MyPage = () => {
           <Header>
             <span>마이페이지</span>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <SettingButton type="button">
+              <SettingButton type="button" onClick={() => setIsEdited((prev) => !prev)}>
                 <Icon name={ICON_NAME.SETTING} iconColor={COLOR.gray500} />
               </SettingButton>
               <LogoutButton type="button">로그아웃</LogoutButton>
             </div>
           </Header>
           <UserInfoLayout>
-            <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
-            <UserInfo>
-              <UserName>{profile.nickname}</UserName>
-            </UserInfo>
+            {isEdited ? (
+              <>
+                <ImgLabel htmlFor="img-uploader">
+                  {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
+                  {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
+                </ImgLabel>
+                <ImgInput
+                  ref={imgInputRef}
+                  type="file"
+                  id="img-uploader"
+                  accept="image/*"
+                  onChange={handleImgUpload}
+                />
+                <Input ref={nicknameInputRef} placeholder="nickname" />
+              </>
+            ) : (
+              <>
+                {profile.image ? (
+                  <UserImg src={profile.image} alt="user-image" />
+                ) : (
+                  <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
+                )}
+                <UserInfo>
+                  <UserName>{profile.nickname}</UserName>
+                </UserInfo>
+              </>
+            )}
           </UserInfoLayout>
           <ButtonLayout>
-            <Button text="기부처 등록하기" eventName={() => navigate(PATH.DONATION_REGISTRATION)} />
+            {isEdited ? (
+              <Button text="프로필 수정하기" eventName={handleProfileSubmit} />
+            ) : (
+              <Button text="기부처 등록하기" eventName={() => navigate(PATH.DONATION_REGISTRATION)} />
+            )}
           </ButtonLayout>
           <MyPointLayout>
             <Title>내 포인트</Title>
@@ -175,6 +248,44 @@ const UserImg = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 50%;
+`;
+
+const ImgLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  height: 120px;
+  background-color: ${COLOR.green200};
+  border-radius: 50%;
+`;
+
+const ImgPreview = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
+const ImgInput = styled.input`
+  display: none;
+`;
+
+const Input = styled.input`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 40px;
+  padding: 8px 16px;
+  border: 1px solid ${COLOR.gray400};
+  border-radius: 7px;
+  background-color: ${COLOR.white};
+  color: ${COLOR.gray500};
+
+  &:active {
+    border: 1px solid ${COLOR.black};
+  }
 `;
 
 const UserInfo = styled.div`
