@@ -10,6 +10,7 @@ import { PATH } from '@constants/path';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
 import { AuthContext } from '@store/AuthContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 const DonationRegistration = () => {
   const [imgSrc, setImgSrc] = useState(null);
@@ -17,6 +18,7 @@ const DonationRegistration = () => {
   const uploadButtonRef = useRef(null);
 
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     image: '',
     name: '',
@@ -76,6 +78,7 @@ const DonationRegistration = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        navigate('/');
       });
   };
 
