@@ -40,7 +40,7 @@ const Donation = () => {
       setImageSrc(jsonData.donation.image);
       setCategory(jsonData.donation.name);
       setTitle(jsonData.donation.title);
-      setPerAccomp(jsonData.donation.achievement_rate * 100);
+      setPerAccomp(jsonData.donation.achievement_rate);
       setMoneyAccomp(jsonData.donation.goal);
       setComment(jsonData.donation.comment);
       setPoint(jsonData.profile.points);
@@ -67,9 +67,12 @@ const Donation = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("기부 요청 성공: ", data.message);
-        alert(data.message);
-        fetchData();
+        if(data.message !== undefined){
+          alert(data.message);
+        }else{
+          alert(data.price + "포인트 기부가 완료되었습니다.");        
+          fetchData();
+        }
       })
       .catch((error) => {
         console.error("기부 에러: ", error);
