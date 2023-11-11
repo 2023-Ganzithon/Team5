@@ -72,22 +72,22 @@ const ReviewHome = () => {
         <Wrapper height={'auto'} style={{ boxShadow: 'none' }}>
           <Subtitle style={{ marginTop: '35px' }}>리뷰 모아보기</Subtitle>
           <ReviewListBox>
-            {reviewList.map((index) => {
+            {reviewList.map((item, index) => {
               return (
-                <ReviewContainer onClick={() => handleReviewClick(index.pk)}>
-                  <img src={index.image} alt={index.pk} />
+                <ReviewContainer onClick={() => handleReviewClick(item.pk)}>
+                  <img src={item.image} alt={item.pk} />
                   <div className="reviewInfoBox">
-                    <ReviewTitle>{index.title}</ReviewTitle>
-                    <ReviewDesc>{index.body}</ReviewDesc>
+                    <ReviewTitle>{item.title}</ReviewTitle>
+                    <ReviewDesc>{item.body}</ReviewDesc>
                     <div className="reviewBottom">
                       <div className="userInfo">
-                        <img src={index.profile.image} alt={index.pk} className="userimg" />
+                        <img src={item.profile.image} alt={item.pk} className="userimg" />
                         <div>
-                          <p className="userName">{index.profile.nickname}</p>
-                          <p className="uploadDay">{ChangeDate(index.published_date)}</p>
+                          <p className="userName">{item.profile.nickname}</p>
+                          <p className="uploadDay">{ChangeDate(item.published_date)}</p>
                         </div>
                       </div>
-                      <Rate size={8} rate={index.star - 1} />
+                      <Rate size={8} rate={item.star - 1} />
                     </div>
                   </div>
                 </ReviewContainer>

@@ -20,6 +20,7 @@ const ReviewWrite = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [previewImg, setPreviewImg] = useState('');
+  const { user, logout } = useContext(AuthContext);
 
   // 입력 값
   const [inputs, setInputs] = useState({
@@ -104,14 +105,15 @@ const ReviewWrite = () => {
       const body = inputs.desc;
       const shoppingmall = inputs.mall;
       const star = inputs.score;
-      const image = inputs.img;
-
+      if (img) {
+        formData.append('image', img);
+      }
+      formData.append('shoppingmall', shoppingmall);
       formData.append('title', title);
       formData.append('body', body);
-      formData.append('shoppingmall', shoppingmall);
       formData.append('star', star);
-      if (image) {
-        formData.append('image', image);
+      if (img) {
+        formData.append('image', img);
       }
 
       fetch('http://127.0.0.1:8000/review/', {
@@ -119,12 +121,12 @@ const ReviewWrite = () => {
         cache: 'no-cache',
         body: formData,
         headers: {
-          'Content-Type': 'multipart/form-data',
-          // Authorization: `Token ${token}`,
+          Authorization: `Token ${user.token}`,
         },
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log('데이터입니다');
           console.log(data);
           setData(data);
         });
@@ -138,7 +140,7 @@ const ReviewWrite = () => {
   return (
     <Container>
       <Header title={'상품리뷰 작성'} backUrl={PATH.REVIEW_HOME} />
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} encType="multipart/form-data">
         <div className="dropdownBody">
           <Dropdown updateSelect={handleSelect} name="mall" />
         </div>
