@@ -93,11 +93,16 @@ class DonatedListView(APIView):
             )
 
             # 기부 상세 정보 시리얼라이즈
-            serializer = DonationUsedPointSerializer(donation_points, many=True)
+            donation_serializer = DonationUsedPointSerializer(donation_points, many=True)
+            for donation_data in donation_serializer.data:
+                donation_instance = Donate.objects.get(pk=donation_data["id"])
+                donation_data["name"] = donation_instance.donation.name
+                donation_data["image"] = donation_instance.donation.image.url
+                donation_data["title"] = donation_instance.donation.title
 
             # 응답 딕셔너리 생성
             response_data = {
-                "donation_points": serializer.data,
+                "donation_points": donation_serializer.data,
                 "total_donation_amount": total_donation_amount,
             }
 
@@ -147,7 +152,15 @@ class MypageView(ListAPIView):
 
         park_serializer = ParkEarnedPointSerializer(park_points, many=True)
         mall_serializer = ShoppingMallEarnedPointSerializer(mall_points, many=True)
+
         donation_serializer = DonationUsedPointSerializer(donation_points, many=True)
+        for donation_data in donation_serializer.data:
+            donation_instance = Donate.objects.get(pk=donation_data["id"])
+            donation_data["name"] = donation_instance.donation.name
+            donation_data["image"] = donation_instance.donation.image.url
+            donation_data["title"] = donation_instance.donation.title
+
+
         user_profile_serializer = ProfileSerializer(user.profile)
         user_info = RegisterSerializer(user)
 
