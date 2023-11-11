@@ -83,11 +83,7 @@ const ReviewHome = () => {
 
   // 리스트 받아오기
   useEffect(() => {
-    fetch(`/review/posts/?page=${page}`, {
-      // headers: {
-      //   Authorization: `Token ${token}`,
-      // },
-    })
+    fetch(`http://127.0.0.1:8000/review/`)
       .then((res) => res.json())
       .then((data) => {
         setReviewList(data.results);
