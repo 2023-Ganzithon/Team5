@@ -30,6 +30,8 @@ const Login = () => {
       password: enteredPassword,
     };
 
+    console.log(dataToSend);
+
     fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -39,9 +41,14 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('토큰 : ', data.token);
-        login({ token: data.token, userId: data.user_id });
-        navigate('/');
+        console.log('토큰 : '+data.token);
+        if(data.token !== undefined){
+          login({ token: data.token, userId: data.user_id });
+          navigate('/');
+        }else{
+      
+        alert('다시 로그인해주세요');
+        }
       })
       .catch((error) => {
         console.error('로그인 Error:', error);

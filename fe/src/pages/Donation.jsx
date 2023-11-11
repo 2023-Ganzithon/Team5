@@ -53,9 +53,9 @@ const Donation = (id) => {
       fetch(postApiUrl, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${user.token}`, // 토큰을 헤더에 추가
+        "Authorization": `Token ${user.token}`,
       },
-      body: formData, // FormData 객체를 요청 본문으로 설정
+      body: formData,
     })
       .then((response) => response.json())
       .then((data) => {

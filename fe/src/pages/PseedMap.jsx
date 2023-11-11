@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Modal from '@components/Modal';
 import LogoHeader from '@common/LogoHeader';
@@ -9,8 +9,10 @@ import MarkerImage from '@assets/Pin.png'
 import UserIcon from '@assets/UserIcon.png'
 import TabBar from '@common/TabBar';
 import axios from "axios";
+import { AuthContext } from '@store/AuthContextProvider';
 
 const PseedMap = () => {
+  const { user } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(true);
   const [location, setLoacation] = useState({ lat: 
 	37.6550512, lng: 
@@ -22,7 +24,7 @@ const PseedMap = () => {
 
 	useEffect(() => {
 		fetchData();
-		// navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
+		navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
 	}, []);
 
 	const successHandler = (response) => {
@@ -54,6 +56,7 @@ const PseedMap = () => {
 		//성공시
 		fetch(apiUrl, {
 			method: "POST",
+			Authorization: `Token ${user.token}`,
 		  })
 		  .then((response) => response.json())
 		  .then((data) => {
