@@ -7,6 +7,7 @@ import Header from '@common/Header';
 import TabBar from '@common/TabBar';
 import PointHistoryItem from '@components/PointHistoryItem';
 import { AuthContext } from '@store/AuthContextProvider';
+import { PATH } from '@constants/path';
 
 const PointHistory = () => {
   // * 연동되고 나서 profile은 context에 담긴 정보 사용
@@ -18,7 +19,7 @@ const PointHistory = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/myPage/mypoint', {
+    fetch('http://127.0.0.1:8000/myPage/mypoint/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ const PointHistory = () => {
   return (
     <>
       <Layout>
-        <Header title="포인트 적립 내역" backUrl={-1} />
+        <Header title="포인트 적립 내역" backUrl={PATH.MY_PAGE} />
         <Main>
           <CurrentPointInfo>
             <PointInfo>{profile.nickname}님이 현재 보유한 포인트는</PointInfo>
