@@ -77,7 +77,7 @@ const Home = () => {
                     handleList(item.id);
                   }}
                 >
-                  <Img src={item.image} alt="Donation Img" />
+                  <Img src={`http://127.0.0.1:8000/${item.image}`} alt="Donation Img" />
                   <div
                     style={{
                       display: 'flex',
