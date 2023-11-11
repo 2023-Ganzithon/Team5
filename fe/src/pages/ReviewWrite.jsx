@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '@store/AuthContextProvider';
 
 import Rate from '@components/Rate';
 import Dropdown from '@components/Dropdown';
@@ -17,6 +18,8 @@ const reviewPH =
 
 const ReviewWrite = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [previewImg, setPreviewImg] = useState('');
 
   // 입력 값
   const [inputs, setInputs] = useState({
@@ -58,7 +61,7 @@ const ReviewWrite = () => {
     });
   };
 
-  // 이미지 추가
+  // 이미지 추가 url
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
 
@@ -66,29 +69,21 @@ const ReviewWrite = () => {
 
     const reader = new FileReader();
 
+    reader.onload = () => {
+      setPreviewImg(reader.result);
+    };
+
     reader.readAsDataURL(selectedImage);
 
-    reader.onload = () => {
-      setInputs({
-        ...inputs,
-        img: reader.result,
-      });
-    };
-  };
-
-  // 이미지 배열에서 이미지 제거
-  const handleRemoveImage = (index) => {
     setInputs({
       ...inputs,
-      img: '', // 이미지를 제거하므로 null로 설정
+      img: selectedImage,
     });
   };
 
   // 작성하기 버튼
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    console.log(inputs);
 
     // 입력값 확인
     if (!inputs.mall || !inputs.title || !inputs.score || !inputs.desc) {
@@ -119,20 +114,24 @@ const ReviewWrite = () => {
         formData.append('image', image);
       }
 
-      console.log(formData);
-
-      fetch('/review/', {
+      fetch('http://127.0.0.1:8000/review/', {
         method: 'POST',
         cache: 'no-cache',
-        'Content-Type': 'multipart/form-data',
         body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          // Authorization: `Token ${token}`,
+        },
       })
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          setData(data);
         });
 
-      navigate('/gainpoint');
+      if (data) {
+        navigate('/gainpoint');
+      }
     }
   };
 
@@ -166,10 +165,10 @@ const ReviewWrite = () => {
           </Label>
         </AddPhotoBox>
         {img && (
-          <div>
-            <Preview src={img} alt={`Preview`} />
-            <button onClick={() => setInputs({ ...inputs, img: '' })}>Remove</button>
-          </div>
+          <PreviewBox>
+            <Preview src={previewImg} alt={`Preview`} />
+            <button onClick={() => setInputs({ ...inputs, img: '' })}>X Remove</button>
+          </PreviewBox>
         )}
         <Submit type="submit">작성하기</Submit>
       </form>
@@ -263,8 +262,24 @@ const AddPhotoBox = styled.div`
   }
 `;
 
+const PreviewBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  button {
+    width: 200px;
+    background-color: transparent;
+  }
+`;
+
 const Preview = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  margin-top: 10px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 7px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 `;
