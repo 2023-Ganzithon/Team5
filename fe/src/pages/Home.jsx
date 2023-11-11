@@ -50,14 +50,15 @@ const Home = () => {
         <PointBox>
           <Title>포인트 획득 미션 💸</Title>
           <ButtonWrapper>
-            {pointList.map((index) => {
+            {pointList.map((item, idx) => {
               return (
                 <Pbutton
                   onClick={(e) => {
-                    handleClick(index);
+                    handleClick(item);
                   }}
+                  key={idx}
                 >
-                  <Subtitle>{index}</Subtitle>
+                  <Subtitle>{item}</Subtitle>
                   <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green500} width={20} height={20}></Icon>
                 </Pbutton>
               );
