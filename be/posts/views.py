@@ -13,7 +13,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by("-published_date")
     permission_classes = [CustomReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["shoppingmall", "star"]
@@ -32,7 +32,14 @@ class PostViewSet(viewsets.ModelViewSet):
 
         try:
             mall_name = post.shoppingmall  # 쇼핑몰 이름 가져오기
-            user_points = ShoppingMallReviewPoint.objects.create(user=self.request.user, mall=mall_name, earnedPoint=15, pointActivityDate=datetime.now())
+            user_points = ShoppingMallReviewPoint.objects.create(
+                user=self.request.user,
+                mall=mall_name,
+                earnedPoint=15,
+                pointActivityDate=datetime.now(),
+            )
             user_points.save()
         except ShoppingMallReviewPoint.DoesNotExist:
-            return Response({'message': '해당 쇼핑몰 리뷰가 존재하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"message": "해당 쇼핑몰 리뷰가 존재하지 않습니다."}, status=status.HTTP_400_BAD_REQUEST
+            )
