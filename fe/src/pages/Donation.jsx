@@ -70,7 +70,8 @@ const Donation = () => {
         if(data.message !== undefined){
           alert(data.message);
         }else{
-          alert(data.price + "포인트 기부가 완료되었습니다.");        
+          alert(data.price + "포인트 기부가 완료되었습니다.");  
+          price = '';      
           fetchData();
         }
       })
