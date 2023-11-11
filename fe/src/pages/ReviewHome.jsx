@@ -39,7 +39,7 @@ const ReviewHome = () => {
       .then((data) => {
         setReviewList(data);
       });
-  }, [page]);
+  }, []);
 
   // 날짜 yyyy-mm-dd 변환
   const ChangeDate = (fullDate) => {
