@@ -92,7 +92,13 @@ const DonationRegistration = () => {
               {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
               {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
             </ImgLabel>
-            <ImgInput type="file" id="img-uploader" accept="image/*" onChange={handleImgUpload} />
+            <ImgInput
+              type="file"
+              id="img-uploader"
+              accept="image/*"
+              ref={imgInputRef}
+              onChange={handleImgUpload}
+            />
             <ImgButton
               type="button"
               ref={uploadButtonRef}
