@@ -7,6 +7,7 @@ import Header from '@common/Header';
 import TabBar from '@common/TabBar';
 import DonationHistoryItem from '@components/DonationHistoryItem';
 import { AuthContext } from '@store/AuthContextProvider';
+import { PATH } from '@constants/path';
 
 const DonationHistory = () => {
   const [donationAmount, setDonationAmount] = useState(null);
@@ -34,7 +35,7 @@ const DonationHistory = () => {
   return (
     <>
       <Layout>
-        <Header title="기부 내역" backUrl={-1} />
+        <Header title="기부 내역" backUrl={PATH.MY_PAGE} />
         <Main>
           <CurrentDonationInfo>
             <span>name님이 현재 기부한 총 포인트는</span>
