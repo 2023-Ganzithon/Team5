@@ -15,7 +15,7 @@ const Login = () => {
   
   const navigate = useNavigate();
 
-  const { setToken, setUserId } = useContext(AuthContext);
+  const { setToken, setUserId, setLoggedIn } = useContext(AuthContext);
 
   const loginClick = () => {
     const enteredName = document.getElementById('name').value;
@@ -45,6 +45,7 @@ const Login = () => {
       console.log("토큰 : ",data.token);
       setToken(data.token);//Token.concat 해야하는건지?
       setUserId(data.user_id);
+      setLoggedIn();
       navigate('/');
     })
     .catch((error) => {
