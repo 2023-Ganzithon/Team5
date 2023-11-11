@@ -19,7 +19,6 @@ const Home = () => {
 
   const [donaList, setDonaList] = useState([]);
   const { user, logout } = useContext(AuthContext);
-  console.log(user.userId);
 
   // 리스트 받아오기
   useEffect(() => {
