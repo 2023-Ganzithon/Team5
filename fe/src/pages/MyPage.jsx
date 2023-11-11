@@ -19,18 +19,37 @@ const MyPage = () => {
     points: null,
   });
   const [pointHistory, setPointHistory] = useState([]);
+  const [donationHistory, setDonationHistory] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/myPage/myPoint')
+    const pointHistoryPromise = fetch('/myPage/myPoint')
       .then((res) => res.json())
       .then((data) => {
         const { profile, park_points: parkPointHistory, mall_points: mallPointHistory } = data;
         const history = [...parkPointHistory, ...mallPointHistory];
-        const { nickname, image, points } = profile;
 
-        setPointHistory(history.slice(0, 3));
-        setProfile({ nickname, image, points });
+        return { profile, history: history.slice(0, 3) };
+      });
+
+    const donationHistoryPromise = fetch('/myPage/mydonation/')
+      .then((res) => res.json())
+      .then((data) => {
+        const { donation_points: history } = data;
+        return { history: history.slice(0, 3) };
+      });
+
+    Promise.all([pointHistoryPromise, donationHistoryPromise])
+      .then(([pointHistory, donationData]) => {
+        const { profile: profileData, history: pointHistoryData } = pointHistory;
+        const { history: donationHistoryData } = donationData;
+
+        setProfile(profileData);
+        setPointHistory(pointHistoryData);
+        setDonationHistory(donationHistoryData);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
       });
   }, []);
 
@@ -40,7 +59,12 @@ const MyPage = () => {
         <Main>
           <Header>
             <span>마이페이지</span>
-            <LogoutButton type="button">로그아웃</LogoutButton>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <SettingButton type="button">
+                <Icon name={ICON_NAME.SETTING} iconColor={COLOR.gray500} />
+              </SettingButton>
+              <LogoutButton type="button">로그아웃</LogoutButton>
+            </div>
           </Header>
           <UserInfoLayout>
             <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
@@ -85,24 +109,18 @@ const MyPage = () => {
                 <Icon name={ICON_NAME.RIGHT_ARROW} iconColor={COLOR.green800} width={32} height={32} />
               </IconButton>
             </ListTitle>
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
+            {donationHistory.map(({ id, date, price, name, image, title }) => {
+              return (
+                <DonationHistoryItem
+                  key={id}
+                  name={name}
+                  title={title}
+                  point={price}
+                  imgSrc={image}
+                  createdAt={new Date(date)}
+                />
+              );
+            })}
           </ListLayout>
         </Main>
       </Layout>
@@ -171,9 +189,8 @@ const UserName = styled.span`
   ${FONT.title2}
 `;
 
-const UserEmail = styled.span`
-  color: ${COLOR.gray500};
-  ${FONT.body}
+const SettingButton = styled.button`
+  background-color: transparent;
 `;
 
 const ButtonLayout = styled.div`
