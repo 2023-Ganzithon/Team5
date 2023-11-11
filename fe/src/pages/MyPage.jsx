@@ -54,9 +54,6 @@ const MyPage = () => {
     if (selectedImage) formData.append('image', selectedImage);
     if (nickname) formData.append('nickname', nickname);
 
-    console.log(selectedImage);
-    console.log(nickname);
-
     fetch(`http://127.0.0.1:8000/users/profile/${user.userId}`, {
       method: 'PUT',
       cache: 'no-cache',
@@ -71,7 +68,7 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    const pointHistoryPromise = fetch('http://127.0.0.1:8000/myPage/myPoint', {
+    const pointHistoryPromise = fetch('http://127.0.0.1:8000/myPage/mypoint', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
