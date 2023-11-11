@@ -149,7 +149,7 @@ const MyPage = () => {
               </>
             ) : (
               <>
-                {profile.image ? (
+                {user.userInfo.image && user.userInfo.image !== 'http://127.0.0.1:8000/media/default.png' ? (
                   <UserImg src={profile.image} alt="user-image" />
                 ) : (
                   <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
