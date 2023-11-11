@@ -20,23 +20,18 @@ const SignUp = () => {
     const enteredPassword = document.getElementById('password').value;
     const enteredPasswordConfirm = document.getElementById('passwordConfirm').value;
     const enteredEmail = document.getElementById('email').value;
-    
-    setName(enteredName);
-    setPassword(enteredPassword);
-    setPasswordConfirm(enteredPasswordConfirm);
-    setEmail(enteredEmail);
 
     let apiUrl = "http://127.0.0.1:8000/users/register/";
     
     let dataToSend = null;
 
     dataToSend = {
-      username: name,
-      password: password,
-      password2: passwordConfirm,
-      email: email,
+      username: enteredName,
+      password: enteredPassword,
+      password2: enteredPasswordConfirm,
+      email: enteredEmail,
     };
-  
+    console.log(dataToSend)
     fetch(apiUrl, {
       method: "POST",
       headers: {

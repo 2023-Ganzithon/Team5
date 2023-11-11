@@ -21,16 +21,13 @@ const Login = () => {
     const enteredName = document.getElementById('name').value;
     const enteredPassword = document.getElementById('password').value;
 
-    setName(enteredName);
-    setPassword(enteredPassword);
-
     let apiUrl = 'http://127.0.0.1:8000/users/login/';
 
     let dataToSend = null;
 
     dataToSend = {
-      username: name,
-      password: password,
+      username: enteredName,
+      password: enteredPassword,
     };
 
     fetch(apiUrl, {

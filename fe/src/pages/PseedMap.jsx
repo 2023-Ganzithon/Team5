@@ -12,14 +12,17 @@ import axios from "axios";
 
 const PseedMap = () => {
   const [modalOpen, setModalOpen] = useState(true);
-  const [location, setLoacation] = useState({ lat: 37.4024064, lng: 127.101385 });
+  const [location, setLoacation] = useState({ lat: 
+	37.6550512, lng: 
+	126.9496087
+	 });
   const [mapMarkers, setMapMarkers] = useState([]);
   const [modalPlace, setModalPlace] = useState("Test");
   const [modalPoints, setModalPoints] = useState(100000);
 
 	useEffect(() => {
 		fetchData();
-		navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
+		// navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
 	}, []);
 
 	const successHandler = (response) => {
