@@ -14,61 +14,116 @@ import { PATH } from '@constants/path';
 import { AuthContext } from '@store/AuthContextProvider';
 
 const MyPage = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setUser } = useContext(AuthContext);
   const [isEdited, setIsEdited] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
-  // * 연동되고 나서 nickname, image는 context에 저장된 정보 사용하기
-  const [profile, setProfile] = useState({
-    nickname: null,
-    image: null,
-    points: null,
-  });
+  const [currentPoint, setCurrentPoint] = useState(null);
   const [pointHistory, setPointHistory] = useState([]);
   const [donationHistory, setDonationHistory] = useState([]);
   const imgInputRef = useRef(null);
   const nicknameInputRef = useRef(null);
 
+  const [inputs, setInputs] = useState({
+    nickname: '',
+    image: '',
+  });
+
   const navigate = useNavigate();
 
+  const onChnage = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
   const handleImgUpload = ({ target }) => {
+    const selectedImage = target.files[0];
+
+    if (!selectedImage) return;
+
     const reader = new FileReader();
-
-    if (!target?.files?.[0]) return;
-
-    reader.readAsDataURL(target.files[0]);
 
     reader.onload = () => {
       setImgSrc(reader.result);
     };
+
+    reader.readAsDataURL(selectedImage);
+
+    setInputs({ ...inputs, image: selectedImage });
   };
 
   const handleProfileSubmit = (e) => {
     e.preventDefault();
+    const { image, nickname } = inputs;
+
+    if (!image && !nickname) return;
 
     const formData = new FormData();
-    const selectedImage = imgInputRef.current.files[0];
-    const nickname = nicknameInputRef.current.value;
 
-    if (!selectedImage || !nickname) return;
+    if (nickname && !image) {
+      formData.append('nickname', nickname);
+      fetch(`http://127.0.0.1:8000/users/profile/${user.userId}/`, {
+        method: 'PUT',
+        cache: 'no-cache',
+        body: formData,
+        headers: {
+          Authorization: `Token ${user.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser((prev) => ({ ...prev, userInfo: { ...prev.userInfo, nickname: data.nickname } }));
+          setImgSrc(null);
+          setIsEdited(false);
+          setInputs({ nickname: '', image: '' });
+        });
+    } else if (!nickname && image) {
+      formData.append('nickname', user.userInfo.nickname);
+      formData.append('image', image);
 
-    if (selectedImage) formData.append('image', selectedImage);
-    if (nickname) formData.append('nickname', nickname);
+      formData.get('nickname');
+      formData.get('image');
 
-    fetch(`http://127.0.0.1:8000/users/profile/${user.userId}`, {
-      method: 'PUT',
-      cache: 'no-cache',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Token ${user.token}`,
-      },
-      body: formData,
-    });
-    setImgSrc(null);
-    setIsEdited(false);
+      fetch(`http://127.0.0.1:8000/users/profile/${user.userId}/`, {
+        method: 'PUT',
+        cache: 'no-cache',
+        body: formData,
+        headers: {
+          Authorization: `Token ${user.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser((prev) => ({ ...prev, userInfo: { ...prev.userInfo, image: data.image } }));
+          setImgSrc(null);
+          setIsEdited(false);
+          setInputs({ nickname: '', image: '' });
+        });
+    } else {
+      formData.append('nickname', nickname);
+      formData.append('image', image);
+      fetch(`http://127.0.0.1:8000/users/profile/${user.userId}/`, {
+        method: 'PUT',
+        cache: 'no-cache',
+        body: formData,
+        headers: {
+          Authorization: `Token ${user.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser((prev) => ({ ...prev, userInfo: { image: data.image, nickname: data.nickname } }));
+          setImgSrc(null);
+          setIsEdited(false);
+          setInputs({ nickname: '', image: '' });
+        });
+    }
   };
 
   useEffect(() => {
-    const pointHistoryPromise = fetch('http://127.0.0.1:8000/myPage/mypoint', {
+    const pointHistoryPromise = fetch('http://127.0.0.1:8000/myPage/mypoint/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -101,7 +156,7 @@ const MyPage = () => {
         const { profile: profileData, history: pointHistoryData } = pointHistory;
         const { history: donationHistoryData } = donationData;
 
-        setProfile(profileData);
+        setCurrentPoint(profileData.points);
         setPointHistory(pointHistoryData);
         setDonationHistory(donationHistoryData);
       })
@@ -132,7 +187,7 @@ const MyPage = () => {
             </div>
           </Header>
           {isEdited ? (
-            <>
+            <form onSubmit={handleProfileSubmit} encType="multipart/form-data">
               <UserInfoLayout>
                 <ImgLabel htmlFor="img-uploader">
                   {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
@@ -145,22 +200,29 @@ const MyPage = () => {
                   accept="image/*"
                   onChange={handleImgUpload}
                 />
-                <Input ref={nicknameInputRef} placeholder="nickname" />
+
+                <Input
+                  ref={nicknameInputRef}
+                  placeholder="nickname"
+                  name="nickname"
+                  value={inputs.nickname}
+                  onChange={onChnage}
+                />
               </UserInfoLayout>
               <ButtonLayout>
                 <Button text="프로필 수정하기" eventName={handleProfileSubmit} />
               </ButtonLayout>
-            </>
+            </form>
           ) : (
             <>
               <UserInfoLayout>
                 {user.userInfo.image && user.userInfo.image !== 'http://127.0.0.1:8000/media/default.png' ? (
-                  <UserImg src={profile.image} alt="user-image" />
+                  <UserImg src={user.userInfo.image} alt="user-image" />
                 ) : (
                   <Icon name={ICON_NAME.PERSON} iconColor={COLOR.green100} width={128} height={128} />
                 )}
                 <UserInfo>
-                  <UserName>{profile.nickname}</UserName>
+                  <UserName>{user.userInfo.nickname}</UserName>
                 </UserInfo>
               </UserInfoLayout>
               <ButtonLayout>
@@ -173,7 +235,7 @@ const MyPage = () => {
             <Title>내 포인트</Title>
             <MyPointInfo>
               <Icon name={ICON_NAME.POINT2} iconColor={COLOR.green800} width={36} height={36} />
-              <span>{profile.points ?? 0}p</span>
+              <span>{currentPoint ?? 0}p</span>
             </MyPointInfo>
           </MyPointLayout>
           <ListLayout>
