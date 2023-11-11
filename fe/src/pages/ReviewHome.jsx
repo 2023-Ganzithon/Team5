@@ -37,9 +37,9 @@ const ReviewHome = () => {
     fetch(`http://127.0.0.1:8000/review/`)
       .then((res) => res.json())
       .then((data) => {
-        setReviewList(data.results);
+        setReviewList(data);
       });
-  }, []);
+  }, [page]);
 
   // 날짜 yyyy-mm-dd 변환
   const ChangeDate = (fullDate) => {
