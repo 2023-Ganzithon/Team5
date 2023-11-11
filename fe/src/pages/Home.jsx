@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '@store/AuthContextProvider';
 
 import LogoHeader from '@common/LogoHeader';
 import TabBar from '@common/TabBar';
@@ -18,6 +18,8 @@ const Home = () => {
   const pointList = ['특정 장소\n방문하기', '기부 쇼핑몰\n리뷰 작성하기'];
 
   const [donaList, setDonaList] = useState([]);
+  const { user, logout } = useContext(AuthContext);
+  console.log(user.userId);
 
   // 리스트 받아오기
   useEffect(() => {

@@ -10,24 +10,27 @@ import { BUTTON_NAME } from '@constants/buttonName';
 import { PATH } from '@constants/path';
 
 const GainPoint = () => {
-  const [point, setPoint] = useState(10);
+  const [point, setPoint] = useState(0);
+
+  const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('/myPage/', {
-      // headers: {
-      //   Authorization: `Token ${token}`,
-      // },
+    fetch(`http://127.0.0.1:8000/users/profile/${user.userId}/`, {
+      headers: {
+        Authorization: `Token ${user.token}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
-        setPoint(data.profile.points);
+        console.log(data);
+        setPoint(data.points);
       });
   }, []);
 
   return (
     <Container>
       <img src={POINT} width={117} style={{ marginBottom: '36px' }} />
-      <P>{point}P 획득 완료 💰</P>
+      <P>15P 획득 완료 💰</P>
       <TotalP>
         현재 누적 포인트: <span>{point}P</span>
       </TotalP>

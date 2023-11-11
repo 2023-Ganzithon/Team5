@@ -20,6 +20,7 @@ const ReviewWrite = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [previewImg, setPreviewImg] = useState('');
+  const { user, logout } = useContext(AuthContext);
 
   // 입력 값
   const [inputs, setInputs] = useState({
@@ -120,7 +121,7 @@ const ReviewWrite = () => {
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data',
-          // Authorization: `Token ${token}`,
+          Authorization: `Token ${user.token}`,
         },
       })
         .then((res) => res.json())
