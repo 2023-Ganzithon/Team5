@@ -59,8 +59,8 @@ const Donation = (id) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("기부 요청 성공: ", data);
-        alert(data);
+        console.log("기부 요청 성공: ", data.message);
+        alert(data.message);
         fetchData();
       })
       .catch((error) => {
