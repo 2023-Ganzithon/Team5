@@ -23,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
 
   const login = ({ token, userId }) => {
-    fetch(`/users/profile/${userId}`, {
+    fetch(`http://127.0.0.1:8000/users/profile/${userId}`, {
       headers: {
         Authorization: `Token ${token}`,
       },
@@ -38,9 +38,7 @@ const AuthContextProvider = ({ children }) => {
     setUser(initialState);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout, setUser }}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, login, logout, setUser }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContextProvider;
