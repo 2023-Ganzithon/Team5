@@ -15,7 +15,7 @@ const DonationHistory = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('/myPage/mydonation/', {
+    fetch('http://127.0.0.1:8000/myPage/mydonation/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

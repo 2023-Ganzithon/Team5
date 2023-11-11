@@ -73,7 +73,7 @@ const DonationRegistration = () => {
     formData.append('comment', comment);
     formData.append('goal', goal);
 
-    fetch('/myPage/donationRegister', {
+    fetch('http://127.0.0.1:8000/myPage/donationRegister', {
       method: 'POST',
       cache: 'no-cache',
       headers: {
