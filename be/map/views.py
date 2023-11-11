@@ -34,8 +34,15 @@ def calculate_distance(lat1, lon1, lat2, lon2):
 class EarnParkPointsView(APIView):
     def post(self, request):
         if request.user.is_authenticated:
-            user_latitude = float(request.data.get('latitude', 37.5152382)) # 테스트용 위도값
-            user_longitude = float(request.data.get('longitude', 126.9108539)) # 테스트용 경도값
+            user_latitude = request.data.get('latitude')
+            user_longitude = request.data.get('longitude')
+
+            try:
+                user_latitude = float(user_latitude)
+                user_longitude = float(user_longitude)
+            except (ValueError, TypeError):
+                return Response({"error": "Invalid latitude or longitude"}, status=status.HTTP_400_BAD_REQUEST)
+
             max_distance = 0.5 # 단위(km)
 
             parks = []

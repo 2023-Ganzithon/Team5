@@ -13,22 +13,18 @@ import { AuthContext } from '@store/AuthContextProvider';
 
 const PseedMap = () => {
   const { user } = useContext(AuthContext);
-  const [modalOpen, setModalOpen] = useState(true);
-  const [location, setLoacation] = useState({ lat: 
-	37.6550512, lng: 
-	126.9496087
-	 });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [location, setLoacation] = useState({ lat: 37.6550512, lng: 126.9496087 });
   const [mapMarkers, setMapMarkers] = useState([]);
   const [modalPlace, setModalPlace] = useState("Test");
   const [modalPoints, setModalPoints] = useState(100000);
-
+console.log("PseedMap user.token"+user.token);
 	useEffect(() => {
 		fetchData();
 		navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
 	}, []);
 
 	const successHandler = (response) => {
-		console.log(response); 
 		const { latitude, longitude } = response.coords;
 		setLoacation({ lat: latitude, lng:longitude });
 	};
@@ -44,7 +40,6 @@ const PseedMap = () => {
 		  const response = await axios.get("http://127.0.0.1:8000/map/");
 		  const jsonData = response.data;
 		  setMapMarkers(jsonData || []);
-		  console.log(jsonData);
 		} catch (error) {
 		  console.error("Axios를 통한 요청 중 오류 발생:", error.message);
 		}
@@ -52,16 +47,26 @@ const PseedMap = () => {
 
 	const sendPositionHandler = ()=>{
 		//백엔드에 현재 좌표 보낼 것
-		let apiUrl = `http://127.0.0.1:8000/map/points/?latitude=${location.lat}&longitude=${location.lng}`;
+		let apiUrl = `http://127.0.0.1:8000/map/points/`;
 		//성공시
+		const data = {
+			latitude: location.lat,
+			longitude: location.lng,
+		  };
+		console.log(apiUrl)
 		fetch(apiUrl, {
 			method: "POST",
-			Authorization: `Token ${user.token}`,
+			headers: {
+				Authorization: `Token ${user.token}`,
+			},
+			body: JSON.stringify(data),
 		  })
 		  .then((response) => response.json())
 		  .then((data) => {
 			console.log("장소도달 성공 : ",data);
-			if(data.parks.length>0){
+			if(data.error!==undefined){
+				alert("주변에 공원이 없습니다.")
+			}else if(data.parks.length>0){
 				setModalPlace(data.parks[0].name);
 				setModalPoints(data.user_profile.points)
 				setModalOpen(true);
@@ -97,18 +102,18 @@ const PseedMap = () => {
     }}
 	title={item.name}/>)):(null)}
 	
-	<ButtonWrapper onClick={sendPositionHandler}>
+  <ButtonWrapper onClick={sendPositionHandler}>
     <ButtonText>장소 도착 포인트 받기</ButtonText>
   </ButtonWrapper>
-	{/* 모달창 제대로 뜨나 확인 필요함!! */}
 	{modalOpen && (
-        <PseedModal
+        <Modal
           place={modalPlace}
           point={10}
           totalPoint={modalPoints}
           onClose={() => setModalOpen(false)}
         />
       )}
+
   </KakaoMap>
   </MapContainer>
   <TabBar currentTab='map'/>
@@ -122,11 +127,12 @@ width:100%;
 height:100%;
 `
 
-const PseedModal = styled(Modal)`
-position: sticky;
-bottom: 0;
-z-index: 20;
-`
+// const PseedModal = styled(Modal)`
+// position: absolute;
+// top: 0;
+// left:0;
+// z-index: 30;
+// `
 
 const UserMarker = styled(MapMarker)`
 `
