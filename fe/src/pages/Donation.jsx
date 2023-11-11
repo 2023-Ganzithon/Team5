@@ -13,7 +13,7 @@ const Donation = () => {
   // 실행시 id 이용해서 백엔드로부터 정보 받아오기 + 사용자의 보유 포인트
   const location = useLocation();
   const id = location.state;
-  
+
   const [imageSrc,setImageSrc] = useState(null);
   const [category,setCategory] = useState("개인");
   const [title,setTitle] = useState("테스트");
@@ -30,7 +30,11 @@ const Donation = () => {
 
   const fetchData = async () => {
 		try {
-		  const response = await axios.get("");
+		  const response = await  await axios.get(`http://127.0.0.1:8000/${id}/`, {
+        headers: {
+          Authorization: `Token ${user.token}`,
+        },
+      });
 		  const jsonData = response.data;
       
       setImageSrc(jsonData.donation.image);
