@@ -131,9 +131,9 @@ const MyPage = () => {
               </LogoutButton>
             </div>
           </Header>
-          <UserInfoLayout>
-            {isEdited ? (
-              <>
+          {isEdited ? (
+            <>
+              <UserInfoLayout>
                 <ImgLabel htmlFor="img-uploader">
                   {!imgSrc && <Icon name={ICON_NAME.CAMERA} iconColor={COLOR.white} width={96} height={96} />}
                   {imgSrc && <ImgPreview src={imgSrc} alt="preview" />}
@@ -146,9 +146,14 @@ const MyPage = () => {
                   onChange={handleImgUpload}
                 />
                 <Input ref={nicknameInputRef} placeholder="nickname" />
-              </>
-            ) : (
-              <>
+              </UserInfoLayout>
+              <ButtonLayout>
+                <Button text="프로필 수정하기" eventName={handleProfileSubmit} />
+              </ButtonLayout>
+            </>
+          ) : (
+            <>
+              <UserInfoLayout>
                 {user.userInfo.image && user.userInfo.image !== 'http://127.0.0.1:8000/media/default.png' ? (
                   <UserImg src={profile.image} alt="user-image" />
                 ) : (
@@ -157,16 +162,13 @@ const MyPage = () => {
                 <UserInfo>
                   <UserName>{profile.nickname}</UserName>
                 </UserInfo>
-              </>
-            )}
-          </UserInfoLayout>
-          <ButtonLayout>
-            {isEdited ? (
-              <Button text="프로필 수정하기" eventName={handleProfileSubmit} />
-            ) : (
-              <Button text="기부처 등록하기" eventName={() => navigate(PATH.DONATION_REGISTRATION)} />
-            )}
-          </ButtonLayout>
+              </UserInfoLayout>
+              <ButtonLayout>
+                <Button text="기부처 등록하기" eventName={() => navigate(PATH.DONATION_REGISTRATION)} />
+              </ButtonLayout>
+            </>
+          )}
+
           <MyPointLayout>
             <Title>내 포인트</Title>
             <MyPointInfo>
