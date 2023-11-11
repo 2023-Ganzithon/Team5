@@ -6,7 +6,6 @@ import TabBar from '@common/TabBar';
 import FONT from '@styles/fonts';
 import Button from '@common/Button';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@store/AuthContextProvider';
 
 const Donation = (id) => {

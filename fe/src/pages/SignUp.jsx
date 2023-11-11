@@ -73,7 +73,7 @@ const SignUp = () => {
         <Label htmlFor="name">이메일 *</Label>
         <Input type="email" id="email" />
     </InputLayout>
-    <Button text='회원가입' path='/signUp' eventName={signUpClick} />
+    <Button text='회원가입' path='/signUp' eventName={signUpClick}/>
 
     </SignUPContainer>;
 };
@@ -86,7 +86,7 @@ const SignUPContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items : center;
-  gap: 10px;
+  gap: 20px;
   padding-bottom:10px;
 `
 
