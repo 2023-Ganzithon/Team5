@@ -14,6 +14,7 @@ import { PATH } from '@constants/path';
 import { AuthContext } from '@store/AuthContextProvider';
 
 const MyPage = () => {
+  const { logout } = useContext(AuthContext);
   const [isEdited, setIsEdited] = useState(false);
   const [imgSrc, setImgSrc] = useState(null);
   const [profile, setProfile] = useState({
@@ -109,7 +110,15 @@ const MyPage = () => {
               <SettingButton type="button" onClick={() => setIsEdited((prev) => !prev)}>
                 <Icon name={ICON_NAME.SETTING} iconColor={COLOR.gray500} />
               </SettingButton>
-              <LogoutButton type="button">로그아웃</LogoutButton>
+              <LogoutButton
+                type="button"
+                onClick={() => {
+                  logout();
+                  navigate('/login');
+                }}
+              >
+                로그아웃
+              </LogoutButton>
             </div>
           </Header>
           <UserInfoLayout>
