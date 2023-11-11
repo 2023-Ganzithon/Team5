@@ -18,7 +18,7 @@ const PointHistory = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/myPage/myPoint', {
+    fetch('http://127.0.0.1:8000/myPage/mypoint', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
