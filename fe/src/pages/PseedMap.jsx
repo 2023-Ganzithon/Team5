@@ -18,7 +18,7 @@ const PseedMap = () => {
   const [mapMarkers, setMapMarkers] = useState([]);
   const [modalPlace, setModalPlace] = useState("Test");
   const [modalPoints, setModalPoints] = useState(100000);
-console.log("PseedMap user.token"+user.token);
+
 	useEffect(() => {
 		fetchData();
 		navigator.geolocation.getCurrentPosition(successHandler, errorHandler); 
@@ -58,6 +58,7 @@ console.log("PseedMap user.token"+user.token);
 			method: "POST",
 			headers: {
 				Authorization: `Token ${user.token}`,
+				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(data),
 		  })

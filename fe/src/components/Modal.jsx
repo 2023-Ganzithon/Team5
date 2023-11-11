@@ -23,9 +23,9 @@ export default Modal;
 const ModalContainer = styled.div`
 position: absolute;
 top: 170px;
-left:70px;
+left:45px;
 z-index: 30;
-width: 255px;
+width: 300px;
 height: auto;
 flex-shrink: 0;
 display: flex;
@@ -42,6 +42,10 @@ p{
 
 const PlaceTitle = styled.p`
 ${FONT.title1}
+overflow: hidden;
+text-overflow: ellipsis;
+text-align:center;
+padding:10px;
 `;
 
 const LogoImage = styled.img`
@@ -51,6 +55,7 @@ height: 150px;
 
 const PointText = styled.p`
 ${FONT.title2}
+text-align:center;
 `;
 
 const TotalPointText = styled.p`
