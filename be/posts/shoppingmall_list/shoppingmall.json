@@ -1,0 +1,47 @@
+[
+  {
+    "model": "posts.shoppingmall",
+    "fields": {
+      "name": "30일 상점",
+      "image": "https://cdn.imweb.me/thumbnail/20230923/45cac2f93547c.jpg",
+      "summary": "매달 순이익 전액을 '반려 동물과 함께 살기 좋은 세상'을 위해 사용합니다.",
+      "url": "https://30daystore.com/home"
+    }
+  },
+  {
+    "model": "posts.shoppingmall",
+    "fields": {
+      "name": "비코(BCOE)",
+      "image": "https://bcoe.co.kr/_dj/img/pitbullbcoe.jpg",
+      "summary": "반려동물의 의미를 되새기고 유기동물 입양 장려를 위해 활동하는 브랜드입니다.",
+      "url": "https://bcoe.co.kr/"
+    }
+  },
+  {
+    "model": "posts.shoppingmall",
+    "fields": {
+      "name": "마르코로호",
+      "image": "https://cf.channel.io/thumb/200x200/pub-file/55997/60f913dc8b8090e337f0/marcoroho_icon_1.png",
+      "summary": "할머니께 일자리를 제공하고, 할머니가 직접 만든 소품으로 얻은 수익금 일부를 기부하는 브랜드입니다.",
+      "url": "https://marcoroho.com/"
+    }
+  },
+  {
+    "model": "posts.shoppingmall",
+    "fields": {
+      "name": "플리즈럽미",
+      "image": "https://shop-phinf.pstatic.net/20230612_223/1686572930440I3uVR_JPEG/87708764260947496_1428734718.jpg",
+      "summary": "유기동물 사설 보호소에 후원하는 브랜드입니다.",
+      "url": "https://bcoe.co.kr/"
+    }
+  },
+  {
+    "model": "posts.shoppingmall",
+    "fields": {
+      "name": "세이브더칠드런",
+      "image": "https://image1.marpple.co/files/u_1592461/2022/4/original/34664d59f5079c3544bb4b9f71f74346456bf9771.png",
+      "summary": "세이브더칠드런 굿즈로 아이들의 미래를 함께 지킬 수 있습니다. Good한 소비로 당신의 일상을 더욱 특별하게 만들어보세요.",
+      "url": "https://savethegoods.marpple.shop/kr/"
+    }
+  }
+]

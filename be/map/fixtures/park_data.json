@@ -1,0 +1,1298 @@
+[
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "진관내동 생태경관보전지역",
+      "add": "은평구 진관동 282-1번지 일대(북한산국립공원 북한산성 입구 주변 습지 )",
+      "latitude": 37.6550512,
+      "longitude": 126.9496087
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "안산공원",
+      "add": "서울특별시 서대문구 홍제동 산33번지 일대",
+      "latitude": 37.5798208,
+      "longitude": 126.9481551
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "여의도공원",
+      "add": "서울특별시 영등포구 여의공원로68(여의도동 2번지)",
+      "latitude": 37.5260776,
+      "longitude": 126.922483
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "염창공원",
+      "add": "서울 강서구 염창동 산24-1",
+      "latitude": 37.5579045,
+      "longitude": 126.8688372
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "영등포공원",
+      "add": "서울특별시 영등포구 영등포동 582-3번지",
+      "latitude": 37.5152382,
+      "longitude": 126.9108539
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "오금공원",
+      "add": "서울 송파구 오금동 5번지 (오금근린공원 관리사무소 옆)",
+      "latitude": 37.5089467,
+      "longitude": 127.1330597
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "오동공원",
+      "add": "서울 강북구 번동, 미아동 일대",
+      "latitude": 37.629038,
+      "longitude": 127.0367452
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "온수공원",
+      "add": "서울 구로구 궁동, 개봉동,수궁동,온수동,오류동일대",
+      "latitude": 37.4941446,
+      "longitude": 126.8206181
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "올림픽공원",
+      "add": "서울 송파구 방이동 88번지",
+      "latitude": 37.5210310999999,
+      "longitude": 127.1161652
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "와룡공원",
+      "add": "서울특별시 종로구 명륜동3가 산2-14",
+      "latitude": 37.570436,
+      "longitude": 126.992148
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "와우공원",
+      "add": "(121-880) 서울특별시 마포구 창전동 3-193번지 일대(홍익대 뒷산)",
+      "latitude": 37.5529547999999,
+      "longitude": 126.92967
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "외국인묘지공원",
+      "add": "서울 마포구 합정동 145- 8일대",
+      "latitude": 37.5467692,
+      "longitude": 126.9120422
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "용두공원",
+      "add": "(130-070) 서울특별시 동대문구 용두동 34-1번지 일대",
+      "latitude": 37.5732217,
+      "longitude": 127.0400912
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "용마공원",
+      "add": "서울 중랑구 면목동 산 1-4",
+      "latitude": 37.573234,
+      "longitude": 127.0912609
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "용산가족공원",
+      "add": "서울특별시 용산구 서빙고로 185",
+      "latitude": 37.5200197,
+      "longitude": 126.9850603
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "용왕산근린공원",
+      "add": "서울 양천구 목동 산12-3일대",
+      "latitude": 37.5360367,
+      "longitude": 126.8745334
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "우면산",
+      "add": "방배동 산92-1",
+      "latitude": 37.4707336,
+      "longitude": 127.0014671
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "우장공원",
+      "add": "서울 강서구 화곡동 산60-1",
+      "latitude": 37.5504010999999,
+      "longitude": 126.843553
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "월드컵공원",
+      "add": "서울특별시 마포구 월드컵로 243-60(성산동 390-1)일대",
+      "latitude": 37.5592227,
+      "longitude": 126.9126287
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "월천근린공원",
+      "add": "(132-040) 서울특별시 도봉구 창동 28번지",
+      "latitude": 37.647567,
+      "longitude": 127.0508835
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "인능산",
+      "add": "내곡동 산12-404 일원",
+      "latitude": 37.4550628,
+      "longitude": 127.0695079
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "인왕산공원",
+      "add": "서울특별시 종로구 옥인동 산3-1",
+      "latitude": 37.5845052,
+      "longitude": 126.9638774
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "일자산 도시자연공원",
+      "add": "서울 강동구 동남로 660(둔촌동 산 140번지) 일대",
+      "latitude": 37.5282539,
+      "longitude": 127.1447139
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "자매공원",
+      "add": "서울 영등포구 여의도동 56번지",
+      "latitude": 37.5175282,
+      "longitude": 126.9304604
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "장지공원",
+      "add": "서울 송파구 장지동 산 11번지",
+      "latitude": 37.4899872,
+      "longitude": 127.1362761
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "중랑캠핑숲",
+      "add": "중랑캠핑장(중랑구 망우로 87길 110) / 중랑캠핑숲 공원관리사무소(중랑구 송림길 160)",
+      "latitude": 37.6044856,
+      "longitude": 127.1096119
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "중마루공원",
+      "add": "서울특별시 영등포구 영등포동2가 222",
+      "latitude": 37.5197905,
+      "longitude": 126.9113685
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "천마공원",
+      "add": "서울 송파구 마천동 산 1-1",
+      "latitude": 37.5029219,
+      "longitude": 127.1579748
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "천마근린공원",
+      "add": "송파구 마천동 산1-1",
+      "latitude": 37.5029219,
+      "longitude": 127.1579748
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "천호공원",
+      "add": "서울특별시 강동구 올림픽로 702(천호동360번지)",
+      "latitude": 37.5443789,
+      "longitude": 127.1264173
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "청량공원",
+      "add": "서울 성북구 석관동 산 1-5일대",
+      "latitude": 37.6050832,
+      "longitude": 127.0527967
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "초안산근린공원",
+      "add": "서울 도봉구 창동 산48-4번지 일대",
+      "latitude": 37.6487651,
+      "longitude": 127.0419163
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "초안산생태공원",
+      "add": "(132-040) 서울특별시 도봉구 창동 산157번지",
+      "latitude": 37.6480363,
+      "longitude": 127.0454959
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "탑골공원",
+      "add": "서울특별시 종로구 종로2가 38-1번지",
+      "latitude": 37.571198,
+      "longitude": 126.9883535
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "파리공원",
+      "add": "서울 양천구 목동 906 번지일대",
+      "latitude": 37.5347844,
+      "longitude": 126.8770238
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "푸른수목원",
+      "add": "(152-140) 서울특별시 구로구 항동 연동로 240( 구주소 : 항동81-1) 푸른수목원관리사무소",
+      "latitude": 37.4836544,
+      "longitude": 126.8242477
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "효창공원",
+      "add": "서울 용산구 효창동 255번지 일대",
+      "latitude": 37.5451823,
+      "longitude": 126.9602216
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "훈련원공원",
+      "add": "서울특별시 중구 을지로 227",
+      "latitude": 37.5673944,
+      "longitude": 127.0035451
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "고덕동 생태경관보전지역",
+      "add": "강동구 고덕동 396일대(암사정수장~하남시계 구간의 한강수변)",
+      "latitude": 37.567021,
+      "longitude": 127.1493542
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "청계산원터골 생태경관보전지역",
+      "add": "서초구 원지동 산4-38번지 일대(청계산 도시자연공원내 원터골 주변 산림)",
+      "latitude": 37.4141657,
+      "longitude": 127.0415787
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "청계천하류 철새보호구역",
+      "add": "고산자교 ~ 청계천 중랑천 합류부",
+      "latitude": 37.5691015,
+      "longitude": 126.9786692
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "안양천하류 철새보호구역",
+      "add": "오목교 ~ 목동교 양안(목동종합운동장 옆)",
+      "latitude": 37.5305581,
+      "longitude": 126.8830404
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "불암산삼육대 생태경관보전지역",
+      "add": "노원구 공릉동 산223-1번지 일대(삼육대학교 뒷산 서어나무군락)",
+      "latitude": 37.6425531,
+      "longitude": 127.0990895
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "창덕궁후원 생태경관보전지역",
+      "add": "종로구 와룡동 2-71번지 일대(창덕궁내 옥류천 주변 산림)",
+      "latitude": 37.5799002,
+      "longitude": 126.991174
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "봉산 생태경관보전지역",
+      "add": "은평구 신사동 산93-16번지 일대(봉산 도시자연공원내 팥배나무군락)",
+      "latitude": 37.5909171,
+      "longitude": 126.901049
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "인왕산 생태경관보전지역",
+      "add": "서대문구 홍제동 산1-1번지 일대, 종로구 옥인동 산3-14 일대",
+      "latitude": 37.5846076,
+      "longitude": 126.9605341
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "아차산 생태공원",
+      "add": "서울특별시 광진구 광장동 307번지",
+      "latitude": 37.5455239,
+      "longitude": 127.1049714
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "길동자연생태공원",
+      "add": "서울특별시 강동구 길동 3번지",
+      "latitude": 37.5437591,
+      "longitude": 127.1478317
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "여의도샛강 생태공원",
+      "add": "영등포구 여의도동(서울교 ~ 여의교)",
+      "latitude": 37.5159431,
+      "longitude": 126.9277969
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "강서습지생태공원",
+      "add": "강서구 개화동 168-2(방화대교 하류 ~ 행주대교 상류)",
+      "latitude": 37.5885484,
+      "longitude": 126.8273708
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "우면산 자연생태공원",
+      "add": "서초구 우면동 산34-1",
+      "latitude": 37.4706506,
+      "longitude": 127.0143067
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "월드컵공원",
+      "add": "서울특별시 마포구 상암동 549번지",
+      "latitude": 37.5707485,
+      "longitude": 126.8798744
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "한강밤섬 생태경관보전지역",
+      "add": "윗밤섬-영등포구 여의도동 84번지 일대, 아랫밤섬-마포구 당인동 313번지 일대",
+      "latitude": 37.5407505,
+      "longitude": 126.9284839
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "둔촌동 생태경관보전지역",
+      "add": "강동구 둔촌동 212번지 일대(둔촌주공아파트 뒤편 오리나무숲)",
+      "latitude": 37.5233713999999,
+      "longitude": 127.1352009
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "방이동 생태경관보전지역",
+      "add": "송파구 방이동 443-8번지 일대(올림픽선수촌 아파트 뒤편 습지)",
+      "latitude": 37.5107225,
+      "longitude": 127.1383163
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "탄천 생태경관보전지역",
+      "add": "강남구~송파구 경계하천(탄천2교~대곡교)",
+      "latitude": 37.4686117,
+      "longitude": 127.122363
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "암사동 생태경관보전지역",
+      "add": "강동구 암사동 624-1번지 일대(한강시민공원 광나루지구내 갈대군락)",
+      "latitude": 37.5523533,
+      "longitude": 127.1217943
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "헌인릉 생태경관보전지역",
+      "add": "서초구 내곡동 산13-1 일대(헌인릉내 오리나무숲)",
+      "latitude": 37.4647497,
+      "longitude": 127.0894903
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "남산 생태경관보전지역",
+      "add": "중구 예장동 산5-6번지 일대(북사면 신갈나무림, 남사면 소나무숲)",
+      "latitude": 37.5539469,
+      "longitude": 126.9899134
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "간데메공원",
+      "add": "서울특별시 동대문구 서울시립대로2길 59",
+      "latitude": 37.5733392,
+      "longitude": 127.0487341
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "갈산공원",
+      "add": "서울 양천구 신정동 산73-4일대",
+      "latitude": 37.5151795,
+      "longitude": 126.8557093
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "갈현근린공원",
+      "add": "서울특별시 은평구 불광동",
+      "latitude": 37.6191594,
+      "longitude": 126.9355669
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "감로천생태공원",
+      "add": "서울특별시 금천구 독산4동 371∼375, 373일대",
+      "latitude": 37.467366,
+      "longitude": 126.901941
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "개운산공원",
+      "add": "서울특별시 성북구 돈암동, 안암동 일대",
+      "latitude": 37.586288,
+      "longitude": 127.0261105
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "개웅산공원",
+      "add": "서울특별시 구로구 오류동, 개봉동 일대",
+      "latitude": 37.4919936,
+      "longitude": 126.838542
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "개화근린공원",
+      "add": "방화동 산153-1",
+      "latitude": 37.5813069,
+      "longitude": 126.8068926
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "경희궁",
+      "add": "서울특별시 종로구 새문안길 50",
+      "latitude": 37.5949159,
+      "longitude": 126.977339
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "계남공원",
+      "add": "서울특별시 양천구 신정동 산44-2일대",
+      "latitude": 37.5151795,
+      "longitude": 126.8557093
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "고척공원",
+      "add": "서울특별시 구로구 고척동 산 9-14번지",
+      "latitude": 37.5040503,
+      "longitude": 126.8527631
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "관악산(호암산)",
+      "add": "시흥동 산93-1",
+      "latitude": 37.4503568,
+      "longitude": 126.9252342
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "관악산공원",
+      "add": "서울특별시 관악구",
+      "latitude": 37.4673709,
+      "longitude": 126.9453359
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "광화문시민열린마당",
+      "add": "서울특별시 종로구 세종로 76-2",
+      "latitude": 37.5752067,
+      "longitude": 126.9784132
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "구룡산",
+      "add": "염곡동 산25-1",
+      "latitude": 37.4667358,
+      "longitude": 127.0572648
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "구암공원",
+      "add": "서울특별시 강서구 허준로 5길 42(가양동 1471)",
+      "latitude": 37.5677821,
+      "longitude": 126.8526597
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "구파발폭포(진관근린공원)",
+      "add": "서울특별시 은평구 진관동 393",
+      "latitude": 37.6371069,
+      "longitude": 126.9190707
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "국립현충원",
+      "add": "서울특별시 동작구 현충로 65",
+      "latitude": 37.5060174,
+      "longitude": 126.9692462
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "궁동공원",
+      "add": "서울특별시 서대문구 연희동 산118번지 일대",
+      "latitude": 37.5700789,
+      "longitude": 126.9230202
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "궁산공원",
+      "add": "서울특별시 강서구 가양동 산6-4",
+      "latitude": 37.5678802,
+      "longitude": 126.8510787
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "금천체육공원",
+      "add": "(153-010) 서울특별시 금천구 독산동 산118-4번지 일대",
+      "latitude": 37.4683104,
+      "longitude": 126.908534
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "금천폭포공원",
+      "add": "(153-701) 서울특별시 금천구 시흥동 937-2번지 일대",
+      "latitude": 37.4466287,
+      "longitude": 126.9041882
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "금호근린공원",
+      "add": "(133-093) 서울특별시 성동구 금호동3가 1266외 1필지",
+      "latitude": 37.5494779,
+      "longitude": 127.0190581
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "길동생태공원",
+      "add": "서울특별시 강동구 천호대로 1291(둔촌동 558)",
+      "latitude": 37.5383783,
+      "longitude": 127.1544845
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "까치산공원",
+      "add": "서울특별시 동작구 사당동 산32",
+      "latitude": 37.4843883,
+      "longitude": 126.9639231
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "꿩고개공원",
+      "add": "서울특별시 강서구 방화동 산110",
+      "latitude": 37.5801173,
+      "longitude": 126.815973
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "낙산공원",
+      "add": "서울특별시 종로구 낙산길 54",
+      "latitude": 37.5806568,
+      "longitude": 127.007162
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "남산공원",
+      "add": "서울특별시 중구 삼일대로 231(예장동)",
+      "latitude": 37.5558947,
+      "longitude": 126.9920209
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "노들텃밭",
+      "add": "(140-030) 서울특별시 용산구 양녕로 445 노들텃밭 지원센터",
+      "latitude": 37.5179707,
+      "longitude": 126.9577411
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "노량진공원",
+      "add": "서울특별시 동작구 대방동 23-176",
+      "latitude": 37.5121909,
+      "longitude": 126.9321846
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "달맞이근린공원",
+      "add": "(133-094) 서울특별시 성동구 금호동4가 산27외 35필지",
+      "latitude": 37.5432789,
+      "longitude": 127.0214657
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "답십리공원",
+      "add": "서울특별시 동대문구 답십리동 산2-9일대",
+      "latitude": 37.5737596,
+      "longitude": 127.063558
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "대모산공원",
+      "add": "서울특별시 강남구 개포동 산 53-22",
+      "latitude": 37.4735999,
+      "longitude": 127.0672981
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "도곡공원",
+      "add": "서울특별시 강남구 도곡동 산31-1번지",
+      "latitude": 37.4894249,
+      "longitude": 127.0440986
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "도산공원",
+      "add": "서울특별시 강남구 신사동 649-9",
+      "latitude": 37.5243895,
+      "longitude": 127.0351173
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "동명근린공원",
+      "add": "서울특별시 강동구 고덕동 229일대",
+      "latitude": 37.5614664,
+      "longitude": 127.1649325
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "마로니에공원",
+      "add": "서울특별시 종로구 동숭동 1-124",
+      "latitude": 37.5804808,
+      "longitude": 127.0027113
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "만수천공원",
+      "add": "(153-010) 서울특별시 금천구 독산동 산8 일대",
+      "latitude": 37.4744736,
+      "longitude": 126.9091728
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "매화공원",
+      "add": "서울특별시 강서구 등촌동 630-14",
+      "latitude": 37.5582919,
+      "longitude": 126.8597682
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "명일근린공원",
+      "add": "서울특별시 강동구 상일동 135일대",
+      "latitude": 37.5515294,
+      "longitude": 127.1642572
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "문정근린공원",
+      "add": "(138-200) 서울특별시 송파구 문정동 2-5번지외 1필지",
+      "latitude": 37.4911864,
+      "longitude": 127.1347152
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "발바닥공원",
+      "add": "(132-023) 서울특별시 도봉구 방학3동 270-1",
+      "latitude": 37.6691065,
+      "longitude": 127.0323527
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "방화공원",
+      "add": "서울특별시 강서구 방화동 855",
+      "latitude": 37.581666,
+      "longitude": 126.8120772
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "배봉산공원",
+      "add": "서울특별시 동대문구 전농동 32-20번지",
+      "latitude": 37.5806918,
+      "longitude": 127.064359
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "백련공원",
+      "add": "서울특별시 서대문구 홍은동 산11번지 일대",
+      "latitude": 37.5862936,
+      "longitude": 126.9278647
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "보라매공원",
+      "add": "서울특별시 동작구 여의대방로 20길33(신대방동 395)",
+      "latitude": 37.4926778,
+      "longitude": 126.919139
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "봉산도시자연공원",
+      "add": "서울특별시 은평구 구산동 산61",
+      "latitude": 37.6067757,
+      "longitude": 126.9066478
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "봉은공원",
+      "add": "서울특별시 강남구 삼성동 73일대",
+      "latitude": 37.5151403,
+      "longitude": 127.0569421
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "봉제산공원",
+      "add": "서울특별시 강서구 화곡동 산 1번지일대",
+      "latitude": 37.5410878,
+      "longitude": 126.8586095
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "봉화산공원",
+      "add": "서울특별시 중랑구 묵동 산46-1",
+      "latitude": 37.608501,
+      "longitude": 127.084105
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "북서울꿈의숲",
+      "add": "강북구 월계로 173",
+      "latitude": 37.6217709,
+      "longitude": 127.0411741
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "북악산공원",
+      "add": "서울특별시 종로구 부암동, 성북구 성북동 일대",
+      "latitude": 37.5952093,
+      "longitude": 126.9978087
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "북한산국립공원",
+      "add": "서울특별시 종로구 평창동, 구기동, 서대문구 홍은동, 성북구 정릉동, 성북동 일대",
+      "latitude": 37.5930107,
+      "longitude": 126.9385581
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "불광근린공원",
+      "add": "서울특별시 은평구 불광동 산33-1 일원",
+      "latitude": 37.6210996999999,
+      "longitude": 126.9308982
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "불암산공원",
+      "add": "서울특별시 노원구 중계동 일대",
+      "latitude": 37.6510125,
+      "longitude": 127.0799977
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "사육신공원",
+      "add": "서울특별시 동작구 노량진동 152-3",
+      "latitude": 37.5138393999999,
+      "longitude": 126.9481858
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "사직공원",
+      "add": "서울특별시 종로구 사직동 1-29번지",
+      "latitude": 37.5772504,
+      "longitude": 126.9677184
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "삼일공원",
+      "add": "(156-090) 서울특별시 동작구 사당동 산24-17",
+      "latitude": 37.48586,
+      "longitude": 126.9745425
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "삼청공원",
+      "add": "서울특별시 종로구 삼청동 산2-1",
+      "latitude": 37.5927087,
+      "longitude": 126.9817876
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "상도공원",
+      "add": "서울특별시 동작구 상도동 산75",
+      "latitude": 37.4936732,
+      "longitude": 126.9371447
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "상암근린공원",
+      "add": "(121-270) 서울특별시 마포구 상암동 1693번지",
+      "latitude": 37.5707485,
+      "longitude": 126.8798744
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "샘말공원",
+      "add": "서울시 관악구 대학동 산63-1일대 샘말공원",
+      "latitude": 37.4643276,
+      "longitude": 126.9384176
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "샛마을근린공원",
+      "add": "서울특별시 강동구 구천면로 429(명일동 288번지)",
+      "latitude": 37.5500849,
+      "longitude": 127.1474065
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서대문독립공원",
+      "add": "서울특별시 서대문구 통일로251(현저동 101번지) 일대",
+      "latitude": 37.5742169,
+      "longitude": 126.9561692
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서서울호수공원",
+      "add": "서울특별시 양천구 남부순환로 64길 20(신월동 149-20)",
+      "latitude": 37.527233,
+      "longitude": 126.8296294
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서오릉도시자연공원",
+      "add": "진관동 389-3일대",
+      "latitude": 37.6374858,
+      "longitude": 126.9134297
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서울대공원",
+      "add": "경기도 과천시 막계동 159-1",
+      "latitude": 37.4359624,
+      "longitude": 127.0142283
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서울숲",
+      "add": "(133-111) 서울특별시 성동구 뚝섬로 273(성수1가1동 685)",
+      "latitude": 37.5450455,
+      "longitude": 127.0408373
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서울어린이대공원",
+      "add": "서울특별시 광진구 능동로 216",
+      "latitude": 37.5495886,
+      "longitude": 127.081578
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서울창포원",
+      "add": "서울시 도봉구 마들로 916(도봉동 4-2)",
+      "latitude": 37.6894985,
+      "longitude": 127.0479593
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "서초문화예술공원",
+      "add": "(137-130) 서울특별시 서초구 양재동 200번지",
+      "latitude": 37.4682645,
+      "longitude": 127.0311083
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "선유도공원",
+      "add": "(07200)서울시 영등포구 선유로 343 (당산동 1) 선유도공원관리사무소",
+      "latitude": 37.5425312,
+      "longitude": 126.9019908
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "성북공원",
+      "add": "서울특별시 성북구 돈암동 606번지 일대",
+      "latitude": 37.5957258,
+      "longitude": 127.0079303
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "성수공원",
+      "add": "서울특별시 성동구 성수2가 302-25",
+      "latitude": 37.544577,
+      "longitude": 127.055991
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "세운초록띠광장",
+      "add": "(110-430) 서울특별시 종로구 장사동",
+      "latitude": 37.5692362,
+      "longitude": 126.9940428
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "세종로공원",
+      "add": "서울특별시 종로구 세종로 80-1번지",
+      "latitude": 37.5733728,
+      "longitude": 126.9759147
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "손기정공원",
+      "add": "서울특별시 중구 손기정로 101(만리동2가 6-1번지)",
+      "latitude": 37.5555781,
+      "longitude": 126.9647417
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "솔밭공원",
+      "add": "(142-892) 서울특별시 강북구 우이동 80번지 일대",
+      "latitude": 37.6529597,
+      "longitude": 127.011901
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "송파나루공원",
+      "add": "서울 송파구 잠실동 47번지",
+      "latitude": 37.5085818,
+      "longitude": 127.1001887
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "수락산공원",
+      "add": "서울 노원구 상계동 일대",
+      "latitude": 37.6729908999999,
+      "longitude": 127.0703498
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "시민의숲",
+      "add": "서울특별시 서초구 매헌로 99(양재동236)",
+      "latitude": 37.4710677,
+      "longitude": 127.035758
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "신사근린공원",
+      "add": "서울 은평구 신사동",
+      "latitude": 37.595613,
+      "longitude": 126.9072033
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "쌍문근린공원",
+      "add": "132 - 030 서울 도봉구 쌍문동 산80",
+      "latitude": 37.6536237,
+      "longitude": 127.0288334
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "아시아공원",
+      "add": "서울 송파구 잠실동 84번지",
+      "latitude": 37.5102687,
+      "longitude": 127.0763977
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "양재천",
+      "add": "서울특별시 강남구 영동2교 ~ 탄천합류부",
+      "latitude": 37.4966645,
+      "longitude": 127.0629804
+    }
+  },
+  {
+    "model": "map.park",
+    "fields": {
+      "name": "중랑천하류 철새보호구역",
+      "add": "중랑천 한강 합류부~중랑천 청계천 합류부(서울숲 서쪽)",
+      "latitude": 37.5691015,
+      "longitude": 126.9786692
+    }
+  }
+]
