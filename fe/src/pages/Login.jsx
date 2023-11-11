@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import FONT from '@styles/fonts';
 import LOGO from '@assets/LogoPseed2.svg';
@@ -10,24 +10,19 @@ import { AuthContext } from '@store/AuthContextProvider';
 const Login = () => {
   // 요청 - 유저이름, 비밀번호
   // 응답 -> 토큰
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const nameRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const navigate = useNavigate();
 
   const { login } = useContext(AuthContext);
 
   const loginClick = () => {
-    const enteredName = document.getElementById('name').value;
-    const enteredPassword = document.getElementById('password').value;
-
     let apiUrl = 'http://127.0.0.1:8000/users/login/';
 
-    let dataToSend = null;
-
-    dataToSend = {
-      username: enteredName,
-      password: enteredPassword,
+    const data = {
+      username: nameRef.current.value,
+      password: passwordRef.current.value,
     };
 
     fetch(apiUrl, {
@@ -35,12 +30,11 @@ const Login = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataToSend),
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('토큰 : ', data.token);
-        login({ token: data.token, userId: data.user_id });
+        login({ token: data.token, userId: data.user_pk });
         navigate('/');
       })
       .catch((error) => {
@@ -55,11 +49,11 @@ const Login = () => {
       <div>
         <InputLayout>
           <Label htmlFor="name">이름 *</Label>
-          <Input type="text" id="name" />
+          <Input type="text" id="name" ref={nameRef} />
         </InputLayout>
         <InputLayout>
           <Label htmlFor="name">비밀번호 *</Label>
-          <Input type="password" id="password" />
+          <Input type="password" id="password" ref={passwordRef} />
         </InputLayout>
       </div>
       <Button text="로그인" path="/login" eventName={loginClick} />
@@ -81,7 +75,7 @@ const LoginContainer = styled.div`
 const Logo = styled.img`
   width: 200px;
   height: 250px;
-  margin-top:30px;
+  margin-top: 30px;
 `;
 const InputLayout = styled.div`
   display: flex;

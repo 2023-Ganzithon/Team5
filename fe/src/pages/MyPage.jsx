@@ -57,21 +57,21 @@ const MyPage = () => {
     console.log(selectedImage);
     console.log(nickname);
 
-    // fetch(`/users/profile/${user.userId}`, {
-    //   method: 'PUT',
-    //   cache: 'no-cache',
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //     Authorization: `Token ${user.token}`,
-    //   },
-    //   body: formData,
-    // });
+    fetch(`http://127.0.0.1:8000/users/profile/${user.userId}`, {
+      method: 'PUT',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Token ${user.token}`,
+      },
+      body: formData,
+    });
     setImgSrc(null);
     setIsEdited(false);
   };
 
   useEffect(() => {
-    const pointHistoryPromise = fetch('/myPage/myPoint', {
+    const pointHistoryPromise = fetch('http://127.0.0.1:8000/myPage/myPoint', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const MyPage = () => {
         return { profile, history: history.slice(0, 3) };
       });
 
-    const donationHistoryPromise = fetch('/myPage/mydonation/', {
+    const donationHistoryPromise = fetch('http://127.0.0.1:8000/myPage/mydonation/', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
