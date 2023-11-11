@@ -13,4 +13,5 @@ export const ICON_NAME = {
   RIGHT_ARROW: 'rightArrow',
   SEARCH: 'search',
   STAR: 'star',
+  SETTING: 'setting',
 };

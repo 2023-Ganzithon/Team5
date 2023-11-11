@@ -1,5 +1,7 @@
 import { HttpResponse, http } from 'msw';
-// * test
+import pointHistory from './json/pointHistory.json';
+import donationHistory from './json/donationHistory.json';
+
 export const handlers = [
   http.post('/review/', async ({ request }) => {
     const formData = await request.formData();
@@ -10,6 +12,12 @@ export const handlers = [
     const image = formData.get('image');
 
     return HttpResponse.json({ title, body, shoppingmall, star });
+  }),
+  http.get('myPage/myPoint', () => {
+    return HttpResponse.json(pointHistory);
+  }),
+  http.get('/myPage/mydonation/', () => {
+    return HttpResponse.json(donationHistory);
   }),
   http.post('myPage/donationRegister', async ({ request }) => {
     const formData = await request.formData();
