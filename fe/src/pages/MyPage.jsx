@@ -90,7 +90,6 @@ const MyPage = () => {
               </IconButton>
             </ListTitle>
             {pointHistory.map(({ park, mall, pointActivityDate, earnedPoint }) => {
-              // ? 백엔드에서 key 값 줄 수 있는지
               return (
                 <PointHistoryItem
                   key={pointActivityDate}
