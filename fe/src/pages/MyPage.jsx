@@ -331,6 +331,7 @@ const UserImg = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 const ImgLabel = styled.label`
