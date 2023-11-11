@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 import pointHistory from './json/pointHistory.json';
 import donationHistory from './json/donationHistory.json';
+import reviewHome from './json/reviewHome.json';
 
 export const handlers = [
   http.post('/review/', async ({ request }) => {
@@ -27,5 +28,9 @@ export const handlers = [
     const goal = formData.get('goal');
 
     return HttpResponse.json({ name, title, comment, goal });
+  }),
+
+  http.get(`/review/posts/?page=1`, () => {
+    return HttpResponse.json(reviewHome);
   }),
 ];

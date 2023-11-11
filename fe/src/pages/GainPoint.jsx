@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
+import { AuthContext } from '@store/AuthContextProvider';
 
 import POINT from '@assets/point.svg';
 import COLOR from '@styles/color';
@@ -12,7 +13,11 @@ const GainPoint = () => {
   const [point, setPoint] = useState(10);
 
   useEffect(() => {
-    fetch('/myPage/')
+    fetch('/myPage/', {
+      // headers: {
+      //   Authorization: `Token ${token}`,
+      // },
+    })
       .then((res) => res.json())
       .then((data) => {
         setPoint(data.profile.points);
