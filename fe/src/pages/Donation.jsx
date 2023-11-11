@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '@common/Header';
 import COLOR from '@styles/color';
@@ -8,15 +9,18 @@ import Button from '@common/Button';
 import axios from "axios";
 import { AuthContext } from '@store/AuthContextProvider';
 
-const Donation = (id) => {
+const Donation = () => {
   // 실행시 id 이용해서 백엔드로부터 정보 받아오기 + 사용자의 보유 포인트
+  const location = useLocation();
+  const id = location.state;
+  
   const [imageSrc,setImageSrc] = useState(null);
   const [category,setCategory] = useState("개인");
   const [title,setTitle] = useState("테스트");
   const [perAccomp,setPerAccomp] = useState(70);
   const [moneyAccomp,setMoneyAccomp] = useState(7000);
   const [comment,setComment] = useState("안녕하세요. 사용해주셔서 감사합니다.");
-  const [point,setPoint] = useState(null);
+  const [point,setPoint] = useState(0);
 
   const { user } = useContext(AuthContext)
 
