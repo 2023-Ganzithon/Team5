@@ -70,15 +70,6 @@ const DonationRegistration = () => {
     formData.append('comment', comment);
     formData.append('goal', goal);
 
-    // * test
-    // console.log({
-    //   image,
-    //   name,
-    //   title,
-    //   comment,
-    //   goal,
-    // });
-
     fetch('/myPage/donationRegister', {
       method: 'POST',
       cache: 'no-cache',

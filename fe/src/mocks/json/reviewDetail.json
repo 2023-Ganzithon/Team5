@@ -1,0 +1,13 @@
+{
+  "pk": 1,
+  "profile": {
+    "nickname": "gksekdms",
+    "image": "http://127.0.0.1:8000/media/default.png"
+  },
+  "shoppingmall": "ddddd",
+  "title": "titi",
+  "body": "ddd",
+  "image": "http://127.0.0.1:8000/media/default.png",
+  "published_date": "2023-11-08T11:26:36.302657+09:00",
+  "star": 1
+}

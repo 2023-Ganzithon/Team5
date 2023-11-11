@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import COLOR from '@styles/color';
 import FONT from '@styles/fonts';
@@ -8,6 +8,20 @@ import TabBar from '@common/TabBar';
 import DonationHistoryItem from '@components/DonationHistoryItem';
 
 const DonationHistory = () => {
+  const [donationAmount, setDonationAmount] = useState(null);
+  const [donationHistory, setDonationHistory] = useState([]);
+
+  useEffect(() => {
+    fetch('/myPage/mydonation/')
+      .then((res) => res.json())
+      .then((data) => {
+        const { donation_points: history, total_donation_amount: totalDonationAmount } = data;
+
+        setDonationAmount(totalDonationAmount);
+        setDonationHistory(history);
+      });
+  }, []);
+
   return (
     <>
       <Layout>
@@ -15,45 +29,21 @@ const DonationHistory = () => {
         <Main>
           <CurrentDonationInfo>
             <span>name님이 현재 기부한 총 포인트는</span>
-            <span>600p</span>
+            <span>{donationAmount}p</span>
           </CurrentDonationInfo>
           <DonationHistoryList>
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
-            <DonationHistoryItem
-              name="자선 단체"
-              title="세이브더칠드런 아동 식사지원캠페인"
-              point={10}
-              createdAt={new Date()}
-            />
+            {donationHistory.map(({ id, date, price, name, image, title }) => {
+              return (
+                <DonationHistoryItem
+                  key={id}
+                  name={name}
+                  title={title}
+                  point={price}
+                  imgSrc={image}
+                  createdAt={new Date(date)}
+                />
+              );
+            })}
           </DonationHistoryList>
         </Main>
       </Layout>

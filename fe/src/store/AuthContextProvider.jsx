@@ -1,64 +1,46 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
 export const AuthContext = createContext({
-    token:'',
-    userId:0,
-    userInfo: {
-        nickname: '',
-        image:null,
-    },
-    loggedIn: false,
+  token: '',
+  userId: 0,
+  userInfo: {
+    nickname: '',
+    image: null,
+  },
+  loggedIn: false,
 });
 
 const AuthContextProvider = ({ children }) => {
+  const initialState = {
+    token: '',
+    userId: 0,
+    userInfo: {
+      nickname: '',
+      image: null,
+    },
+    loggedIn: false,
+  };
+  const [user, setUser] = useState(initialState);
 
-    const initialState = {
-        token: '',
-        userId:0,
-        userInfo: {
-            nickname: '',
-            image: null,
-        },
-        loggedIn: false,
-    }
+  const login = ({ token, userId }) => {
+    fetch(`/users/profile/${userId}`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(({ nickname, image }) => {
+        setUser({ token, userId, userInfo: { nickname, image }, loggedIn: true });
+      });
+  };
 
-    const setToken = (newToken) => {
-        setUser(prevState => ({
-            ...prevState, 
-            token: newToken
-        }))
-    }
-    const setUserId = (newUserId) => {
-        setUser(prevState => ({
-            ...prevState, 
-            userId: newUserId
-        }))
-    }
-    
-    const setLoggedIn = () => {
-        setUser(prevState => ({
-            ...prevState, 
-            loggedIn: !prevState.loggedIn
-        }))
-    }
+  const logout = () => {
+    setUser(initialState);
+  };
 
-    const setUserInfo = (nickname, image) => {
-        setUser(prevState => ({
-            ...prevState,
-            userInfo: {
-                nickname,
-                image,
-            },
-        }))
-    }
-
-    const [user, setUser] = useState(initialState);
-
-    return (
-        <AuthContext.Provider value={{user, setToken, setUserId, setLoggedIn, setUserInfo}}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ user, login, logout, setUser }}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthContextProvider;

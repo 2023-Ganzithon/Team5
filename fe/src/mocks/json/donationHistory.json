@@ -1,0 +1,23 @@
+{
+  "donation_points": [
+    {
+      "id": 2,
+      "donation": 2,
+      "date": "2023-11-11T01:17:10.109628+09:00",
+      "price": 5,
+      "name": "장우림",
+      "image": "/media/donation_images/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_CGaL3U1.png",
+      "title": "test"
+    },
+    {
+      "id": 1,
+      "donation": 1,
+      "date": "2023-11-11T01:13:30.731590+09:00",
+      "price": 10,
+      "name": "장우림",
+      "image": "/media/donation_images/%E1%84%87%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8E%E1%85%B5_vgbpghe.png",
+      "title": "test"
+    }
+  ],
+  "total_donation_amount": 15
+}

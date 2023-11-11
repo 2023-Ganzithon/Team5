@@ -3,20 +3,13 @@ import styled from 'styled-components';
 import Icon from '@common/Icon';
 
 import COLOR from '@styles/color';
-import { ImStarFull } from 'react-icons/im';
-import { MALLNAME } from '@constants/mallName';
+import { MALLNAME } from '@constants/mall';
 import { ICON_NAME } from '@constants/iconName';
 import FONT from '@styles/fonts';
 
-const dropdownItems = [
-  { id: 1, name: '마르코로하' },
-  { id: 2, name: '마르코로히' },
-  { id: 3, name: '마르코로후' },
-  { id: 4, name: '마르코로헤' },
-  { id: 5, name: '마르코로호' },
-];
-
 const Dropdown = ({ updateSelect }) => {
+  const dropdownItems = Object.values(MALLNAME);
+
   const [isActive, setIsActive] = useState(false);
   const [item, setItem] = useState(null);
 
@@ -55,9 +48,9 @@ const Dropdown = ({ updateSelect }) => {
         )}
       </DropdownBody>
       <DropdownMenu isActive={isActive}>
-        {dropdownItems.map((item) => (
-          <DropdownItemContainer id="item" key={item.id} onClick={onSelectItem}>
-            <ItemName id="item_name">{item.name}</ItemName>
+        {dropdownItems.map((item, index) => (
+          <DropdownItemContainer id="item" key={index} onClick={onSelectItem}>
+            <ItemName id="item_name">{item}</ItemName>
           </DropdownItemContainer>
         ))}
       </DropdownMenu>

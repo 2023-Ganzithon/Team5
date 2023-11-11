@@ -3,16 +3,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { styled } from 'styled-components';
 import { Component } from 'react';
-import MARCOROHO from '@assets/marcoroho.png';
+import { MALL_BIGIMG, MALLPATH } from '@constants/mall';
 import COLOR from '@styles/color';
-
-const items = [
-  { id: 1, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
-  { id: 2, img: MARCOROHO, url: 'https://www.naver.com/' },
-  { id: 3, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
-  { id: 4, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
-  { id: 5, img: MARCOROHO, url: 'https://m.marcoroho.com/' },
-];
 
 export default class AdSlider extends Component {
   render() {
@@ -47,16 +39,19 @@ export default class AdSlider extends Component {
       dotsClass: 'dotsCustom',
     };
 
+    const items = Object.values(MALL_BIGIMG);
+    const path = Object.values(MALLPATH);
+
     const handleClick = (path) => {
       window.location.href = path;
     };
     return (
       <Container>
         <StyledSlider {...settings}>
-          {items.map((item) => {
+          {items.map((item, index) => {
             return (
-              <button key={item.id} onClick={() => handleClick(item.url)}>
-                <Image src={item.img} />
+              <button key={index} onClick={() => handleClick(path[index])}>
+                <Image src={item} />
               </button>
             );
           })}
