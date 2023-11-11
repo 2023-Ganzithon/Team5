@@ -57,12 +57,12 @@ const MyPage = () => {
     console.log(selectedImage);
     console.log(nickname);
 
-    // fetch(`/users/profile/${userId}`, {
+    // fetch(`/users/profile/${user.userId}`, {
     //   method: 'PUT',
     //   cache: 'no-cache',
-    //   'Content-Type': 'multipart/form-data',
     //   headers: {
-    //     Authorization: `Token ${token}`,
+    //     'Content-Type': 'multipart/form-data',
+    //     Authorization: `Token ${user.token}`,
     //   },
     //   body: formData,
     // });
